@@ -1,0 +1,62 @@
+.nav-list {
+  list-style: none;
+  display: grid;
+  position: absolute;
+  grid-template-columns: 62.4% 14% 7% 12% 4.6%;
+  width: 98%;
+  margin-top: 2.3rem;
+  z-index: 10;
+  @media (max-width: 1024px) {
+    grid-template-columns: 51% 15% 12% auto;
+    margin-top: 3rem;
+    width: 92%;
+    font-size: 3.8vw;
+  }
+  .nav-list-logo {
+    font-family: "Steelfish";
+    font-size: 2vw;
+    font-weight: bold;
+    color: var(--color5);
+    text-decoration: none;
+    letter-spacing: 0.21rem;
+    margin-left: 1rem;
+    @media (max-width: 1024px) {
+      font-size: 3.8vw;
+      margin-left: 2rem;
+    }
+    a {
+      transition: color 0.3s ease-in-out;
+      color: var(--color5);
+      text-decoration: none;
+      &:hover {
+        color: var(--color4);
+      }
+    }
+  }
+
+  .nav-list-profile {
+    display: flex;
+    font-size: 1.6vw;
+    align-items: center;
+    margin-top: 0.4rem;
+    justify-content: space-around;
+    grid-column: 4 / span 2;
+    grid-row: 1;
+    @media (max-width: 1024px) {
+      grid-column: 4;
+      font-size: 3vw;
+    }
+  }
+
+  .nav-list-menu-search {
+    display: flex;
+    align-items: center;
+    font-size: 1.6vw;
+    margin-top: 0.4rem;
+    grid-column: 2;
+    justify-content: space-between;
+    @media (max-width: 1024px) {
+      font-size: 3vw;
+    }
+  }
+}

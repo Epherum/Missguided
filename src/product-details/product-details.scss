@@ -1,0 +1,116 @@
+.productDetails {
+  display: grid;
+  padding: 0 3rem;
+  grid-template-columns: 15% 6% 41.5% 31% 7%;
+  grid-template-rows: 16% auto 8% 14% 14%;
+  height: 100vh;
+  overflow: hidden;
+  .breadcrumbs {
+    grid-column: 1/4;
+    grid-row: 2;
+    font-family: "OGG Roman";
+
+    font-size: 1vw;
+    // font-weight: 700;
+    // margin-bottom: 1rem;
+  }
+  .headline {
+    grid-column: 1/4;
+    grid-row: 2;
+    align-self: end;
+    font-size: 4vw;
+    font-weight: 1100;
+    margin-top: 1rem;
+    align-self: center;
+  }
+  .price {
+    grid-row: 3;
+    font-family: "GT America Regular";
+    grid-column: 1/2;
+    font-size: 2.7rem;
+    letter-spacing: 0.4rem;
+    letter-spacing: 0.1rem;
+  }
+  .size {
+    grid-column: 1/2;
+    grid-row: 4;
+    font-size: 1vw;
+    letter-spacing: 0.4rem;
+    letter-spacing: 0.1rem;
+  }
+  .size-guide {
+    display: flex;
+    grid-row: 6;
+    grid-column: 1/2;
+    font-size: 1rem;
+    letter-spacing: 0.4rem;
+    letter-spacing: 0.1rem;
+  }
+  .delivery-returns {
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 6;
+    font-size: 1rem;
+    margin-top: 4rem;
+    letter-spacing: 0.4rem;
+    letter-spacing: 0.1rem;
+  }
+  .description {
+    font-family: "GT America Regular";
+    grid-column: 3;
+    grid-row: 4/7;
+    font-size: 1vw;
+    color: rgb(175, 175, 175);
+    line-height: 1.8rem;
+    width: 70%;
+    .headline {
+      grid-row: 4/7;
+      font-family: "GT America Bold";
+      font-size: 1vw;
+      font-weight: 700;
+      color: black;
+      margin-top: 0rem;
+    }
+  }
+  .image {
+    grid-column: 4/5;
+    grid-row: 2/8;
+    background: url("/a2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .buttons {
+    grid-column: 3;
+    grid-row: 7;
+    align-self: end;
+    justify-self: end;
+    display: flex;
+    .add-to-bag {
+      font-family: "GT America Bold";
+      background-color: black;
+      border: none;
+      color: var(--color1);
+      padding: 2rem 7rem;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1.3vw;
+      white-space: nowrap;
+    }
+    .wishlist {
+      background-color: transparent;
+      font-family: "GT America Bold";
+      font-size: 1.3vw;
+      white-space: nowrap;
+      border: none;
+      color: var(--color5);
+      padding: 3rem 5rem;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+}

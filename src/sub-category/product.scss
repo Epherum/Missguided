@@ -1,0 +1,44 @@
+.product {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 73% 19% 8%;
+  .product-img {
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    gap: 1rem;
+  }
+  .product-name {
+    grid-row: 2;
+    font-family: "OGG Roman";
+    font-size: 1.3vw;
+    font-weight: 700;
+    margin-top: 1rem;
+    // align-self: center;
+  }
+  .product-flex {
+    display: flex;
+    align-items: flex-end;
+  }
+  .product-price {
+    margin-right: auto;
+    font-size: 1.5vw;
+  }
+  .product-wishlist {
+    all: unset;
+    font-size: 1.1vw;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .product-cart {
+    all: unset;
+    font-size: 2.5vw;
+    background-color: black;
+    color: rgb(227, 227, 227);
+    text-align: center;
+    width: 3rem;
+    height: 3rem;
+  }
+}
