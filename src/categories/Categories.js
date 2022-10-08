@@ -21,6 +21,13 @@ function Categories() {
   }
   return (
     <div className="container categories">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 2 }}
+        transition={{ duration: 1.5 }}
+        className="circle"
+      ></motion.div>
       <div className="categories-bruh" />
       <div className="categories-breadcrumbs">
         {" "}

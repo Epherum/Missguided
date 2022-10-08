@@ -10,64 +10,17 @@
   }
   @media (max-width: 500px) {
     grid-template-columns: 100%;
-
     grid-template-rows: 13vh 26.5vh 51vh 9.5vh;
-  }
-
-  .logo {
-    width: 0%;
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 3.3rem;
-    margin-left: 0.7rem;
-    font-family: "Steelfish";
-    font-size: 2vw;
-    font-weight: bold;
-    color: var(--color5);
-    text-decoration: none;
-    letter-spacing: 0.2rem;
-    //animate transition hover
-    transition: 0.5s;
-
-    transition: color 0.3s ease-in-out;
-    &:hover {
-      color: var(--color4);
-    }
-  }
-  .nav-list {
-    list-style: none;
-    grid-column: 4/5;
-    grid-row: 1;
-    align-self: start;
-    display: grid;
-    grid-template-columns: 40% 25% 35%;
-    grid-row: 100%;
-    font-size: 1.5vw;
-    margin-top: 4rem;
-    justify-content: space-between;
-
-    .items-search {
-      display: flex;
-      grid-column: 3;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .menu-search {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
   }
 
   .circle-text {
     grid-column: 1/2;
     grid-row: 4;
     font-family: "OGG Roman";
-    font-size: 2.1vw;
+    font-size: min(2.5rem, 2.1vw);
     margin-left: 7rem;
     align-self: center;
-    animation: animate 5s linear infinite;
+    animation: animate 10s linear infinite;
     transform-origin: 0 230px;
 
     @media (max-width: 1024px) {
@@ -101,7 +54,7 @@
     margin-left: 1rem;
     margin-bottom: 3.7rem;
     grid-row: 4;
-    font-size: 0.8vw;
+    font-size: min(1rem, 0.8vw);
     align-self: end;
     justify-self: start;
     color: rgb(202, 202, 202);
@@ -120,11 +73,14 @@
   .image-first {
     grid-column: 2;
     grid-row: 1/3;
-    background: url("/l1v2.png");
-
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+    div {
+      height: 100%;
+      background: url("/l1v2.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
     @media (max-width: 1024px) {
       display: none;
     }
@@ -133,10 +89,24 @@
     grid-column: -3;
     grid-row: 4;
     background: url("/r1v2.png");
-
     background-repeat: no-repeat;
     background-size: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     background-position: center center;
+    animation-name: polygons;
+    animation-duration: 1.4s;
+    @keyframes polygons {
+      from {
+        transform: scale(1.2);
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+      }
+      to {
+        transform: scale(1);
+
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+
     @media (max-width: 1024px) {
       grid-column: 2;
       grid-row: 4;
@@ -173,6 +143,10 @@
     @media (max-width: 1024px) {
       display: none;
     }
+    @media (max-height: 900px) {
+      font-size: 0.8rem;
+      line-height: 1.1rem;
+    }
   }
 
   .headline {
@@ -180,13 +154,21 @@
     grid-row: 4;
     margin-top: -1.4rem;
     margin-left: 0.5rem;
-    font-size: 5.9vw;
+    margin-right: -3rem;
+    font-size: min(7.1rem, 5.9vw);
     letter-spacing: 0.9px;
     position: relative;
     white-space: nowrap;
+    div {
+      display: inline-block;
+    }
+    h1 {
+      clip-path: polygon(0 17%, 100% 17%, 100% 90%, 0% 90%);
+    }
 
     .who-brunch {
-      font-size: 3.7vw;
+      margin-left: 1.8rem;
+      font-size: min(4.5rem, 3.7vw);
       font-family: "GT America Regular";
       @media (max-width: 1024px) {
         font-size: 6vw;
@@ -225,7 +207,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-    font-size: 1.5vw;
+    font-size: min(1.8rem, 1.5vw);
     margin-right: 1.3rem;
     margin-bottom: 2.8rem;
 
@@ -241,13 +223,13 @@
     grid-template-columns: 50% 50%;
 
     h5 {
-      font-size: 1.2vw;
+      font-size: min(1.5rem, 1.2vw);
       font-family: "GT America bold";
       margin-bottom: 0.2rem;
     }
     p {
       font-family: "OGG Roman";
-      font-size: 1.1vw;
+      font-size: min(1.3rem, 1.1vw);
     }
     .deal1 {
       grid-column: 1;
@@ -282,8 +264,7 @@
       justify-self: end;
       margin-top: -1rem;
       p {
-        margin-left: 3.9rem;
-        font-size: 1vw;
+        margin-left: 2.4rem;
       }
     }
     @media (max-width: 1024px) {
@@ -313,12 +294,16 @@
       background-color: black;
       border: none;
       color: var(--color1);
-      padding: 2.7rem 7.3rem;
+      padding: 3rem 7.5rem;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       letter-spacing: 0.6px;
-      font-size: 1.3vw;
+      font-size: min(1.6rem, 1.3vw);
+
+      @media (max-width: 1624px) {
+        padding: 2.5rem 6.1rem;
+      }
       @media (max-width: 1024px) {
         padding: auto;
         width: 100%;
