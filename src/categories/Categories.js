@@ -5,6 +5,7 @@ import SwiperCore, { Navigation } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css";
 import "./categories.scss";
+import animations from "./animations";
 function Categories() {
   SwiperCore.use([Navigation]);
   const slides = [];
@@ -19,15 +20,24 @@ function Categories() {
       </SwiperSlide>
     );
   }
+  const { circleEnterAnimate, circleExitAnimate } = animations;
+
   return (
     <div className="container categories">
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 2 }}
-        transition={{ duration: 1.5 }}
-        className="circle"
-      ></motion.div>
+        variants={circleEnterAnimate}
+        initial="hidden"
+        animate="visible"
+        className="fullscreen-circle-enter"
+      />
+
+      <motion.div
+        variants={circleExitAnimate}
+        initial="hidden"
+        exit="visible"
+        className="fullscreen-circle-exit"
+      />
+      <motion.div className="circle"></motion.div>
       <div className="categories-bruh" />
       <div className="categories-breadcrumbs">
         {" "}

@@ -1,4 +1,6 @@
 .categories {
+  overflow: hidden;
+
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 15% 13% 67%;
@@ -7,6 +9,28 @@
     grid-template-rows: 9rem 8rem auto;
     height: 100%;
     font-size: 2vw;
+  }
+
+  .fullscreen-circle-enter {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 142vmax;
+    height: 142vmax;
+    border-radius: 50%;
+    background-color: var(--color3);
+    z-index: 100;
+  }
+
+  .fullscreen-circle-exit {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    width: 142vmax;
+    height: 142vmax;
+    border-radius: 50%;
+    background-color: var(--color3);
+    z-index: 100;
   }
 
   .categories-breadcrumbs {

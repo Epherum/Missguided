@@ -24,6 +24,7 @@ function Home() {
 
   useEffect(() => {
     circularText("How to Make an Effort  How to Make an Effort  ", 230);
+    console.log(classIndex.current);
     //230
     //150
     //100
@@ -47,10 +48,26 @@ function Home() {
     buttonAnimate,
     buttonTextAnimate,
     socialsAnimate,
+    circleTextAnimate,
+    circleExitAnimate,
+    circleEnterAnimate,
   } = animations;
 
   return (
     <main className="container home-grid">
+      <motion.div
+        variants={circleEnterAnimate}
+        initial="hidden"
+        animate="visible"
+        className="fullscreen-circle-enter"
+      />
+
+      <motion.div
+        variants={circleExitAnimate}
+        initial="hidden"
+        exit="visible"
+        className="fullscreen-circle-exit"
+      />
       <motion.ul
         variants={linksAnimate}
         initial={"hidden"}
@@ -177,10 +194,10 @@ function Home() {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        exit={{ scale: 2 }}
         transition={{ duration: 1.5 }}
         className="circle"
       ></motion.div>
+
       <motion.div className="headline">
         {/* can be automated with a custom hook but
          im not gonna spend 10 hours to automate 10m of work
@@ -245,7 +262,13 @@ function Home() {
           </span>
         </motion.h1>
       </motion.div>
-      <motion.p className="circle-text" ref={classIndex}></motion.p>
+      <motion.p
+        variants={circleTextAnimate}
+        initial={"hidden"}
+        animate={"visible"}
+        className="circle-text"
+        ref={classIndex}
+      ></motion.p>
       <motion.div
         variants={image2ContainerAnimate}
         initial={"hidden"}
@@ -280,15 +303,15 @@ function Home() {
         animate={"visible"}
         className="button"
       >
-        <motion.p
-          variants={buttonTextAnimate}
-          initial={"hidden"}
-          animate={"visible"}
-        >
-          <Link to="/categories">
+        <Link to="/categories">
+          <motion.p
+            variants={buttonTextAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+          >
             Shop Now <BsArrowRight />
-          </Link>
-        </motion.p>
+          </motion.p>
+        </Link>
       </motion.div>
       <motion.p
         variants={circleTextInsideAnimate}

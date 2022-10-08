@@ -10,11 +10,6 @@ import { motion } from "framer-motion";
 //* change text to links
 //* add hover animations
 //* change menu icon
-let arr = [];
-for (let i = 0; i < 6; i++) {
-  arr.push(i * 0.07);
-  console.log(arr);
-}
 
 const navAnimate = {
   hidden: {
