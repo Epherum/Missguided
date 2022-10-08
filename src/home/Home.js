@@ -5,6 +5,7 @@ import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./home.scss";
+import animations from "./animations";
 
 function Home() {
   let classIndex = useRef();
@@ -28,87 +29,63 @@ function Home() {
     //100
   }, []);
 
-  const linksAnimate = {
-    hidden: { y: 5, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
-  };
-
-  const headline1Animate = {
-    hidden: { y: 200, rotate: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      rotate: 0,
-      opacity: 1,
-      transition: { duration: 1.5, ease: "circOut" },
-    },
-  };
-  const headline2Animate = {
-    hidden: { y: -200, x: 100, rotate: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      x: 0,
-      rotate: 0,
-      opacity: 1,
-      transition: { duration: 1.5, ease: "circOut" },
-    },
-  };
-  const image1Animate = {
-    hidden: {
-      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-      scale: 1.5,
-      rotate: 20,
-    },
-    visible: {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-      rotate: 0,
-
-      scale: 1,
-      transition: {
-        duration: 1.4,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  //this shit is bugged for some reason but image1Animate isn't, fuck me
-  //had to go the css route
-  const image2Animate = {
-    hidden: {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      scale: 1.2,
-    },
-    visible: {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "easeInOut",
-      },
-    },
-  };
+  //destrucure animations
+  const {
+    circleTextInsideAnimate,
+    image1Animate,
+    image1ContainerAnimate,
+    image2Animate,
+    image2ContainerAnimate,
+    whoBrunchAnimate,
+    headline1Animate,
+    headline2Animate,
+    headlineLettersAnimate,
+    linksAnimate,
+    Deals_deal1headline1Animate,
+    Deals_deal1headline2Animate,
+    Deals_deal1paragraphAnimate,
+    buttonAnimate,
+    buttonTextAnimate,
+    socialsAnimate,
+  } = animations;
 
   return (
     <main className="container home-grid">
       <motion.ul
+        variants={linksAnimate}
         initial={"hidden"}
         animate={"visible"}
-        transition={{ delayChildren: 1, staggerChildren: 0.07 }}
         className="links"
       >
-        <motion.li variants={linksAnimate}>New In</motion.li>
-        <motion.li variants={linksAnimate}>Dresses</motion.li>
-        <motion.li variants={linksAnimate}>Tops</motion.li>
-        <motion.li variants={linksAnimate}>Clothing</motion.li>
-        <motion.li variants={linksAnimate}>Shoes</motion.li>
-        <motion.li variants={linksAnimate}>Accessories</motion.li>
-        <motion.li variants={linksAnimate}>Sale</motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>New In</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Dresses</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Tops</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Clothing</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Shoes</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Accessories</Link>
+        </motion.li>
+        <motion.li variants={linksAnimate}>
+          <Link to={"/"}>Sale</Link>
+        </motion.li>
       </motion.ul>
 
-      <motion.div className="image-first">
+      <motion.div
+        variants={image1ContainerAnimate}
+        initial={"hidden"}
+        animate={"visible"}
+        className="image-first"
+      >
         <motion.div
           variants={image1Animate}
           initial={"hidden"}
@@ -117,20 +94,84 @@ function Home() {
       </motion.div>
       <div className="deals">
         <div className="deal1">
+          {/* all these divs are necessary for the animation
+           because the designer rivaled hitler's meth usage when he made this */}
           <h5>
-            Unlimited Next <br /> Day Delivery
+            <motion.div className="deal1-why-did-i">
+              <motion.div
+                variants={Deals_deal1headline1Animate}
+                initial={"hidden"}
+                animate={"visible"}
+              >
+                Unlimited Next
+              </motion.div>
+            </motion.div>
+            <motion.div className="deal1-pick-this-design">
+              <motion.div
+                variants={Deals_deal1headline2Animate}
+                initial={"hidden"}
+                animate={"visible"}
+              >
+                Day Delivery
+              </motion.div>
+            </motion.div>
           </h5>
-          <p>for a year--$9.99</p>
+          <motion.p
+            variants={Deals_deal1paragraphAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+          >
+            for a year--$9.99
+          </motion.p>
         </div>
         <div className="deal2">
           <h5>
-            20% off for the First <br /> App Order
+            <motion.div className="deal1-why-did-i">
+              <motion.div
+                variants={Deals_deal1headline1Animate}
+                initial={"hidden"}
+                animate={"visible"}
+              >
+                20% off for First
+              </motion.div>
+            </motion.div>
+            <motion.div className="deal1-pick-this-design">
+              <motion.div
+                variants={Deals_deal1headline2Animate}
+                initial={"hidden"}
+                animate={"visible"}
+              >
+                App Order
+              </motion.div>
+            </motion.div>
           </h5>
-          <p>Click Here</p>
+          <motion.p
+            variants={Deals_deal1paragraphAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+          >
+            Shop Now
+          </motion.p>
         </div>
         <div className="deal3">
-          <h5>New In from $8</h5>
-          <p>Shop Now</p>
+          <h5>
+            <motion.div className="deal1-why-did-i">
+              <motion.div
+                variants={Deals_deal1headline1Animate}
+                initial={"hidden"}
+                animate={"visible"}
+              >
+                New In from $8
+              </motion.div>
+            </motion.div>
+          </h5>
+          <motion.p
+            variants={Deals_deal1paragraphAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+          >
+            Click Here
+          </motion.p>
         </div>
       </div>
       <motion.div
@@ -141,52 +182,122 @@ function Home() {
         className="circle"
       ></motion.div>
       <motion.div className="headline">
+        {/* can be automated with a custom hook but
+         im not gonna spend 10 hours to automate 10m of work
+          (again) */}
         <motion.h1>
           <motion.div
             variants={headline1Animate}
             initial={"hidden"}
             animate={"visible"}
           >
-            BA
+            <motion.div
+              variants={headlineLettersAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+            >
+              <motion.div variants={headlineLettersAnimate}>B</motion.div>
+              <motion.div variants={headlineLettersAnimate}>A</motion.div>
+            </motion.div>
           </motion.div>
           <motion.div
             variants={headline2Animate}
             initial={"hidden"}
             animate={"visible"}
           >
-            BES{" "}
+            <motion.div
+              variants={headlineLettersAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+            >
+              <motion.div variants={headlineLettersAnimate}>B</motion.div>
+              <motion.div variants={headlineLettersAnimate}>E</motion.div>
+              <motion.div variants={headlineLettersAnimate}>S</motion.div>
+            </motion.div>
           </motion.div>
           <span className="who-brunch">
-            <span className="who">WHO</span>BRUNCH
+            <motion.div
+              variants={whoBrunchAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+              className="who"
+            >
+              {/* spans are not supported by framer motion for rotation
+               so i have to use inline-block divs
+               which makes me looks stupid af */}
+
+              <motion.div variants={whoBrunchAnimate}>W</motion.div>
+              <motion.div variants={whoBrunchAnimate}>H</motion.div>
+              <motion.div variants={whoBrunchAnimate}>O</motion.div>
+            </motion.div>
+            <motion.div
+              variants={whoBrunchAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+            >
+              <motion.div variants={whoBrunchAnimate}>B</motion.div>
+              <motion.div variants={whoBrunchAnimate}>R</motion.div>
+              <motion.div variants={whoBrunchAnimate}>U</motion.div>
+              <motion.div variants={whoBrunchAnimate}>N</motion.div>
+              <motion.div variants={whoBrunchAnimate}>C</motion.div>
+              <motion.div variants={whoBrunchAnimate}>H</motion.div>
+            </motion.div>
           </span>
         </motion.h1>
       </motion.div>
-      <p className="circle-text" ref={classIndex}></p>
+      <motion.p className="circle-text" ref={classIndex}></motion.p>
       <motion.div
-        // variants={image2Animate}
-        // initial={"hidden"}
-        // animate={"visible"}
+        variants={image2ContainerAnimate}
+        initial={"hidden"}
+        animate={"visible"}
         className="image-second"
-      ></motion.div>
-      <div className="socials">
-        <p>
+      >
+        <motion.div
+          variants={image2Animate}
+          initial={"hidden"}
+          animate={"visible"}
+        ></motion.div>
+      </motion.div>
+      <motion.div
+        variants={socialsAnimate}
+        initial={"hidden"}
+        animate={"visible"}
+        className="socials"
+      >
+        <motion.p variants={socialsAnimate}>
           <BsFacebook />
-        </p>
-        <p>
+        </motion.p>
+        <motion.p variants={socialsAnimate}>
           <AiFillTwitterCircle />
-        </p>
-        <p>
+        </motion.p>
+        <motion.p variants={socialsAnimate}>
           <RiInstagramFill />
-        </p>
-      </div>
-      <div className="button">
-        <Link to="/categories">
-          Shop Now <BsArrowRight />
-        </Link>
-      </div>
-      <p className="circle-text-inside">
+        </motion.p>
+      </motion.div>
+      <motion.div
+        variants={buttonAnimate}
+        initial={"hidden"}
+        animate={"visible"}
+        className="button"
+      >
+        <motion.p
+          variants={buttonTextAnimate}
+          initial={"hidden"}
+          animate={"visible"}
+        >
+          <Link to="/categories">
+            Shop Now <BsArrowRight />
+          </Link>
+        </motion.p>
+      </motion.div>
+      <motion.p
+        variants={circleTextInsideAnimate}
+        initial={"hidden"}
+        animate={"visible"}
+        className="circle-text-inside"
+      >
         We're Always keen To Hear From Other Creative Minds
-      </p>
+      </motion.p>
     </main>
   );
 }
