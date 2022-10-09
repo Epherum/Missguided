@@ -82,10 +82,11 @@
   }
   .swiper-button-next,
   .swiper-button-prev {
+    display: none;
     margin-top: 18rem;
     color: #000;
     @media (max-height: 1024px) {
-      margin-top: 15rem;
+      margin-top: 12rem;
     }
   }
 

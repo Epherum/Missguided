@@ -154,7 +154,7 @@ function Categories() {
       <div className="categories-grid">
         <div className="categories-grid-item">
           <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
+            <motion.img src="../a1.png" alt="category" />
           </Link>
           <h3>Dresses</h3>
           <p>Explore Now</p>

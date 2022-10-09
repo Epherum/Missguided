@@ -320,10 +320,10 @@
     justify-self: end;
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     a {
-      justify-self: end;
+      justify-self: flex-end;
       display: inline-block;
       background-color: black;
       border: none;
