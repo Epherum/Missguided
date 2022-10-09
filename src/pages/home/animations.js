@@ -240,6 +240,15 @@ const circleExitAnimate = {
     },
   },
 };
+const circleColorAnimate = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 
 //thank god for github copilot
 const animations = {
@@ -262,6 +271,7 @@ const animations = {
   circleTextAnimate,
   circleEnterAnimate,
   circleExitAnimate,
+  circleColorAnimate,
 };
 
 export default animations;

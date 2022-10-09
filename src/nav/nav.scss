@@ -1,5 +1,6 @@
 .nav-list {
   list-style: none;
+  overflow: hidden;
   display: grid;
   position: absolute;
   grid-template-columns: 62.4% 14% 7% 12% 4.6%;
@@ -11,7 +12,7 @@
   }
   @media (max-width: 1024px) {
     grid-template-columns: 51% 15% 12% auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 92%;
     font-size: 3.8vw;
   }
@@ -19,7 +20,7 @@
     display: flex;
     justify-content: space-between;
   }
-  .nav-list-logo {
+  .logo {
     font-family: "Steelfish";
     font-size: min(2.4rem, 2vw);
     font-weight: bold;
@@ -39,7 +40,7 @@
     }
   }
 
-  .nav-list-profile {
+  .profile {
     display: flex;
     font-size: min(1.9rem, 1.6vw);
     align-items: center;
@@ -56,7 +57,7 @@
     }
   }
 
-  .nav-list-menu-search {
+  .menu-search {
     display: flex;
     align-items: center;
     font-size: min(1.9rem, 1.6vw);

@@ -1,8 +1,8 @@
 .product {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 73% 19% 8%;
-  .product-img {
+  grid-template-rows: 73% auto 8%;
+  .img {
     grid-row: 2;
     width: 100%;
     height: 100%;
@@ -10,35 +10,52 @@
     object-position: center;
     gap: 1rem;
   }
-  .product-name {
+  .name {
     grid-row: 2;
     font-family: "OGG Roman";
-    font-size: 1.3vw;
+    font-size: min(1.5rem, 1.3vw);
     font-weight: 700;
     margin-top: 1rem;
-    // align-self: center;
+    @media (max-width: 800px) {
+      font-size: 0.8rem;
+    }
   }
-  .product-flex {
+  .flex {
     display: flex;
     align-items: flex-end;
   }
-  .product-price {
+  .price {
     margin-right: auto;
-    font-size: 1.5vw;
+    font-weight: 800;
+    font-size: min(1.8rem, 1.5vw);
+    @media (max-width: 800px) {
+      font-size: 1rem;
+      font-weight: 800;
+    }
   }
-  .product-wishlist {
+  .wishlist {
     all: unset;
-    font-size: 1.1vw;
+    font-size: min(1.4rem, 1.2vw);
     margin-right: 2rem;
     margin-bottom: 0.5rem;
+    @media (max-width: 800px) {
+      font-size: 1rem;
+      margin-right: 1rem;
+      margin-bottom: 0rem;
+    }
   }
-  .product-cart {
+  .cart {
     all: unset;
-    font-size: 2.5vw;
+    font-size: min(3rem, 2.5vw);
     background-color: black;
     color: rgb(227, 227, 227);
     text-align: center;
-    width: 3rem;
-    height: 3rem;
+    width: min(3rem, 2.5vw);
+    height: min(3rem, 2.5vw);
+    @media (max-width: 800px) {
+      font-size: 1.4rem;
+      width: 1.4rem;
+      height: 1.4rem;
+    }
   }
 }

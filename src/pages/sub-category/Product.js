@@ -1,22 +1,22 @@
 import React from "react";
 import { BsPlus, BsHeart } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import "./product.scss";
+import { Link } from "react-router-dom";
 function Product(props) {
   const { title, price } = props;
 
   return (
     <div className="product">
       <Link to="/categories/:id/:productId">
-        <img className="product-img" src={`../a1.png`} alt="product" />
+        <img className="img" src={`../a1.png`} alt="product" />
       </Link>
-      <h3 className="product-name">{title}</h3>
-      <div className="product-flex">
-        <p className="product-price"> {price}</p>
-        <button className="product-wishlist">
+      <h3 className="name">{title}</h3>
+      <div className="flex">
+        <p className="price"> {price}</p>
+        <button className="wishlist">
           <BsHeart />
         </button>
-        <button className="product-cart">
+        <button className="cart">
           <BsPlus />
         </button>
       </div>

@@ -32,18 +32,18 @@ const navAnimate = {
 
 function Nav() {
   return (
-    <nav className="container nav">
+    <nav className="container">
       <motion.ul
         variants={navAnimate}
         initial="hidden"
         animate="visible"
         className="nav-list"
       >
-        <motion.li variants={navAnimate} className="nav-list-logo">
+        <motion.li variants={navAnimate} className="logo">
           <Link to="/">MISSGUIDED</Link>
         </motion.li>
 
-        <motion.div variants={navAnimate} className="nav-list-menu-search">
+        <motion.div variants={navAnimate} className="menu-search">
           <motion.li variants={navAnimate}>
             <Link to="/">
               <VscMenu />
@@ -55,7 +55,7 @@ function Nav() {
             </Link>
           </motion.li>
         </motion.div>
-        <motion.div variants={navAnimate} className="nav-list-profile">
+        <motion.div variants={navAnimate} className="profile">
           <motion.li variants={navAnimate}>
             <Link to="/">
               <BsHeart />

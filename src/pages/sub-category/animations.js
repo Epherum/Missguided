@@ -1,22 +1,17 @@
-const circleEnterAnimate = {
-  hidden: { scale: 2, x: "-50%", y: "50%" },
+const productArrayAnimate = {
+  hidden: {
+    y: 1000,
+    skewY: -10,
+  },
   visible: {
-    scale: 0,
+    y: 0,
+    skewY: 0,
     transition: {
-      duration: 1,
+      duration: 2,
+      delay: 0.5,
     },
   },
 };
-const circleExitAnimate = {
-  hidden: { scale: 0, x: "-50%", y: "50%" },
-  visible: {
-    scale: 2,
-    transition: {
-      duration: 1,
-    },
-  },
-};
-
 const breadcrumbsAnimate = {
   hidden: { x: -20, opacity: 0 },
   visible: {
@@ -29,7 +24,6 @@ const breadcrumbsAnimate = {
     },
   },
 };
-
 const headline1Animate = {
   hidden: { y: 250, rotate: 40 },
   visible: {
@@ -59,11 +53,26 @@ const headline2Animate = {
     },
   },
 };
-
-const headlineLettersAnimate = {
-  hidden: { rotateY: 620 },
+const stockShownAnimate = {
+  hidden: { x: 100, y: -300, rotate: 150 },
   visible: {
-    rotateY: 0,
+    x: 0,
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 1.5,
+      ease: "easeOut",
+      delay: 0.5,
+    },
+  },
+};
+
+const stockAllAnimate = {
+  hidden: { x: 100, y: -300, rotate: 150 },
+  visible: {
+    x: 0,
+    y: 0,
+    rotate: 0,
     transition: {
       duration: 1.5,
       ease: "easeOut",
@@ -71,11 +80,34 @@ const headlineLettersAnimate = {
   },
 };
 
-const slidesAnimate = {
-  hidden: { x: -20, opacity: 0 },
+const circleEnterAnimate = {
+  hidden: { scale: 2, x: "-50%", y: "50%" },
   visible: {
-    x: 0,
+    scale: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+const circleExitAnimate = {
+  hidden: { scale: 0, x: "-50%", y: "50%" },
+  visible: {
+    scale: 2,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+const filtersAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
     opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+      delay: 0.5,
+    },
   },
 };
 const circleColorAnimate = {
@@ -87,15 +119,16 @@ const circleColorAnimate = {
     },
   },
 };
-
 const animations = {
-  circleEnterAnimate,
-  circleExitAnimate,
+  productArrayAnimate,
+  breadcrumbsAnimate,
   headline1Animate,
   headline2Animate,
-  headlineLettersAnimate,
-  slidesAnimate,
-  breadcrumbsAnimate,
+  circleEnterAnimate,
+  circleExitAnimate,
+  filtersAnimate,
+  stockShownAnimate,
+  stockAllAnimate,
   circleColorAnimate,
 };
 
