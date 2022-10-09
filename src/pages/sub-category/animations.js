@@ -81,7 +81,7 @@ const stockAllAnimate = {
 };
 
 const circleEnterAnimate = {
-  hidden: { scale: 2, x: "-50%", y: "50%" },
+  hidden: { scale: 2, x: "-50%", y: "-50%" },
   visible: {
     scale: 0,
     transition: {

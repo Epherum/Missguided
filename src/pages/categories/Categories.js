@@ -46,7 +46,7 @@ function Categories() {
           transition={{ delay: i * ISD - i * ISRD + ASD }}
         >
           <Link to="/categories/dresses">
-            <img src="../../a1.png" alt="category" />
+            <img src="/a1.png" alt="category" />
           </Link>
           <motion.h3
             variants={slidesAnimate}
@@ -156,7 +156,7 @@ function Categories() {
               key={i}
             >
               <Link to={item.link}>
-                <img src={item.image} alt="category" />
+                <img src={"/a1.png"} alt="category" />
               </Link>
               <motion.h3
                 variants={slidesAnimate}
