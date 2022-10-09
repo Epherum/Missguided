@@ -337,7 +337,8 @@
         padding: 2.5rem 6.1rem;
       }
       @media (max-width: 1024px) {
-        padding: 2.5rem 12rem;
+        width: 100%;
+        padding: 2.5rem auto;
         font-size: 2.3vw;
         white-space: nowrap;
       }
@@ -359,13 +360,10 @@
   }
 
   .circle {
-    grid-column: 4/6;
-    grid-row: 4;
-    justify-self: center;
-    align-self: end;
-    margin-bottom: 10%;
-    margin-left: -8rem;
-    width: min(42vw, 50rem);
+    position: absolute;
+    top: 10rem;
+    right: 3rem;
+    width: min(50rem, 45vw);
     background-color: var(--color3);
     border-radius: 50%;
     z-index: -2;
@@ -373,6 +371,16 @@
       content: "";
       display: block;
       padding-bottom: 100%;
+    }
+    @media (max-width: 1024px) {
+      width: 40rem;
+      top: auto;
+      bottom: 2rem;
+      right: -6rem;
+    }
+    @media (max-width: 500px) {
+      right: 5rem;
+      bottom: 10rem;
     }
   }
 }

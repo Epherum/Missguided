@@ -23,10 +23,9 @@
 .productDetails {
   display: grid;
   padding: 0 2rem;
-  grid-template-columns: 15% 6% 41.5% 31% 7%;
+  grid-template-columns: 15% 6% 41.5% 31% 6.5%;
   grid-template-rows: 16% auto 8% 15% auto;
   height: 100vh;
-  overflow: hidden;
   a {
     all: unset;
     cursor: pointer;
@@ -250,7 +249,7 @@
     display: flex;
     grid-row: 6;
     grid-column: 1/2;
-    font-size: 0.8rem;
+    font-size: 1rem;
     justify-content: space-between;
 
     @media (max-width: 1024px) {
@@ -271,7 +270,7 @@
     display: flex;
     grid-column: 1/2;
     grid-row: 6;
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-top: 2.5rem;
     font-weight: 800;
     justify-content: space-between;
@@ -309,16 +308,60 @@
       grid-row: 4;
     }
   }
+  .moreProductPicturesGrid {
+    grid-column: 5/6;
+    grid-row: 2/8;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 0.7rem;
+    gap: 0.8rem;
+    grid-template-rows: 11% 11% 20% 20% 20%;
+    flex-direction: column;
+
+    .hanger {
+      outline: 1px solid gray;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.7rem;
+
+      p {
+        font-size: min(1.1rem, 0.9vw);
+        text-align: center;
+        font-weight: 900;
+      }
+    }
+    div {
+      width: 100%;
+      height: 100%;
+      outline: 2.5px solid black;
+      font-size: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
   .buttons {
     grid-column: 3;
     grid-row: 7;
     align-self: end;
     justify-self: end;
     display: flex;
-    width: 100%;
+    width: 95%;
     height: 120%;
     @media (max-width: 1024px) {
       height: 100%;
+      width: 100%;
       grid-column: 1;
       grid-row: 8;
       flex-direction: column;

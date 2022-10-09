@@ -3,26 +3,12 @@ import "./product-details.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoMdPaperPlane } from "react-icons/io";
+import { TbHanger } from "react-icons/tb";
+import { BsFillPlayFill } from "react-icons/bs";
 import { FaTape } from "react-icons/fa";
+import animations from "./animations";
 function ProductDetails() {
-  const circleEnterAnimate = {
-    hidden: { scale: 2, x: "-50%", y: "50%" },
-    visible: {
-      scale: 0,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
-  const circleExitAnimate = {
-    hidden: { scale: 0, x: "-50%", y: "50%" },
-    visible: {
-      scale: 2,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
+  const { circleEnterAnimate, circleExitAnimate } = animations;
   return (
     <div className="big-container">
       <motion.div
@@ -39,7 +25,23 @@ function ProductDetails() {
         className="fullscreen-circle-exit"
       />
       <div className="container productDetails">
-        <motion.div className="circle"></motion.div>
+        <motion.div className="circle" />
+        <div className="moreProductPicturesGrid">
+          <div>
+            <BsFillPlayFill />{" "}
+          </div>
+          <div className="hanger">
+            <TbHanger />{" "}
+            <p>
+              Shop This <br /> Look
+            </p>
+          </div>
+          <img src="../../a1.png" alt="" />
+          <img src="../../a1.png" alt="" />
+          <img src="../../a1.png" alt="" />
+          <img src="../../a1.png" alt="" />
+        </div>
+
         <p className="breadcrumbs">
           {"<  "}Home{"  /  "}Categories{"  /  "}Dresses
         </p>
@@ -48,74 +50,38 @@ function ProductDetails() {
         <div className="size">
           <p className="size-headline">Size</p>
           <div className="size-buttons">
-            <input
-              type="radio"
-              id="radio0"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio0">0</label>
-            <input
-              type="radio"
-              id="radio2"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio2">2</label>
-            <input
-              type="radio"
-              id="radio4"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio4">4</label>
-            <input
-              type="radio"
-              id="radio6"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio6">6</label>
-            <input
-              type="radio"
-              id="radio8"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio8">8</label>
-            <input
-              type="radio"
-              id="radio10"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio10">10</label>
-            <input
-              type="radio"
-              id="radio12"
-              name="size"
-              className="size-button"
-            />
-            <label for="radio12">12</label>
+            {["2", "4", "6", "8", "10", "12"].map((size, i) => (
+              <>
+                <input
+                  type="radio"
+                  name="size"
+                  id={`radio${i}`}
+                  key={i}
+                  className="size-button"
+                />
+                <label htmlFor={`radio${i}`}>{size}</label>
+              </>
+            ))}
           </div>
         </div>
         <div className="color">
           <p className="color-headline">Color</p>
           <div className="color-buttons">
-            <input
-              type="radio"
-              id="color1"
-              name="color"
-              className="color-button"
-            />
-            <label for="color1"></label>
-            <input
-              type="radio"
-              id="color2"
-              name="color"
-              className="color-button"
-            />
-            <label for="color2"></label>
+            {["black", "gray", "whitesmoke"].map((color, i) => (
+              <>
+                <input
+                  type="radio"
+                  name="color"
+                  id={`color${i}`}
+                  key={i}
+                  className="size-button"
+                />
+                <label
+                  style={{ backgroundColor: color }}
+                  htmlFor={`color${i}`}
+                ></label>
+              </>
+            ))}
           </div>
         </div>
         <Link className="size-guide">
