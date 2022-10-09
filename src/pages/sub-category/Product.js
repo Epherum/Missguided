@@ -1,7 +1,7 @@
 import React from "react";
-import "./product.scss";
 import { BsPlus, BsHeart } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import "./product.scss";
 function Product(props) {
   const { title, price } = props;
 

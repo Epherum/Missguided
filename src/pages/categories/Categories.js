@@ -6,83 +6,66 @@ import "swiper/css/navigation";
 import "swiper/css";
 import "./categories.scss";
 import animations from "./animations";
+import productArray from "./items";
+
+//TODO: try using clippath for images instead of opacity
+
 function Categories() {
+  const {
+    circleEnterAnimate,
+    circleExitAnimate,
+    headline1Animate,
+    headline2Animate,
+    headlineLettersAnimate,
+    slidesAnimate,
+  } = animations;
+
   SwiperCore.use([Navigation]);
+
   const slides = [];
-  const linksAnimate = {
-    hidden: { y: 5, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 0.5,
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+
+  //animationStartDelay
+  const ASD = 2;
+
+  //individualSlideDelay
+  const ISD = 0.3;
+
+  //individualSlideReverseDelay
+  //reverse delay is to start a slide before the previous one finishes
+  const ISRD = 0.2;
+
   for (let i = 0; i < 10; i++) {
     slides.push(
-      <SwiperSlide
-        as="motion.div"
-        variants={linksAnimate}
-        initial="hidden"
-        animate="visible"
-        key={`slide-${i}`}
-        tag="li"
-      >
-        <Link to="/categories/dresses">
-          <motion.img src="../a2.png" alt="category" />
-        </Link>
-        <motion.h3 variants={linksAnimate} initial="hidden" animate="visible">
-          Dresses
-        </motion.h3>
-        <p>Explore Now</p>
+      <SwiperSlide key={`slide-${i}`} tag={"li"}>
+        <motion.div
+          variants={slidesAnimate}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: i * ISD - i * ISRD + ASD }}
+        >
+          <Link to="/categories/dresses">
+            <img src="../../a1.png" alt="category" />
+          </Link>
+          <motion.h3
+            variants={slidesAnimate}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: i * ISD - i * ISRD + ASD }}
+          >
+            Dresses
+          </motion.h3>
+          <motion.p
+            variants={slidesAnimate}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: i * ISD - i * ISRD + ASD }}
+          >
+            Explore Now
+          </motion.p>
+        </motion.div>
       </SwiperSlide>
     );
   }
-  const { circleEnterAnimate, circleExitAnimate } = animations;
-
-  const headline1Animate = {
-    hidden: { y: 250, rotate: 40 },
-    visible: {
-      y: 0,
-      rotate: 0,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.2,
-        duration: 1.5,
-        ease: "easeOut",
-        delay: 0.5,
-      },
-    },
-  };
-  const headline2Animate = {
-    hidden: { x: 100, y: -300, rotate: 40 },
-    visible: {
-      x: 0,
-      y: 0,
-      rotate: 0,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.2,
-        duration: 1.5,
-        ease: "easeOut",
-        delay: 0.5,
-      },
-    },
-  };
-
-  const headlineLettersAnimate = {
-    hidden: { rotateY: 620 },
-    visible: {
-      rotateY: 0,
-      transition: {
-        duration: 1.5,
-        ease: "easeOut",
-      },
-    },
-  };
 
   return (
     <div className="container categories">
@@ -100,7 +83,6 @@ function Categories() {
         className="fullscreen-circle-exit"
       />
       <motion.div className="circle" />
-      <div className="categories-bruh" />
       <div className="categories-breadcrumbs">
         {" "}
         {"<  "}Home{"  /  "}Categories
@@ -149,70 +131,38 @@ function Categories() {
           {slides}
         </Swiper>
       </div>
+
       <div className="categories-grid">
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a1.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
-        <div className="categories-grid-item">
-          <Link to="/categories/dresses">
-            <motion.img src="../a2.png" alt="category" />
-          </Link>
-          <h3>Dresses</h3>
-          <p>Explore Now</p>
-        </div>
+        {productArray.map((item, i) => (
+          <motion.div
+            variants={slidesAnimate}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: i * ISD - i * ISRD + ASD }}
+            className="categories-grid-item"
+            key={i}
+          >
+            <Link to={item.link}>
+              <img src={item.image} alt="category" />
+            </Link>
+            <motion.h3
+              variants={slidesAnimate}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: i * ISD - i * ISRD + ASD }}
+            >
+              {item.title}
+            </motion.h3>
+            <motion.p
+              variants={slidesAnimate}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: i * ISD - i * ISRD + ASD }}
+            >
+              Explore Now
+            </motion.p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
