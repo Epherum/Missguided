@@ -58,14 +58,14 @@ function SubCategory() {
               initial={"hidden"}
               animate={"visible"}
             >
-              to
+              dresses for&nbsp;
             </motion.div>
             <motion.div
               variants={headline2Animate}
               initial={"hidden"}
               animate={"visible"}
             >
-              ps
+              babes
             </motion.div>
           </motion.h1>
           <p className="stock">
@@ -82,7 +82,8 @@ function SubCategory() {
               initial={"hidden"}
               animate={"visible"}
             >
-              of 1478
+              {/* thanks flexbox */}
+              of&nbsp;1478
             </motion.div>
           </p>
         </div>
