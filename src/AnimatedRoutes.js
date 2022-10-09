@@ -1,10 +1,10 @@
 import React from "react";
 import "./app.scss";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./home/Home";
-import Categories from "./categories/Categories";
-import SubCategory from "./sub-category/SubCategory";
-import ProductDetails from "./product-details/ProductDetails";
+import Home from "./pages/home/Home";
+import Categories from "./pages/categories/Categories";
+import SubCategory from "./pages/sub-category/SubCategory";
+import ProductDetails from "./pages/product-details/ProductDetails";
 import { AnimatePresence } from "framer-motion";
 function AnimatedRoutes() {
   const location = useLocation();
