@@ -55,6 +55,13 @@ function Nav() {
             </Link>
           </motion.li>
         </motion.div>
+        <motion.div className="profile-mobile-view">
+          <motion.li variants={navAnimate}>
+            <Link to="/">
+              <BsBag />
+            </Link>
+          </motion.li>
+        </motion.div>
         <motion.div variants={navAnimate} className="profile">
           <motion.li variants={navAnimate}>
             <Link to="/">
