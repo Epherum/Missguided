@@ -208,29 +208,17 @@ function Home() {
             initial={"hidden"}
             animate={"visible"}
           >
-            <motion.div
-              variants={headlineLettersAnimate}
-              initial={"hidden"}
-              animate={"visible"}
-            >
-              <motion.div variants={headlineLettersAnimate}>B</motion.div>
-              <motion.div variants={headlineLettersAnimate}>A</motion.div>
-            </motion.div>
+            <motion.div variants={headlineLettersAnimate}>B</motion.div>
+            <motion.div variants={headlineLettersAnimate}>A</motion.div>
           </motion.div>
           <motion.div
             variants={headline2Animate}
             initial={"hidden"}
             animate={"visible"}
           >
-            <motion.div
-              variants={headlineLettersAnimate}
-              initial={"hidden"}
-              animate={"visible"}
-            >
-              <motion.div variants={headlineLettersAnimate}>B</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
-              <motion.div variants={headlineLettersAnimate}>S</motion.div>
-            </motion.div>
+            <motion.div variants={headlineLettersAnimate}>B</motion.div>
+            <motion.div variants={headlineLettersAnimate}>E</motion.div>
+            <motion.div variants={headlineLettersAnimate}>S</motion.div>
           </motion.div>
           <span className="who-brunch">
             <motion.div

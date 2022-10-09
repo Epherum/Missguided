@@ -98,7 +98,13 @@ const headline1Animate = {
   visible: {
     y: 0,
     rotate: 0,
-    transition: { duration: 1.5, ease: "easeOut", delay: 0.5 },
+    transition: {
+      delayChildren: 0.5,
+      staggerChildren: 0.2,
+      duration: 1.5,
+      ease: "easeOut",
+      delay: 0.5,
+    },
   },
 };
 const headline2Animate = {
@@ -107,7 +113,13 @@ const headline2Animate = {
     x: 0,
     y: 0,
     rotate: 0,
-    transition: { duration: 1.5, ease: "easeOut", delay: 0.5 },
+    transition: {
+      delayChildren: 0.5,
+      staggerChildren: 0.2,
+      duration: 1.5,
+      ease: "easeOut",
+      delay: 0.5,
+    },
   },
 };
 
@@ -116,8 +128,6 @@ const headlineLettersAnimate = {
   visible: {
     rotateY: 0,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
       duration: 1.5,
       ease: "easeOut",
     },

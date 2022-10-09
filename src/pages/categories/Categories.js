@@ -48,7 +48,13 @@ function Categories() {
     visible: {
       y: 0,
       rotate: 0,
-      transition: { duration: 1.5, ease: "easeOut", delay: 0.5 },
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.2,
+        duration: 1.5,
+        ease: "easeOut",
+        delay: 0.5,
+      },
     },
   };
   const headline2Animate = {
@@ -57,7 +63,13 @@ function Categories() {
       x: 0,
       y: 0,
       rotate: 0,
-      transition: { duration: 1.5, ease: "easeOut", delay: 0.5 },
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.2,
+        duration: 1.5,
+        ease: "easeOut",
+        delay: 0.5,
+      },
     },
   };
 
@@ -66,8 +78,6 @@ function Categories() {
     visible: {
       rotateY: 0,
       transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.2,
         duration: 1.5,
         ease: "easeOut",
       },
@@ -102,34 +112,22 @@ function Categories() {
             initial={"hidden"}
             animate={"visible"}
           >
-            <motion.div
-              variants={headlineLettersAnimate}
-              initial={"hidden"}
-              animate={"visible"}
-            >
-              <motion.div variants={headlineLettersAnimate}>C</motion.div>
-              <motion.div variants={headlineLettersAnimate}>A</motion.div>
-              <motion.div variants={headlineLettersAnimate}>T</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
-            </motion.div>
+            <motion.div variants={headlineLettersAnimate}>C</motion.div>
+            <motion.div variants={headlineLettersAnimate}>A</motion.div>
+            <motion.div variants={headlineLettersAnimate}>T</motion.div>
+            <motion.div variants={headlineLettersAnimate}>E</motion.div>
+            <motion.div variants={headlineLettersAnimate}>G</motion.div>
           </motion.div>
           <motion.div
             variants={headline2Animate}
             initial={"hidden"}
             animate={"visible"}
           >
-            <motion.div
-              variants={headlineLettersAnimate}
-              initial={"hidden"}
-              animate={"visible"}
-            >
-              <motion.div variants={headlineLettersAnimate}>G</motion.div>
-              <motion.div variants={headlineLettersAnimate}>O</motion.div>
-              <motion.div variants={headlineLettersAnimate}>R</motion.div>
-              <motion.div variants={headlineLettersAnimate}>I</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
-              <motion.div variants={headlineLettersAnimate}>S</motion.div>
-            </motion.div>
+            <motion.div variants={headlineLettersAnimate}>O</motion.div>
+            <motion.div variants={headlineLettersAnimate}>R</motion.div>
+            <motion.div variants={headlineLettersAnimate}>I</motion.div>
+            <motion.div variants={headlineLettersAnimate}>E</motion.div>
+            <motion.div variants={headlineLettersAnimate}>S</motion.div>
           </motion.div>
         </motion.h1>
       </div>
