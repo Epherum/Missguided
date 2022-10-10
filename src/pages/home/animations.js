@@ -1,11 +1,12 @@
+const delay = 0.5;
+
 const circleTextInsideAnimate = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      delayChildren: 1,
-      staggerChildren: 0.07,
+      delay: 1 + delay,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -19,8 +20,24 @@ const circleTextAnimate = {
   visible: {
     opacity: 1,
     transition: {
-      delay: 0.5,
+      delay: 0.5 + delay,
       duration: 1,
+    },
+  },
+};
+
+const image1ContainerAnimate = {
+  hidden: {
+    clipPath: "polygon(0 0%, 100% 0, 100% 0, 0 0)",
+  },
+  visible: {
+    clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+
+    transition: {
+      delay: 0 + delay,
+
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -34,21 +51,25 @@ const image1Animate = {
     rotate: 0,
     scale: 1,
     transition: {
-      duration: 1.4,
-      ease: "easeInOut",
+      delay: 0 + delay,
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
-const image1ContainerAnimate = {
+
+const image2ContainerAnimate = {
   hidden: {
-    clipPath: "polygon(0 0%, 100% 0, 100% 0, 0 0)",
+    clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
   },
   visible: {
-    clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 
     transition: {
-      duration: 1.4,
-      ease: "easeInOut",
+      delay: 0 + delay,
+
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -62,31 +83,22 @@ const image2Animate = {
     rotate: 0,
     scale: 1,
     transition: {
-      duration: 1.4,
-      ease: "easeInOut",
-    },
-  },
-};
-const image2ContainerAnimate = {
-  hidden: {
-    clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-  },
-  visible: {
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      delay: 0 + delay,
 
-    transition: {
-      duration: 1.4,
-      ease: "easeInOut",
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
+
 const whoBrunchAnimate = {
   hidden: { x: -10, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
     transition: {
-      delayChildren: 1,
+      delayChildren: 1.5 + delay,
+
       staggerChildren: 0.07,
       duration: 0.8,
       ease: "easeOut",
@@ -99,11 +111,11 @@ const headline1Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
-      duration: 1.5,
+      delayChildren: 0.2 + delay,
+      staggerChildren: 0.1,
+      duration: 1.2,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 0.1 + delay,
     },
   },
 };
@@ -114,17 +126,18 @@ const headline2Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
+      delayChildren: 0.2 + delay,
+      staggerChildren: 0.1,
+      staggerDirection: -1,
       duration: 1.5,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 0.1 + delay,
     },
   },
 };
 
 const headlineLettersAnimate = {
-  hidden: { rotateY: 620 },
+  hidden: { rotateY: 550 },
   visible: {
     rotateY: 0,
     transition: {
@@ -139,7 +152,7 @@ const linksAnimate = {
     y: 0,
     opacity: 1,
     transition: {
-      delayChildren: 0.5,
+      delayChildren: 0.5 + delay,
       staggerChildren: 0.04,
       duration: 0.5,
       ease: "easeOut",
@@ -151,10 +164,9 @@ const Deals_deal1headline1Animate = {
   hidden: { y: 100, rotate: 40 },
   visible: {
     rotate: 0,
-
     y: 0,
     transition: {
-      delay: 0.5,
+      delay: 0.3 + delay,
       duration: 0.7,
       ease: "easeOut",
     },
@@ -166,7 +178,7 @@ const Deals_deal1headline2Animate = {
     rotate: 0,
     y: 0,
     transition: {
-      delay: 0.5,
+      delay: 0.3 + delay,
       duration: 0.7,
       ease: "easeOut",
     },
@@ -178,8 +190,69 @@ const Deals_deal1paragraphAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.7,
+      delay: 1 + delay,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2headline1Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
 
+    y: 0,
+    transition: {
+      delay: 0.5 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2headline2Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
+    y: 0,
+    transition: {
+      delay: 0.5 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2paragraphAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 1.2 + delay,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal3headline1Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
+    y: 0,
+    transition: {
+      delay: 0.7 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const Deals_deal3paragraphAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 1.4 + delay,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -190,19 +263,18 @@ const buttonAnimate = {
   visible: {
     y: 0,
     transition: {
-      delay: 0,
-      duration: 1.5,
+      delay: 0 + delay,
+      duration: 1,
       ease: "easeOut",
     },
   },
 };
 const buttonTextAnimate = {
-  hidden: { y: 5, opacity: 0 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      delay: 2,
+      delay: 0.5 + delay,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -210,15 +282,26 @@ const buttonTextAnimate = {
 };
 
 const socialsAnimate = {
-  hidden: { y: 5, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
+      delayChildren: 0.1 + delay,
       staggerChildren: 0.2,
       staggerDirection: -1,
       duration: 1,
       ease: "easeOut",
+    },
+  },
+};
+const circleColorAnimate = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      delay: 0.2 + delay,
+      duration: 1,
     },
   },
 };
@@ -240,15 +323,6 @@ const circleExitAnimate = {
     },
   },
 };
-const circleColorAnimate = {
-  hidden: { scale: 0 },
-  visible: {
-    scale: 1,
-    transition: {
-      duration: 1,
-    },
-  },
-};
 
 //thank god for github copilot
 const animations = {
@@ -265,6 +339,11 @@ const animations = {
   Deals_deal1headline1Animate,
   Deals_deal1headline2Animate,
   Deals_deal1paragraphAnimate,
+  Deals_deal2headline1Animate,
+  Deals_deal2headline2Animate,
+  Deals_deal2paragraphAnimate,
+  Deals_deal3headline1Animate,
+  Deals_deal3paragraphAnimate,
   buttonAnimate,
   buttonTextAnimate,
   socialsAnimate,

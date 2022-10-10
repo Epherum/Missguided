@@ -11,7 +11,7 @@ import animations from "./animations";
 //a different animation on first visit
 //this might be the reason why i wont go to heaven
 
-//changes:
+//changes from home:
 // - removed cricleEnterAnimate
 // - replaced with a loader
 
@@ -53,14 +53,19 @@ function Home() {
     Deals_deal1headline1Animate,
     Deals_deal1headline2Animate,
     Deals_deal1paragraphAnimate,
+    Deals_deal2headline1Animate,
+    Deals_deal2headline2Animate,
+    Deals_deal2paragraphAnimate,
+    Deals_deal3headline1Animate,
+    Deals_deal3paragraphAnimate,
     buttonAnimate,
     buttonTextAnimate,
     socialsAnimate,
     circleTextAnimate,
     circleExitAnimate,
     circleColorAnimate,
-    circle1Animate,
-    circle2Animate,
+    circleLoader1Animate,
+    circleLoader2Animate,
     mAnimate,
     sDAnimate,
     gDAnimate,
@@ -74,17 +79,27 @@ function Home() {
     logoAnimate,
   } = animations;
 
+  const links = [
+    "New In",
+    "Dresses",
+    "Tops",
+    "Skirts",
+    "Shoes",
+    "Accessories",
+    "Sale",
+  ];
+
   return (
     <div className="big-container">
       <motion.div className="loader">
         <motion.div
-          variants={circle1Animate}
+          variants={circleLoader1Animate}
           initial="hidden"
           animate="visible"
           className="circle1"
         />
         <motion.div
-          variants={circle2Animate}
+          variants={circleLoader2Animate}
           initial="hidden"
           animate="visible"
           className="circle2"
@@ -141,27 +156,11 @@ function Home() {
           animate={"visible"}
           className="links"
         >
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>New In</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Dresses</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Tops</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Clothing</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Shoes</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Accessories</Link>
-          </motion.li>
-          <motion.li variants={linksAnimate}>
-            <Link to={"/"}>Sale</Link>
-          </motion.li>
+          {links.map((link, index) => (
+            <motion.li variants={linksAnimate} key={index}>
+              <Link to={"/"}>{link}</Link>
+            </motion.li>
+          ))}
         </motion.ul>
 
         <motion.div
@@ -212,7 +211,7 @@ function Home() {
             <h5>
               <motion.div className="deal1-why-did-i">
                 <motion.div
-                  variants={Deals_deal1headline1Animate}
+                  variants={Deals_deal2headline1Animate}
                   initial={"hidden"}
                   animate={"visible"}
                 >
@@ -221,7 +220,7 @@ function Home() {
               </motion.div>
               <motion.div className="deal1-pick-this-design">
                 <motion.div
-                  variants={Deals_deal1headline2Animate}
+                  variants={Deals_deal2headline2Animate}
                   initial={"hidden"}
                   animate={"visible"}
                 >
@@ -230,7 +229,7 @@ function Home() {
               </motion.div>
             </h5>
             <motion.p
-              variants={Deals_deal1paragraphAnimate}
+              variants={Deals_deal2paragraphAnimate}
               initial={"hidden"}
               animate={"visible"}
             >
@@ -241,7 +240,7 @@ function Home() {
             <h5>
               <motion.div className="deal1-why-did-i">
                 <motion.div
-                  variants={Deals_deal1headline1Animate}
+                  variants={Deals_deal3headline1Animate}
                   initial={"hidden"}
                   animate={"visible"}
                 >
@@ -250,7 +249,7 @@ function Home() {
               </motion.div>
             </h5>
             <motion.p
-              variants={Deals_deal1paragraphAnimate}
+              variants={Deals_deal3paragraphAnimate}
               initial={"hidden"}
               animate={"visible"}
             >

@@ -8,7 +8,32 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { FaTape } from "react-icons/fa";
 import animations from "./animations";
 function ProductDetails() {
-  const { circleEnterAnimate, circleExitAnimate } = animations;
+  const {
+    circleEnterAnimate,
+    circleExitAnimate,
+    breadcrumbsAnimate,
+    headlineAnimate,
+    headlineLettersAnimate,
+    priceAnimate,
+    sizeAnimate,
+    colorAnimate,
+    sizeGuideAnimate,
+    deliveryAnimate,
+    descriptionAnimate,
+    sizeGuideArrowAnimate,
+    deliveryArrowAnimate,
+    imageContainerAnimate,
+    imageAnimate,
+    cartAnimate,
+    morePicturesAnimate,
+    wishlistTextAnimate,
+    cartTextAnimate,
+    circleColorAnimate,
+  } = animations;
+
+  var headline = "Blue Oversized Dip Dye Denim Shirt Dress";
+
+  var splitHeadline = headline.split(" ");
   return (
     <div className="big-container">
       <motion.div
@@ -25,8 +50,18 @@ function ProductDetails() {
         className="fullscreen-circle-exit"
       />
       <div className="container productDetails">
-        <motion.div className="circle" />
-        <div className="moreProductPicturesGrid">
+        <motion.div
+          variants={circleColorAnimate}
+          initial="hidden"
+          animate="visible"
+          className="circle"
+        />
+        <motion.div
+          variants={morePicturesAnimate}
+          initial="hidden"
+          animate="visible"
+          className="moreProductPicturesGrid"
+        >
           <div>
             <BsFillPlayFill />{" "}
           </div>
@@ -40,14 +75,55 @@ function ProductDetails() {
           <img src="../../a1.png" alt="" />
           <img src="../../a1.png" alt="" />
           <img src="../../a1.png" alt="" />
-        </div>
+        </motion.div>
 
-        <p className="breadcrumbs">
-          {"<  "}Home{"  /  "}Categories{"  /  "}Dresses
-        </p>
-        <h1 className="headline">Blue Oversized Dip Dye Denim Shirt Dress</h1>
-        <p className="price">$36.00</p>
-        <div className="size">
+        <motion.div
+          variants={breadcrumbsAnimate}
+          initial="hidden"
+          animate="visible"
+          className="breadcrumbs"
+        >
+          {"<  "}
+          <Link to="/home">Home</Link>
+          {"  /  "}
+          <Link to="/categories">Categories</Link>
+          {"  /  "}
+          <Link to="/categories/dresses">dresses</Link>
+          {"  /  "}
+          <p>Blue Oversized Dip Dye Denim Shirt Dress</p>
+        </motion.div>
+
+        <motion.div className="clipPathContainer">
+          <motion.h1
+            variants={headlineAnimate}
+            initial="hidden"
+            animate="visible"
+            className="headline"
+          >
+            {splitHeadline.map((word, index) => {
+              return (
+                <motion.div variants={headlineLettersAnimate} key={index}>
+                  {word}&nbsp;
+                </motion.div>
+              );
+            })}
+          </motion.h1>
+        </motion.div>
+
+        <motion.p
+          variants={priceAnimate}
+          initial="hidden"
+          animate="visible"
+          className="price"
+        >
+          🔥$36.00
+        </motion.p>
+        <motion.div
+          variants={sizeAnimate}
+          initial="hidden"
+          animate="visible"
+          className="size"
+        >
           <p className="size-headline">Size</p>
           <div className="size-buttons">
             {["2", "4", "6", "8", "10", "12"].map((size, i) => (
@@ -63,8 +139,13 @@ function ProductDetails() {
               </>
             ))}
           </div>
-        </div>
-        <div className="color">
+        </motion.div>
+        <motion.div
+          variants={colorAnimate}
+          initial="hidden"
+          animate="visible"
+          className="color"
+        >
           <p className="color-headline">Color</p>
           <div className="color-buttons">
             {["black", "gray", "whitesmoke"].map((color, i) => (
@@ -83,30 +164,51 @@ function ProductDetails() {
               </>
             ))}
           </div>
-        </div>
+        </motion.div>
         <Link className="size-guide">
-          <p>
+          <motion.p
+            variants={sizeGuideAnimate}
+            initial="hidden"
+            animate="visible"
+          >
             <span>
               <FaTape />
             </span>
             &nbsp; Size Guide
-          </p>
-          <p>
+          </motion.p>
+          <motion.p
+            variants={sizeGuideArrowAnimate}
+            initial="hidden"
+            animate="visible"
+          >
             <IoIosArrowForward />
-          </p>
+          </motion.p>
         </Link>
         <Link className="delivery-returns">
-          <p>
+          <motion.p
+            variants={deliveryAnimate}
+            initial="hidden"
+            animate="visible"
+          >
             <span>
               <IoMdPaperPlane />
             </span>
             &nbsp; Delivery &amp; Returns
-          </p>
-          <p>
+          </motion.p>
+          <motion.p
+            variants={deliveryArrowAnimate}
+            initial="hidden"
+            animate="visible"
+          >
             <IoIosArrowForward />
-          </p>
+          </motion.p>
         </Link>
-        <div className="description">
+        <motion.div
+          variants={descriptionAnimate}
+          initial="hidden"
+          animate="visible"
+          className="description"
+        >
           <p className="headline">Description</p>
           <p className="text">
             This denim shirt dress is a must have this season. Featuring a
@@ -117,15 +219,43 @@ function ProductDetails() {
             dip dye design and button down front. Style with trainers and a
             denim jacket for a casual look.
           </p>
-        </div>
-        <div className="image"></div>
+        </motion.div>
+        <motion.div
+          variants={imageContainerAnimate}
+          initial={"hidden"}
+          animate={"visible"}
+          className="image"
+        >
+          <motion.div
+            variants={imageAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+          />
+        </motion.div>
         <div className="buttons">
-          <button className="wishlist">
-            <BsHeart /> &nbsp;Add to Wishlist
-          </button>
-          <button className="add-to-bag">
-            <BsBag /> &nbsp;Add to Bag
-          </button>
+          <motion.button className="wishlist">
+            <motion.span
+              variants={wishlistTextAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+            >
+              <BsHeart /> &nbsp;Add to Wishlist
+            </motion.span>
+          </motion.button>
+          <motion.button
+            variants={cartAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+            className="add-to-bag"
+          >
+            <motion.span
+              variants={cartTextAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+            >
+              <BsBag /> &nbsp;Add to Bag
+            </motion.span>
+          </motion.button>
         </div>
       </div>
     </div>

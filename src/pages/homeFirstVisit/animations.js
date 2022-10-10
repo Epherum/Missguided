@@ -36,8 +36,8 @@ const image1Animate = {
     scale: 1,
     transition: {
       delay: 0 + delay,
-      duration: 1.4,
-      ease: "easeInOut",
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -51,8 +51,8 @@ const image1ContainerAnimate = {
     transition: {
       delay: 0 + delay,
 
-      duration: 1.4,
-      ease: "easeInOut",
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -68,8 +68,8 @@ const image2Animate = {
     transition: {
       delay: 0 + delay,
 
-      duration: 1.4,
-      ease: "easeInOut",
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -82,8 +82,9 @@ const image2ContainerAnimate = {
 
     transition: {
       delay: 0 + delay,
-      duration: 1.4,
-      ease: "easeInOut",
+
+      duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -93,7 +94,8 @@ const whoBrunchAnimate = {
     x: 0,
     opacity: 1,
     transition: {
-      delayChildren: 1 + delay,
+      delayChildren: 1.5 + delay,
+
       staggerChildren: 0.07,
       duration: 0.8,
       ease: "easeOut",
@@ -106,11 +108,11 @@ const headline1Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 1.5,
-      staggerChildren: 0.2,
-      duration: 1.5,
+      delayChildren: 0.2 + delay,
+      staggerChildren: 0.1,
+      duration: 1.2,
       ease: "easeOut",
-      delay: delay,
+      delay: 0.1 + delay,
     },
   },
 };
@@ -121,22 +123,21 @@ const headline2Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 1.5,
-      staggerChildren: 0.2,
+      delayChildren: 0.2 + delay,
+      staggerChildren: 0.1,
+      staggerDirection: -1,
       duration: 1.5,
       ease: "easeOut",
-      delay: delay,
+      delay: 0.1 + delay,
     },
   },
 };
 
 const headlineLettersAnimate = {
-  hidden: { rotateY: 620 },
+  hidden: { rotateY: 550 },
   visible: {
     rotateY: 0,
     transition: {
-      delay: 0 + delay,
-
       duration: 1.5,
       ease: "easeOut",
     },
@@ -160,10 +161,9 @@ const Deals_deal1headline1Animate = {
   hidden: { y: 100, rotate: 40 },
   visible: {
     rotate: 0,
-
     y: 0,
     transition: {
-      delay: 0.5 + delay,
+      delay: 0.3 + delay,
       duration: 0.7,
       ease: "easeOut",
     },
@@ -175,7 +175,7 @@ const Deals_deal1headline2Animate = {
     rotate: 0,
     y: 0,
     transition: {
-      delay: 0.5 + delay,
+      delay: 0.3 + delay,
       duration: 0.7,
       ease: "easeOut",
     },
@@ -187,8 +187,69 @@ const Deals_deal1paragraphAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.7 + delay,
+      delay: 1 + delay,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2headline1Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
 
+    y: 0,
+    transition: {
+      delay: 0.5 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2headline2Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
+    y: 0,
+    transition: {
+      delay: 0.5 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal2paragraphAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 1.2 + delay,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+const Deals_deal3headline1Animate = {
+  hidden: { y: 100, rotate: 40 },
+  visible: {
+    rotate: 0,
+    y: 0,
+    transition: {
+      delay: 0.7 + delay,
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const Deals_deal3paragraphAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 1.4 + delay,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -200,20 +261,17 @@ const buttonAnimate = {
     y: 0,
     transition: {
       delay: 0 + delay,
-      duration: 1.5,
-      duration: 1.5,
+      duration: 1,
       ease: "easeOut",
     },
   },
 };
 const buttonTextAnimate = {
-  hidden: { y: 5, opacity: 0 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      delay: 1 + delay,
-      duration: 0.5,
+      delay: 0.5 + delay,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -221,12 +279,12 @@ const buttonTextAnimate = {
 };
 
 const socialsAnimate = {
-  hidden: { y: 5, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      delayChildren: 0.5 + delay,
+      delayChildren: 0.1 + delay,
       staggerChildren: 0.2,
       staggerDirection: -1,
       duration: 1,
@@ -234,6 +292,17 @@ const socialsAnimate = {
     },
   },
 };
+const circleColorAnimate = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      delay: 0.2 + delay,
+      duration: 1,
+    },
+  },
+};
+
 const circleEnterAnimate = {
   hidden: { scale: 2, x: "-50%", y: "50%" },
   visible: {
@@ -253,20 +322,11 @@ const circleExitAnimate = {
     },
   },
 };
-const circleColorAnimate = {
+
+const circleLoader1Animate = {
   hidden: { scale: 0 },
   visible: {
-    scale: 1,
-    transition: {
-      delay: 0 + delay,
-      duration: 1,
-    },
-  },
-};
-const circle1Animate = {
-  hidden: { scale: 0 },
-  visible: {
-    scale: [0, 0.35, 0.25, 0.25, 1],
+    scale: [0, 0.3, 0.2, 1],
     transition: {
       delay: 0.4,
 
@@ -274,7 +334,7 @@ const circle1Animate = {
     },
   },
 };
-const circle2Animate = {
+const circleLoader2Animate = {
   hidden: { scale: 0 },
   visible: {
     scale: 1,
@@ -356,7 +416,7 @@ const iAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2.1,
+      delay: 2.2,
       duration: 0.5,
     },
   },
@@ -367,7 +427,7 @@ const dAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2.1,
+      delay: 2.2,
       duration: 0.5,
     },
   },
@@ -379,7 +439,7 @@ const dDAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.1,
+      delay: 2.2,
       duration: 0.5,
     },
   },
@@ -391,7 +451,7 @@ const uAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.1,
+      delay: 2.2,
       duration: 0.5,
     },
   },
@@ -403,7 +463,7 @@ const sAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.1,
+      delay: 2.2,
       duration: 0.5,
     },
   },
@@ -435,6 +495,11 @@ const animations = {
   Deals_deal1headline1Animate,
   Deals_deal1headline2Animate,
   Deals_deal1paragraphAnimate,
+  Deals_deal2headline1Animate,
+  Deals_deal2headline2Animate,
+  Deals_deal2paragraphAnimate,
+  Deals_deal3headline1Animate,
+  Deals_deal3paragraphAnimate,
   buttonAnimate,
   buttonTextAnimate,
   socialsAnimate,
@@ -442,8 +507,8 @@ const animations = {
   circleEnterAnimate,
   circleExitAnimate,
   circleColorAnimate,
-  circle1Animate,
-  circle2Animate,
+  circleLoader1Animate,
+  circleLoader2Animate,
   mAnimate,
   sDAnimate,
   gDAnimate,

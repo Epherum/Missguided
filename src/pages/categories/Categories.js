@@ -16,7 +16,6 @@ function Categories() {
     circleExitAnimate,
     headline1Animate,
     headline2Animate,
-    headlineLettersAnimate,
     slidesAnimate,
     breadcrumbsAnimate,
     circleColorAnimate,
@@ -27,10 +26,16 @@ function Categories() {
   const slides = [];
 
   //animationStartDelay
-  const ASD = 2;
+  const ASD = 1.2;
 
   //individualSlideDelay
   const ISD = 0.3;
+
+  //individualh3Delay
+  const IHD = 0.2;
+
+  //individualparagraphDelay
+  const IPD = 0.3;
 
   //individualSlideReverseDelay
   //reverse delay is to start a slide before the previous one finishes
@@ -43,7 +48,7 @@ function Categories() {
           variants={slidesAnimate}
           initial="hidden"
           animate="visible"
-          transition={{ delay: i * ISD - i * ISRD + ASD }}
+          transition={{ delay: i * ISD - i * ISRD + ASD, ease: "easeOut" }}
         >
           <Link to="/categories/dresses">
             <img src="/a1.png" alt="category" />
@@ -52,7 +57,7 @@ function Categories() {
             variants={slidesAnimate}
             initial="hidden"
             animate="visible"
-            transition={{ delay: i * ISD - i * ISRD + ASD }}
+            transition={{ delay: i * IHD + ASD, ease: "easeOut" }}
           >
             Dresses
           </motion.h3>
@@ -60,7 +65,7 @@ function Categories() {
             variants={slidesAnimate}
             initial="hidden"
             animate="visible"
-            transition={{ delay: i * ISD - i * ISRD + ASD }}
+            transition={{ delay: i * IPD + ASD, ease: "easeOut" }}
           >
             Explore Now
           </motion.p>
@@ -95,38 +100,32 @@ function Categories() {
           variants={breadcrumbsAnimate}
           initial="hidden"
           animate="visible"
-          className="categories-breadcrumbs"
+          className="breadcrumbs"
         >
-          {" "}
-          {"<  "}Home{"  /  "}Categories
+          {"<  "}
+          <Link to="/home">Home</Link>
+          {"  /  "}
+          <p>Categories</p>
         </motion.div>
-        <div className="categories-headline">
+        <div className="headline">
           <motion.h1>
             <motion.div
               variants={headline1Animate}
               initial={"hidden"}
               animate={"visible"}
             >
-              <motion.div variants={headlineLettersAnimate}>C</motion.div>
-              <motion.div variants={headlineLettersAnimate}>A</motion.div>
-              <motion.div variants={headlineLettersAnimate}>T</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
-              <motion.div variants={headlineLettersAnimate}>G</motion.div>
+              CATEG
             </motion.div>
             <motion.div
               variants={headline2Animate}
               initial={"hidden"}
               animate={"visible"}
             >
-              <motion.div variants={headlineLettersAnimate}>O</motion.div>
-              <motion.div variants={headlineLettersAnimate}>R</motion.div>
-              <motion.div variants={headlineLettersAnimate}>I</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
-              <motion.div variants={headlineLettersAnimate}>S</motion.div>
+              ORIES
             </motion.div>
           </motion.h1>
         </div>
-        <div className="categories-carousel">
+        <div className="carousel">
           <Swiper
             id="main"
             tag="section"
@@ -134,6 +133,7 @@ function Categories() {
             slidesPerView={3}
             slidesPerGroup={2}
             draggable={false}
+            grabCursor={true}
             navigation
             breakpoints={{
               1250: {
@@ -145,14 +145,13 @@ function Categories() {
           </Swiper>
         </div>
 
-        <div className="categories-grid">
+        <div className="products">
           {productArray.map((item, i) => (
             <motion.div
               variants={slidesAnimate}
               initial="hidden"
               animate="visible"
               transition={{ delay: i * ISD - i * ISRD + ASD }}
-              className="categories-grid-item"
               key={i}
             >
               <Link to={item.link}>

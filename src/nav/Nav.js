@@ -4,35 +4,41 @@ import { VscMenu } from "react-icons/vsc";
 import { BsHeart, BsBag } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import "./nav.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 // TODO:
 //* change text to links
 //* add hover animations
 //* change menu icon
-const delay = 3.5;
-
-const navAnimate = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: delay,
-      delayChildren: 0.2 + delay,
-      staggerChildren: 0.1,
-      ease: "easeOut",
-      duration: 0.5,
-    },
-  },
-};
 
 //remove the delay from the first child
 
 function Nav() {
+  let delay = 0;
+  const location = useLocation();
+  if (location.pathname === "/") {
+    delay = 3.5;
+  } else {
+    delay = 0;
+  }
+
+  const navAnimate = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        ease: "easeOut",
+        duration: 0.5,
+        delay: delay,
+      },
+    },
+  };
   return (
     <nav className="container">
       <motion.ul

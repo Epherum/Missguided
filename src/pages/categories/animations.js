@@ -1,21 +1,4 @@
-const circleEnterAnimate = {
-  hidden: { scale: 2, x: "-50%", y: "50%" },
-  visible: {
-    scale: 0,
-    transition: {
-      duration: 1,
-    },
-  },
-};
-const circleExitAnimate = {
-  hidden: { scale: 0, x: "-50%", y: "50%" },
-  visible: {
-    scale: 2,
-    transition: {
-      duration: 1,
-    },
-  },
-};
+const delay = 0.1;
 
 const breadcrumbsAnimate = {
   hidden: { x: -20, opacity: 0 },
@@ -25,7 +8,7 @@ const breadcrumbsAnimate = {
     transition: {
       duration: 0.5,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 2 + delay,
     },
   },
 };
@@ -36,14 +19,13 @@ const headline1Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
-      duration: 1.5,
+      duration: 1.3,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 0.1 + delay,
     },
   },
 };
+
 const headline2Animate = {
   hidden: { x: 100, y: -300, rotate: 40 },
   visible: {
@@ -51,26 +33,14 @@ const headline2Animate = {
     y: 0,
     rotate: 0,
     transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.2,
-      duration: 1.5,
+      duration: 1.3,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 0.1 + delay,
     },
   },
 };
 
-const headlineLettersAnimate = {
-  hidden: { rotateY: 620 },
-  visible: {
-    rotateY: 0,
-    transition: {
-      duration: 1.5,
-      ease: "easeOut",
-    },
-  },
-};
-
+//delay is in the component
 const slidesAnimate = {
   hidden: { x: -20, opacity: 0 },
   visible: {
@@ -78,10 +48,32 @@ const slidesAnimate = {
     opacity: 1,
   },
 };
+
 const circleColorAnimate = {
   hidden: { scale: 0 },
   visible: {
     scale: 1,
+    transition: {
+      delay: 1.2 + delay,
+      duration: 1,
+    },
+  },
+};
+
+const circleEnterAnimate = {
+  hidden: { scale: 2, x: "-50%", y: "50%" },
+  visible: {
+    scale: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+
+const circleExitAnimate = {
+  hidden: { scale: 0, x: "-50%", y: "50%" },
+  visible: {
+    scale: 2,
     transition: {
       duration: 1,
     },
@@ -93,7 +85,6 @@ const animations = {
   circleExitAnimate,
   headline1Animate,
   headline2Animate,
-  headlineLettersAnimate,
   slidesAnimate,
   breadcrumbsAnimate,
   circleColorAnimate,

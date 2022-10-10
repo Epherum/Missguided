@@ -1,9 +1,9 @@
-import React from "react";
 import productArray from "./items";
-import Product from "./Product";
+import Product from "./product/Product";
 import { BsSliders } from "react-icons/bs";
 import { motion } from "framer-motion";
 import animations from "./animations";
+import { Link } from "react-router-dom";
 import "./sub-category.scss";
 
 function SubCategory() {
@@ -49,7 +49,12 @@ function SubCategory() {
           animate="visible"
           className="breadcrumbs"
         >
-          {"<  "}Home{"  /  "}Categories{"  /  "}Dresses
+          {"<  "}
+          <Link to="/home">Home</Link>
+          {"  /  "}
+          <Link to="/categories">Categories</Link>
+          {"  /  "}
+          <p>Dresses</p>
         </motion.div>
         <div className="flex-1">
           <motion.h1 className="headline">
@@ -75,7 +80,7 @@ function SubCategory() {
               initial={"hidden"}
               animate={"visible"}
             >
-              1-20 <span>&nbsp;</span>
+              1-20<span>&nbsp;</span>
             </motion.div>
             <motion.div
               variants={stockAllAnimate}
@@ -116,8 +121,13 @@ function SubCategory() {
         animate="visible"
         className="products"
       >
-        {productArray.map((item) => (
-          <Product image={item.image} title={item.title} price={item.price} />
+        {productArray.map((item, index) => (
+          <Product
+            key={index}
+            image={item.image}
+            title={item.title}
+            price={item.price}
+          />
         ))}
       </motion.div>
     </div>
