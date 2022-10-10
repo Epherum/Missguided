@@ -80,6 +80,10 @@
       font-size: min(11vw, 12rem);
       font-weight: 700;
       margin-top: -1rem;
+      @media (max-height: 900px) {
+        margin-top: 1rem;
+        overflow: visible;
+      }
     }
     @media (max-width: 1024px) {
       letter-spacing: 3px;
