@@ -1,12 +1,16 @@
 import { BsHeart, BsBag } from "react-icons/bs";
-import "./product-details.scss";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoMdPaperPlane } from "react-icons/io";
 import { TbHanger } from "react-icons/tb";
 import { BsFillPlayFill } from "react-icons/bs";
 import { FaTape } from "react-icons/fa";
+
+import React from "react";
+
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import animations from "./animations";
+import "./product-details.scss";
 function ProductDetails() {
   const {
     circleEnterAnimate,
@@ -127,16 +131,15 @@ function ProductDetails() {
           <p className="size-headline">Size</p>
           <div className="size-buttons">
             {["2", "4", "6", "8", "10", "12"].map((size, i) => (
-              <>
+              <React.Fragment key={i}>
                 <input
                   type="radio"
                   name="size"
                   id={`radio${i}`}
-                  key={i}
                   className="size-button"
                 />
                 <label htmlFor={`radio${i}`}>{size}</label>
-              </>
+              </React.Fragment>
             ))}
           </div>
         </motion.div>
@@ -149,19 +152,18 @@ function ProductDetails() {
           <p className="color-headline">Color</p>
           <div className="color-buttons">
             {["black", "gray", "whitesmoke"].map((color, i) => (
-              <>
+              <React.Fragment key={i}>
                 <input
                   type="radio"
                   name="color"
                   id={`color${i}`}
-                  key={i}
                   className="size-button"
                 />
                 <label
                   style={{ backgroundColor: color }}
                   htmlFor={`color${i}`}
                 ></label>
-              </>
+              </React.Fragment>
             ))}
           </div>
         </motion.div>

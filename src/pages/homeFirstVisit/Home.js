@@ -14,6 +14,15 @@ import animations from "./animations";
 //changes from home:
 // - removed cricleEnterAnimate
 // - replaced with a loader
+//added outline to Shop Now button to make
+//traversing the site easier for newcomers
+
+//the css class names are the same,
+//i didint change them so i wouldnt have to
+//redo the same changes twice in 2 files
+//if you wanna change the css, change it here and not in home.js
+//and if you wanna make it look different, add a -first-visit to
+//the class to decouple it from home.js
 
 function Home() {
   let classIndex = useRef();
@@ -32,7 +41,6 @@ function Home() {
 
   useEffect(() => {
     circularText("How to Make an Effort  How to Make an Effort  ", 230);
-    console.log(classIndex.current);
     //230
     //150
     //100

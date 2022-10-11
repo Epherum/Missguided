@@ -19,7 +19,7 @@ const headlineAnimate = {
     y: 0,
     rotate: 0,
     transition: {
-      staggerChildren: 0.01,
+      staggerChildren: 0.1,
       delayStaggerChildren: 0.5 + delay,
       duration: 1,
       ease: "easeOut",
