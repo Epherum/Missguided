@@ -218,6 +218,8 @@
     margin-left: 0.5rem;
     margin-right: -3rem;
     font-size: min(7.1rem, 5.9vw);
+    -webkit-text-stroke: 4px;
+
     letter-spacing: 0.9px;
     position: relative;
     white-space: nowrap;
@@ -229,6 +231,8 @@
     }
 
     .who-brunch {
+      -webkit-text-stroke: 0px;
+
       margin-left: 2rem;
       font-weight: 400;
       font-size: min(4.5rem, 3.7vw);
@@ -295,6 +299,8 @@
 
     h5 {
       font-size: min(1.5rem, 1.2vw);
+      -webkit-text-stroke: 0.4px;
+
       font-family: "GT America bold";
       margin-bottom: 0.2rem;
     }
@@ -354,7 +360,7 @@
     }
   }
 
-  .button {
+  .button-first-visit {
     grid-column: 2 / 4;
     grid-row: 4;
     z-index: 2;
@@ -363,18 +369,60 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    position: relative;
+
+    overflow: hidden;
 
     a {
       justify-self: flex-end;
       display: inline-block;
       background-color: black;
       border: none;
-      padding: 3rem 7.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+      z-index: 4;
       color: var(--color1);
       text-align: center;
       text-decoration: none;
       letter-spacing: 0.6px;
       font-size: min(1.6rem, 1.3vw);
+      &:before {
+        content: "";
+        width: 200%;
+        height: 500%;
+        position: absolute;
+        background: conic-gradient(
+          #fd004c,
+          #fe9000,
+          #fff020,
+          #3edf4b,
+          #3363ff,
+          #b102b7,
+          #fd004c
+        );
+        left: -60%;
+        top: -105%;
+        animation-name: show, spin;
+        animation-delay: 0s, 12s;
+        animation-duration: 13.5s, 20.5s;
+      }
+      &:after {
+        content: "Shop Now";
+        position: absolute;
+        background-color: black;
+        height: 93%;
+        width: 97%;
+        top: 4.5%;
+        left: 1.5%;
+        letter-spacing: 0.6px;
+        font-size: min(1.6rem, 1.3vw);
+        color: var(--color1);
+        color: #ffffff;
+        display: grid;
+        place-items: center;
+      }
       @media (max-width: 1650px) {
         padding: 2.5rem 6.1rem;
       }
@@ -389,7 +437,6 @@
         height: 100%;
       }
     }
-
     @media (max-width: 1024px) {
       grid-column: 1/2;
       width: 100%;
@@ -400,6 +447,102 @@
       height: 100%;
     }
   }
+
+  //for some reason repeat infinite is not working
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(180deg);
+    }
+    20% {
+      transform: rotate(360deg);
+    }
+    30% {
+      transform: rotate(540deg);
+    }
+    40% {
+      transform: rotate(720deg);
+    }
+    50% {
+      transform: rotate(900deg);
+    }
+    60% {
+      transform: rotate(1080deg);
+    }
+    70% {
+      transform: rotate(1260deg);
+    }
+    80% {
+      transform: rotate(1440deg);
+    }
+    90% {
+      transform: rotate(1620deg);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+    80% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  // .button {
+  // grid-column: 2 / 4;
+  // grid-row: 4;
+  // z-index: 2;
+  // align-self: end;
+  // justify-self: end;
+  // width: 100%;
+  // display: flex;
+  // justify-content: flex-end;
+
+  //   a {
+  //     justify-self: flex-end;
+  //     display: inline-block;
+  //     background-color: black;
+  //     border: none;
+
+  //     padding: 3rem 7.5rem;
+  //     color: var(--color1);
+  //     text-align: center;
+  //     text-decoration: none;
+  //     letter-spacing: 0.6px;
+  //     font-size: min(1.6rem, 1.3vw);
+  //     @media (max-width: 1650px) {
+  //       padding: 2.5rem 6.1rem;
+  //     }
+  //     @media (max-width: 1024px) {
+  //       width: 100%;
+  //       padding: 2.5rem auto;
+  //       font-size: 2.3vw;
+  //       white-space: nowrap;
+  //     }
+  //     @media (max-width: 500px) {
+  //       font-size: 4vw;
+  //       height: 100%;
+  //     }
+  //   }
+
+  // @media (max-width: 1024px) {
+  //   grid-column: 1/2;
+  //   width: 100%;
+
+  //   grid-row: 4;
+  // }
+  // @media (max-width: 500px) {
+  //   height: 100%;
+  // }
+  // }
 
   .circle {
     position: absolute;

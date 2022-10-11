@@ -99,6 +99,8 @@
     h1 {
       margin-left: 1rem;
       font-size: min(11vw, 12rem);
+      -webkit-text-stroke: 2.2px;
+
       font-weight: 700;
       @media (max-height: 900px) {
         margin-top: 1rem;

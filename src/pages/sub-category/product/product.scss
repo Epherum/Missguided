@@ -14,7 +14,9 @@
     grid-row: 2;
     font-family: "OGG Roman";
     font-size: min(1.5rem, 1.3vw);
-    font-weight: 700;
+    font-weight: 500;
+    -webkit-text-stroke: 0.3px;
+
     margin-top: 1rem;
     @media (max-width: 800px) {
       font-size: 0.8rem;
@@ -25,9 +27,11 @@
     align-items: flex-end;
   }
   .price {
-    margin-right: auto;
-    font-weight: 800;
     font-size: min(1.8rem, 1.5vw);
+    -webkit-text-stroke: 0.4px;
+    font-weight: 800;
+    margin-right: auto;
+
     @media (max-width: 800px) {
       font-size: 1rem;
       font-weight: 800;

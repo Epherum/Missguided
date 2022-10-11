@@ -299,6 +299,7 @@ const circleColorAnimate = {
     transition: {
       delay: 0.2 + delay,
       duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -329,6 +330,7 @@ const circleLoader1Animate = {
     scale: [0, 0.3, 0.2, 1],
     transition: {
       delay: 0.4,
+      ease: "easeOut",
 
       duration: 1.8,
     },
@@ -341,11 +343,12 @@ const circleLoader2Animate = {
     transition: {
       delay: 2.7,
       duration: 1,
+      ease: "easeOut",
     },
   },
 };
 //sD= s delay
-const mAnimate = {
+const mDAnimate = {
   hidden: { scale: 0, rotate: 360, x: "-30vw", y: "-30vh" },
   visible: {
     x: ["-30vw", "-30vw", "-30vw", "0vw", "0vw", "0vw"],
@@ -418,6 +421,7 @@ const iAnimate = {
     transition: {
       delay: 2.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -429,6 +433,7 @@ const dAnimate = {
     transition: {
       delay: 2.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -441,6 +446,7 @@ const dDAnimate = {
     transition: {
       delay: 2.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -453,6 +459,7 @@ const uAnimate = {
     transition: {
       delay: 2.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -465,6 +472,7 @@ const sAnimate = {
     transition: {
       delay: 2.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -476,6 +484,7 @@ const logoAnimate = {
     transition: {
       delay: 3.2,
       duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -509,7 +518,7 @@ const animations = {
   circleColorAnimate,
   circleLoader1Animate,
   circleLoader2Animate,
-  mAnimate,
+  mDAnimate,
   sDAnimate,
   gDAnimate,
   iDAnimate,

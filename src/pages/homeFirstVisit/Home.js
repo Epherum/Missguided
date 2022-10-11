@@ -66,7 +66,7 @@ function Home() {
     circleColorAnimate,
     circleLoader1Animate,
     circleLoader2Animate,
-    mAnimate,
+    mDAnimate,
     sDAnimate,
     gDAnimate,
     iDAnimate,
@@ -107,7 +107,7 @@ function Home() {
         <motion.div className="clipPathContainer">
           <motion.h1 variants={logoAnimate} initial="hidden" animate="visible">
             {/* spans dont work in framer whyyy */}
-            <motion.div variants={mAnimate} initial="hidden" animate="visible">
+            <motion.div variants={mDAnimate} initial="hidden" animate="visible">
               m
             </motion.div>
             <motion.div variants={iAnimate} initial="hidden" animate="visible">
@@ -355,7 +355,7 @@ function Home() {
           variants={buttonAnimate}
           initial={"hidden"}
           animate={"visible"}
-          className="button"
+          className="button-first-visit "
         >
           <Link to="/categories">
             <motion.p
