@@ -20,8 +20,11 @@ function AnimatedRoutes() {
         <Route path="/test" element={<Test />} />
 
         <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:id" element={<SubCategory />} />
-        <Route path="/categories/:id/:productId" element={<ProductDetails />} />
+        <Route path="/categories/:subCategory" element={<SubCategory />} />
+        <Route
+          path="/categories/:subCategory/:productName/:productId"
+          element={<ProductDetails />}
+        />
       </Routes>
     </AnimatePresence>
   );

@@ -8,7 +8,8 @@ import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL } from "firebase/storage";
 
 function Product(props) {
-  const { title, price, images } = props;
+  const { id, category, title, price, images } = props;
+
   function useFirestoreImageUrl(imagePath) {
     const [url, setUrl] = useState("");
     useEffect(() => {
@@ -30,9 +31,12 @@ function Product(props) {
     currency: "USD",
   });
 
+  //replace space with dash
+  const titleDash = title.replace(/\s+/g, "-").toLowerCase();
+
   return (
     <div className="product">
-      <Link to="/categories/:id/:productId">
+      <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
         <FirestoreImage imagePath={images[0]} />
       </Link>
       <h3 className="name">{title}</h3>

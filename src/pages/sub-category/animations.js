@@ -1,4 +1,4 @@
-const delay = 0.1;
+const delay = -0.2;
 
 const breadcrumbsAnimate = {
   hidden: { x: -20, opacity: 0 },
@@ -108,7 +108,7 @@ const circleColorAnimate = {
 };
 
 const circleEnterAnimate = {
-  hidden: { scale: 2, x: "-50%", y: "-50%" },
+  hidden: { scale: 2, x: "-90%", y: "50%" },
   visible: {
     scale: 0,
     transition: {

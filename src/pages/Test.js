@@ -37,37 +37,47 @@ function Test() {
   //     });
   //   });
   // }
+  //update all documents by adding an id field
+  function updateAllProducts() {
+    getDocs(productsCollectionRef).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        updateDoc(doc.ref, {
+          id: doc.id,
+        });
+      });
+    });
+  }
 
   useEffect(() => {
-    get20Products();
+    // updateAllProducts();
   }, []);
 
-  const get20Products = async () => {
-    const productsCollectionRef = collection(db, "products");
-    const q = query(productsCollectionRef, limit(2));
-    const querySnapshot = await getDocs(q);
-    const products = querySnapshot.docs.map((doc) => doc.data());
-    setData(products);
-  };
+  // const get20Products = async () => {
+  //   const productsCollectionRef = collection(db, "products");
+  //   const q = query(productsCollectionRef, limit(2));
+  //   const querySnapshot = await getDocs(q);
+  //   const products = querySnapshot.docs.map((doc) => doc.data());
+  //   setData(products);
+  // };
 
-  function useFirestoreImageUrl(imagePath) {
-    const [url, setUrl] = useState("");
-    useEffect(() => {
-      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
-        setUrl(url)
-      );
-    }, [imagePath]);
-    return url;
-  }
+  // function useFirestoreImageUrl(imagePath) {
+  //   const [url, setUrl] = useState("");
+  //   useEffect(() => {
+  //     getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
+  //       setUrl(url)
+  //     );
+  //   }, [imagePath]);
+  //   return url;
+  // }
 
-  function FirestoreImage({ imagePath }) {
-    const url = useFirestoreImageUrl(imagePath);
-    return <img style={{ width: "100px" }} key={imagePath} src={url} />;
-  }
+  // function FirestoreImage({ imagePath }) {
+  //   const url = useFirestoreImageUrl(imagePath);
+  //   return <img style={{ width: "100px" }} key={imagePath} src={url} />;
+  // }
 
   return (
     <div className="App">
-      {data.map((item) => (
+      {/* {data.map((item) => (
         <div key={item.name}>
           <h1>{item?.name}</h1>
           <h2>{item?.price}</h2>
@@ -76,7 +86,7 @@ function Test() {
             <FirestoreImage imagePath={path} />
           ))}
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
