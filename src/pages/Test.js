@@ -1,85 +1,82 @@
 import { useState, useEffect } from "react";
 import { db, storage } from "../firebase-config";
 import {
+  limit,
+  query,
   collection,
   getDocs,
   addDoc,
-  doc,
   updateDoc,
-  deleteDoc,
+  doc,
+  getDoc,
 } from "firebase/firestore";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll, getDownloadURL, getStorage } from "firebase/storage";
+// import dresses from "../csvjson";
 
 function Test() {
-  const [users, setUsers] = useState([]);
-  const [newName, setNewName] = useState("");
-  const [imageList, setImageList] = useState([]);
-  const [newAge, setNewAge] = useState(0);
+  const storage = getStorage();
+  const [data, setData] = useState([]);
 
-  const usersCollectionRef = collection(db, "users");
-  const imageListRef = ref(storage, "images/");
-  console.log(imageListRef);
-  const createUser = async () => {
-    await addDoc(usersCollectionRef, { name: newName, age: Number(newAge) });
-  };
+  const productsCollectionRef = collection(db, "products");
 
-  const updateAge = async (id, age) => {
-    const userDoc = doc(db, "users", id);
-    const newFields = { age: Number(age + 1) };
-    await updateDoc(userDoc, newFields);
-  };
-  const deleteUser = async (id) => {
-    const userDoc = doc(db, "users", id);
-    await deleteDoc(userDoc);
-  };
-
-  const getUsers = async () => {
-    const data = await getDocs(usersCollectionRef);
-    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+  // function addAllProducts() {
+  //   dresses.forEach(async (product) => {
+  //     addDoc(productsCollectionRef, {
+  //       name: product.name,
+  //       price: product.price,
+  //       description: product.description,
+  //       color: product.color,
+  //       category: product.category,
+  //       type: product.type,
+  //       images: [
+  //         product.image1,
+  //         product.image2,
+  //         product.image3,
+  //         product.image4,
+  //       ],
+  //     });
+  //   });
+  // }
 
   useEffect(() => {
-    getUsers();
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-        });
-      });
-    });
+    get20Products();
   }, []);
+
+  const get20Products = async () => {
+    const productsCollectionRef = collection(db, "products");
+    const q = query(productsCollectionRef, limit(2));
+    const querySnapshot = await getDocs(q);
+    const products = querySnapshot.docs.map((doc) => doc.data());
+    setData(products);
+  };
+
+  function useFirestoreImageUrl(imagePath) {
+    const [url, setUrl] = useState("");
+    useEffect(() => {
+      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
+        setUrl(url)
+      );
+    }, [imagePath]);
+    return url;
+  }
+
+  function FirestoreImage({ imagePath }) {
+    const url = useFirestoreImageUrl(imagePath);
+    return <img style={{ width: "100px" }} key={imagePath} src={url} />;
+  }
 
   return (
     <div className="App">
-      <input
-        type="text"
-        placeholder="name"
-        onChange={(e) => setNewName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="age"
-        onChange={(e) => setNewAge(e.target.value)}
-      />
-      <button onClick={createUser}>create user</button>
-      {users?.map((user) => {
-        const { name, age, id } = user;
-        return (
-          <div key={id}>
-            <h1>{name}</h1>
-            <h1>{age}</h1>
-            <button onClick={() => updateAge(id, age)}>increase age</button>
-            <button onClick={() => deleteUser(id)}>Delete user</button>
-          </div>
-        );
-      })}
-      {imageList?.map((image, index) => {
-        return (
-          <div key={index}>
-            <img style={{ width: "100px" }} src={image} />
-          </div>
-        );
-      })}
+      {data.map((item) => (
+        <div key={item.name}>
+          <h1>{item?.name}</h1>
+          <h2>{item?.price}</h2>
+          <h3>{item?.description}</h3>
+          {item.images?.map((path) => (
+            <FirestoreImage imagePath={path} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }

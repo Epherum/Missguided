@@ -1,10 +1,12 @@
-import productArray from "./items";
 import Product from "./product/Product";
 import { BsSliders } from "react-icons/bs";
 import { motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
+import { useState, useEffect } from "react";
+import { db } from "../../firebase-config";
+import { limit, query, collection, getDocs, where } from "firebase/firestore";
 
 function SubCategory() {
   const {
@@ -19,6 +21,41 @@ function SubCategory() {
     stockAllAnimate,
     circleColorAnimate,
   } = animations;
+
+  const [data, setData] = useState([]);
+  const [stockShown, setStockShown] = useState(0);
+
+  //capitalise first letter of string
+  const capitalise = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  //get the last word from the url
+  const lastWord = window.location.href.split("/").pop();
+
+  const get40Products = async () => {
+    const productsCollectionRef = collection(db, "products");
+    const q = query(
+      productsCollectionRef,
+      where("category", "==", capitalise(lastWord)),
+      limit(5)
+    );
+    const querySnapshot = await getDocs(q);
+    const products = querySnapshot.docs.map((doc) => doc.data());
+    setData(products);
+  };
+  //function to set the stock shown
+  const setStock = () => {
+    let stock = 0;
+    data?.forEach(() => {
+      stock += 1;
+    });
+    setStockShown(stock);
+  };
+
+  useEffect(() => {
+    get40Products();
+    setStock();
+  }, []);
 
   return (
     <div className="big-container subCategory ">
@@ -37,12 +74,14 @@ function SubCategory() {
       />
       <div className="container ">
         <div className="navbarSeperator" />
-        <motion.div
-          variants={circleColorAnimate}
-          initial="hidden"
-          animate="visible"
-          className="circle"
-        />
+        <div className="circle-fixed-wrapper">
+          <motion.div
+            variants={circleColorAnimate}
+            initial="hidden"
+            animate="visible"
+            className="circle"
+          />
+        </div>
         <motion.div
           variants={breadcrumbsAnimate}
           initial="hidden"
@@ -80,7 +119,8 @@ function SubCategory() {
               initial={"hidden"}
               animate={"visible"}
             >
-              1-20<span>&nbsp;</span>
+              1-{stockShown}
+              <span>&nbsp;</span>
             </motion.div>
             <motion.div
               variants={stockAllAnimate}
@@ -121,12 +161,12 @@ function SubCategory() {
         animate="visible"
         className="products"
       >
-        {productArray.map((item, index) => (
+        {data?.map((item) => (
           <Product
-            key={index}
-            image={item.image}
-            title={item.title}
-            price={item.price}
+            key={item.id}
+            title={item?.name}
+            images={item?.images}
+            price={item?.price}
           />
         ))}
       </motion.div>

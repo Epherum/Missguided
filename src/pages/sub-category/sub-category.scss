@@ -1,29 +1,33 @@
 .subCategory {
   overflow: hidden;
+  padding: 0 1rem;
 
   .navbarSeperator {
     height: 8rem;
   }
 
-  .circle {
+  .circle-fixed-wrapper {
     position: absolute;
-    top: -28rem;
-    right: -10rem;
-    width: 40rem;
-    background-color: var(--color2);
-    border-radius: 50%;
-    z-index: -2;
+    top: -34rem;
+    right: 29rem;
+    .circle {
+      width: 45rem;
+      position: fixed;
+      background-color: var(--color2);
+      border-radius: 50%;
+      z-index: -2;
 
-    &::before {
-      content: "";
-      display: block;
-      padding-bottom: 100%;
-    }
+      &::before {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
 
-    @media (max-width: 800px) {
-      width: 22rem;
-      top: -9rem;
-      right: -5rem;
+      @media (max-width: 800px) {
+        width: 22rem;
+        top: -9rem;
+        right: -5rem;
+      }
     }
   }
 
@@ -170,8 +174,9 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 4.5rem;
+    grid-gap: 3.5rem;
     padding: 0 1rem;
+    margin-bottom: 5rem;
 
     @media (max-width: 1024px) {
       grid-template-columns: repeat(4, 1fr);

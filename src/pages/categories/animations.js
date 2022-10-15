@@ -56,6 +56,7 @@ const circleColorAnimate = {
     transition: {
       delay: 1.2 + delay,
       duration: 1,
+      ease: "easeOut",
     },
   },
 };

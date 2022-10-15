@@ -24,7 +24,6 @@ function Home() {
 
   useEffect(() => {
     circularText("How to Make an Effort  How to Make an Effort  ", 230);
-    console.log(classIndex.current);
     //230
     //150
     //100
