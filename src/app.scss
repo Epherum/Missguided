@@ -25,7 +25,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
+  transition: all 0.3s ease;
 }
 
 /* Track */
@@ -37,7 +38,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: black;
-  border-radius: 20px;
+  border-radius: 50%;
 }
 
 /* Handle on hover */
@@ -45,7 +46,7 @@
   background: grey;
 }
 
-//container for enter/exit circles
+//container for enter/exit transition circles
 //to not cause overflow
 .big-container {
   position: relative;

@@ -38,15 +38,43 @@ function Test() {
   //   });
   // }
   //update all documents by adding an id field
-  function updateAllProducts() {
-    getDocs(productsCollectionRef).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        updateDoc(doc.ref, {
-          id: doc.id,
-        });
-      });
-    });
-  }
+  // function updateAllProducts() {
+  //   getDocs(productsCollectionRef).then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       updateDoc(doc.ref, {
+  //         id: doc.id,
+  //       });
+  //     });
+  //   });
+  // }
+  // const updateAllProducts = async () => {
+  //   const q = query(productsCollectionRef);
+  //   const querySnapshot = await getDocs(q);
+  //   querySnapshot.forEach((doc) => {
+  //     updateDocument(doc.id);
+  //   });
+  // };
+
+  // const updateDocument = async (id) => {
+  //   let newImagesArray = [];
+  //   const docRef = doc(db, "products", id);
+  //   const docSnap = await getDoc(docRef);
+  //   if (docSnap.exists()) {
+  //     const images = docSnap.data().images;
+  //     images
+  //       .forEach(async (image) => {
+  //         const storageRef = ref(storage, `productImages/${image}`);
+  //         const url = await getDownloadURL(storageRef);
+  //         newImagesArray.push(url);
+  //       })
+  //       .then(() => {
+  //         console.log(newImagesArray);
+  //         updateDoc(docRef, {
+  //           images: newImagesArray,
+  //         });
+  //       });
+  //   }
+  // };
 
   useEffect(() => {
     // updateAllProducts();

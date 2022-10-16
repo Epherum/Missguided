@@ -50,7 +50,7 @@ const productArrayAnimate = {
     skewY: 0,
     transition: {
       duration: 2,
-      delay: 0.4 + delay,
+      delay: 0.7 + delay,
     },
   },
 };

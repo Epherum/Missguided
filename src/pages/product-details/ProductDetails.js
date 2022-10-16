@@ -1,10 +1,8 @@
 import { BsHeart, BsBag } from "react-icons/bs";
 import { IoIosArrowForward, IoMdPaperPlane } from "react-icons/io";
 import { TbHanger } from "react-icons/tb";
-import { BsFillPlayFill } from "react-icons/bs";
 import { FaTape } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import MainImage from "./MainImage";
 
 import React from "react";
 
@@ -43,7 +41,8 @@ function ProductDetails() {
   } = animations;
 
   const [product, setProduct] = useState({});
-  const [mainImage, setMainImage] = useState("");
+  const [images, setImages] = useState([]);
+  const [mainImageNum, setMainImageNum] = useState(0);
   //use params to get the product id from the url
   const { productId } = useParams();
 
@@ -53,10 +52,12 @@ function ProductDetails() {
     const docSnap = await getDoc(productRef);
     if (docSnap.exists()) {
       setProduct(docSnap.data());
-      getDownloadURL(
-        ref(storage, `productImages/${docSnap.data().images[0]}`)
-      ).then((url) => {
-        setMainImage(url);
+
+      docSnap.data().images.map((image) => {
+        const imageRef = ref(storage, `productImages/${image}`);
+        getDownloadURL(imageRef).then((url) => {
+          setImages((images) => [...images, url]);
+        });
       });
     } else {
       console.log("No such document!");
@@ -65,29 +66,12 @@ function ProductDetails() {
 
   useEffect(() => {
     getProduct();
+    //cleanup function
+    return () => {
+      setProduct({});
+      setImages([]);
+    };
   }, []);
-
-  function useFirestoreImageUrl(imagePath) {
-    const [url, setUrl] = useState("");
-    useEffect(() => {
-      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
-        setUrl(url)
-      );
-    }, [imagePath]);
-    return url;
-  }
-
-  function FirestoreImage({ imagePath }) {
-    const url = useFirestoreImageUrl(imagePath);
-    return (
-      <img
-        onClick={() => setMainImage(url)}
-        className="img"
-        key={imagePath}
-        src={url}
-      />
-    );
-  }
 
   let splitHeadline = product?.name?.split(" ");
   //format currency
@@ -258,7 +242,12 @@ function ProductDetails() {
             animate={"visible"}
             className="image"
           >
-            <MainImage mainImage={mainImage} />
+            <motion.div
+              variants={imageAnimate}
+              initial={"hidden"}
+              animate={"visible"}
+              style={{ backgroundImage: `url(${images[mainImageNum]})` }}
+            />
           </motion.div>
           <motion.div
             variants={morePicturesAnimate}
@@ -272,8 +261,13 @@ function ProductDetails() {
                 Shop This <br /> Look
               </p>
             </div>
-            {product?.images?.map((image, i) => (
-              <FirestoreImage key={i} imagePath={image} />
+            {images?.map((image, i) => (
+              <img
+                onMouseEnter={() => setMainImageNum(i)}
+                className="img"
+                key={i}
+                src={image}
+              />
             ))}
           </motion.div>
           <div className="buttons">
