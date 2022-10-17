@@ -63,7 +63,7 @@ function Categories() {
   const slides = [];
 
   //animationStartDelay
-  const ASD = 0.6;
+  const ASD = 1;
 
   //individualSlideDelay
   const ISD = 0.3;
