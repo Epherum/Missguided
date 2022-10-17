@@ -7,6 +7,12 @@ import "swiper/css";
 import "./categories.scss";
 import animations from "./animations";
 import productArray from "./items";
+import { useState, useEffect } from "react";
+import { db } from "../../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { storage } from "../../firebase-config";
+
+import { ref, getDownloadURL } from "firebase/storage";
 
 //TODO: try using clippath for images instead of opacity
 
@@ -23,10 +29,41 @@ function Categories() {
 
   SwiperCore.use([Navigation]);
 
+  const [categories, setCategories] = useState([]);
+
+  const getAllCategories = async () => {
+    const productsCollectionRef = collection(db, "categories");
+    const querySnapshot = await getDocs(productsCollectionRef);
+    const products = querySnapshot.docs.map((doc) => doc.data());
+    //reverse products
+    //to make it prettier
+    products.reverse();
+    setCategories(products);
+  };
+
+  useEffect(() => {
+    getAllCategories();
+  }, []);
+
+  function useFirestoreImageUrl(imagePath) {
+    const [url, setUrl] = useState("");
+    useEffect(() => {
+      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
+        setUrl(url)
+      );
+    }, [imagePath]);
+    return url;
+  }
+
+  function FirestoreImage({ imagePath }) {
+    const url = useFirestoreImageUrl(imagePath);
+    return <img className="img" key={imagePath} src={url} />;
+  }
+
   const slides = [];
 
   //animationStartDelay
-  const ASD = 1;
+  const ASD = 0.6;
 
   //individualSlideDelay
   const ISD = 0.3;
@@ -41,38 +78,40 @@ function Categories() {
   //reverse delay is to start a slide before the previous one finishes
   const ISRD = 0.2;
 
-  for (let i = 0; i < 10; i++) {
+  categories?.forEach((item, i) => {
+    const { category, image } = item;
     slides.push(
-      <SwiperSlide key={`slide-${i}`} tag={"li"}>
+      <SwiperSlide key={i} tag={"li"}>
         <motion.div
           variants={slidesAnimate}
           initial="hidden"
           animate="visible"
           transition={{ delay: i * ISD - i * ISRD + ASD, ease: "easeOut" }}
         >
-          <Link to="/categories/dresses">
-            <img src="/a1.png" alt="category" />
+          <Link to={`${category}`}>
+            <FirestoreImage imagePath={image} />
+
+            <motion.h3
+              variants={slidesAnimate}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: i * IHD + ASD, ease: "easeOut" }}
+            >
+              {category}
+            </motion.h3>
+            <motion.p
+              variants={slidesAnimate}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: i * IPD + ASD, ease: "easeOut" }}
+            >
+              Explore Now
+            </motion.p>
           </Link>
-          <motion.h3
-            variants={slidesAnimate}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: i * IHD + ASD, ease: "easeOut" }}
-          >
-            Dresses
-          </motion.h3>
-          <motion.p
-            variants={slidesAnimate}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: i * IPD + ASD, ease: "easeOut" }}
-          >
-            Explore Now
-          </motion.p>
         </motion.div>
       </SwiperSlide>
     );
-  }
+  });
 
   return (
     <div className="big-container">

@@ -32,12 +32,14 @@ function SubCategory() {
   //get the last word from the url
   const lastWord = window.location.href.split("/").pop();
 
+  //get products where category is equal to the last word in the url and type is equal to "Maxi Dresses" or "Mini Dresses"
+
   const get40Products = async () => {
     const productsCollectionRef = collection(db, "products");
     const q = query(
       productsCollectionRef,
       where("category", "==", capitalise(lastWord)),
-      limit(5)
+      limit(20)
     );
     const querySnapshot = await getDocs(q);
     const products = querySnapshot.docs.map((doc) => doc.data());
@@ -94,7 +96,7 @@ function SubCategory() {
             {"  /  "}
             <Link to="/categories">Categories</Link>
             {"  /  "}
-            <p>Dresses</p>
+            <p>{lastWord}</p>
           </motion.div>
           <div className="flex-1">
             <motion.h1 className="headline">
@@ -103,7 +105,8 @@ function SubCategory() {
                 initial={"hidden"}
                 animate={"visible"}
               >
-                dresses for&nbsp;
+                {/* dresses for&nbsp; */}
+                {lastWord} for&nbsp;
               </motion.div>
               <motion.div
                 variants={headline2Animate}
@@ -113,14 +116,14 @@ function SubCategory() {
                 babes
               </motion.div>
             </motion.h1>
-            <p className="stock">
+            <div className="stock">
               {" "}
               <motion.div
                 variants={stockShownAnimate}
                 initial={"hidden"}
                 animate={"visible"}
               >
-                1-{stockShown}
+                1-20
                 <span>&nbsp;</span>
               </motion.div>
               <motion.div
@@ -131,7 +134,7 @@ function SubCategory() {
                 {/* thanks flexbox */}
                 of&nbsp;1478
               </motion.div>
-            </p>
+            </div>
           </div>
           <div className="flex-2">
             <motion.h3
@@ -143,8 +146,7 @@ function SubCategory() {
               <p className="filters-icon">
                 <BsSliders />
               </p>{" "}
-              <p className="filters-text"></p>
-              &nbsp; &nbsp; Filters
+              <p className="filters-text">&nbsp; &nbsp; Filters</p>
             </motion.h3>
             <motion.p
               variants={filtersAnimate}

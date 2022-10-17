@@ -114,7 +114,9 @@ function ProductDetails() {
             {"  /  "}
             <Link to="/categories">Categories</Link>
             {"  /  "}
-            <Link to="/categories/dresses">dresses</Link>
+            <Link to={`/categories/${product.category}`}>
+              {product?.category}
+            </Link>
             {"  /  "}
             <p>{product.name}</p>
           </motion.div>

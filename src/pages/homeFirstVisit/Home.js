@@ -88,12 +88,12 @@ function Home() {
   } = animations;
 
   const links = [
-    "New In",
+    "Swimwear",
     "Dresses",
     "Tops",
     "Skirts",
-    "Shoes",
-    "Accessories",
+    "Leggings",
+    "Athleisure",
     "Sale",
   ];
 
@@ -166,7 +166,7 @@ function Home() {
         >
           {links.map((link, index) => (
             <motion.li variants={linksAnimate} key={index}>
-              <Link to={"/"}>{link}</Link>
+              <Link to={`/categories/${link}`}>{link}</Link>
             </motion.li>
           ))}
         </motion.ul>

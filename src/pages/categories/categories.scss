@@ -32,6 +32,10 @@
     height: 100%;
     font-size: 2vw;
   }
+  a {
+    all: unset;
+    cursor: pointer;
+  }
 
   .circle {
     position: absolute;

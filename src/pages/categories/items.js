@@ -56,12 +56,4 @@ const productArray = [
   },
 ];
 
-//maps through the array and gets all the unique categories
-const uniqueCategories = productArray.map((product) => product.title);
-//filters out the duplicates
-const uniqueCategoriesFiltered = uniqueCategories.filter(
-  (category, index) => uniqueCategories.indexOf(category) === index
-);
-console.log(uniqueCategoriesFiltered);
-
 export default productArray;
