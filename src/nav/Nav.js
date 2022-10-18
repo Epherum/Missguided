@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { VscMenu } from "react-icons/vsc";
 import { BsHeart, BsBag } from "react-icons/bs";
@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 //* change menu icon
 
 function Nav() {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   let delay = 0;
   const location = useLocation();
   if (location.pathname === "/") {
@@ -48,10 +50,13 @@ function Nav() {
         </motion.li>
 
         <motion.div variants={navAnimate} className="menu-search">
-          <motion.li variants={navAnimate}>
-            <Link className="menu" to="/home">
-              <VscMenu />
-            </Link>
+          <motion.li
+            className="menu"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            variants={navAnimate}
+          >
+            <span className={isNavOpen ? "lineTop spin" : "lineTop "} />
+            <span className={isNavOpen ? "lineBottom spin" : "lineBottom"} />
           </motion.li>
           <motion.li variants={navAnimate}>
             <Link className="search" to="/home">
@@ -84,6 +89,12 @@ function Nav() {
           </motion.li>
         </motion.div>
       </motion.ul>
+      <div
+        className="nav-overlay"
+        style={{
+          top: isNavOpen ? "0" : "-100%",
+        }}
+      />
     </nav>
   );
 }

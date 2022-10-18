@@ -1,6 +1,4 @@
-import { BsArrowRight, BsFacebook } from "react-icons/bs";
-import { AiFillTwitterCircle } from "react-icons/ai";
-import { RiInstagramFill } from "react-icons/ri";
+import { BsArrowRight } from "react-icons/bs";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
