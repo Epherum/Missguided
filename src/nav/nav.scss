@@ -25,7 +25,7 @@
     font-size: min(2.4rem, 2vw);
     font-weight: bold;
     text-decoration: none;
-    letter-spacing: 0.21rem;
+    letter-spacing: 0.15rem;
     margin-left: 1rem;
     @media (max-width: 1024px) {
       font-size: 3.8vw;
@@ -34,7 +34,8 @@
     a {
       transition: color 0.3s ease-in-out;
       text-decoration: none;
-      &:hover {
+      &:hover,
+      &:focus {
         color: var(--color4);
       }
     }
@@ -51,6 +52,7 @@
     justify-content: space-around;
     grid-column: 4 / span 2;
     grid-row: 1;
+
     @media (max-width: 1024px) {
       grid-column: 4;
       font-size: 3vw;
@@ -86,6 +88,18 @@
       font-size: 1.6rem;
       margin-left: auto;
       margin-right: 2rem;
+    }
+  }
+  .menu,
+  .search,
+  .bag,
+  .wishlist,
+  .user {
+    transition: all 0.3s ease-in-out;
+    &:hover,
+    &:focus {
+      filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
+        brightness(99%) contrast(102%);
     }
   }
 }

@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./home.scss";
 import animations from "./animations";
+import facebookIcon from "../../images/facebook-footer.png";
+import twitterIcon from "../../images/twitter-footer.png";
+import instagramIcon from "../../images/instagram-footer.png";
 
 //homeFirstVisit is a quick and dirty solution to play
 //a different animation on first visit
@@ -349,15 +352,9 @@ function Home() {
           animate={"visible"}
           className="socials"
         >
-          <motion.p variants={socialsAnimate}>
-            <BsFacebook />
-          </motion.p>
-          <motion.p variants={socialsAnimate}>
-            <AiFillTwitterCircle />
-          </motion.p>
-          <motion.p variants={socialsAnimate}>
-            <RiInstagramFill />
-          </motion.p>
+          <motion.img src={facebookIcon} variants={socialsAnimate} />
+          <motion.img src={twitterIcon} variants={socialsAnimate} />
+          <motion.img src={instagramIcon} variants={socialsAnimate} />
         </motion.div>
         <motion.div
           variants={buttonAnimate}

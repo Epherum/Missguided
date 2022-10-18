@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import "swiper/css";
 import "./categories.scss";
 import animations from "./animations";
-import productArray from "./items";
 import { useState, useEffect } from "react";
 import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
@@ -37,6 +36,7 @@ function Categories() {
     const products = querySnapshot.docs.map((doc) => doc.data());
     //reverse products
     //to make it prettier
+    //i really like the smile of the first category girl lol (nah it's for the swimwear )
     products.reverse();
     setCategories(products);
   };
@@ -185,35 +185,41 @@ function Categories() {
         </div>
 
         <div className="products">
-          {productArray.map((item, i) => (
-            <motion.div
-              variants={slidesAnimate}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: i * ISD - i * ISRD + ASD }}
-              key={i}
-            >
-              <Link to={item.link}>
-                <img src={"/a1.png"} alt="category" />
-              </Link>
-              <motion.h3
+          {categories.map((item, i) => {
+            const { category, image } = item;
+            return (
+              <motion.div
                 variants={slidesAnimate}
                 initial="hidden"
                 animate="visible"
-                transition={{ delay: i * ISD - i * ISRD + ASD }}
+                transition={{
+                  delay: i * ISD - i * ISRD + ASD,
+                  ease: "easeOut",
+                }}
               >
-                {item.title}
-              </motion.h3>
-              <motion.p
-                variants={slidesAnimate}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: i * ISD - i * ISRD + ASD }}
-              >
-                Explore Now
-              </motion.p>
-            </motion.div>
-          ))}
+                <Link to={`${category}`}>
+                  <FirestoreImage imagePath={image} />
+
+                  <motion.h3
+                    variants={slidesAnimate}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: i * IHD + ASD, ease: "easeOut" }}
+                  >
+                    {category}
+                  </motion.h3>
+                  <motion.p
+                    variants={slidesAnimate}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: i * IPD + ASD, ease: "easeOut" }}
+                  >
+                    Explore Now
+                  </motion.p>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

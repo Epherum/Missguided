@@ -7,11 +7,7 @@ import "./nav.scss";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 // TODO:
-//* change text to links
-//* add hover animations
 //* change menu icon
-
-//remove the delay from the first child
 
 function Nav() {
   let delay = 0;
@@ -53,12 +49,12 @@ function Nav() {
 
         <motion.div variants={navAnimate} className="menu-search">
           <motion.li variants={navAnimate}>
-            <Link to="/home">
+            <Link className="menu" to="/home">
               <VscMenu />
             </Link>
           </motion.li>
           <motion.li variants={navAnimate}>
-            <Link to="/home">
+            <Link className="search" to="/home">
               <FiSearch />
             </Link>
           </motion.li>
@@ -72,17 +68,17 @@ function Nav() {
         </motion.div>
         <motion.div variants={navAnimate} className="profile">
           <motion.li variants={navAnimate}>
-            <Link to="/home">
+            <Link className="wishlist" to="/home">
               <BsHeart />
             </Link>
           </motion.li>
           <motion.li variants={navAnimate}>
-            <Link to="/home">
+            <Link className="bag" to="/home">
               <BsBag />
             </Link>
           </motion.li>
           <motion.li variants={navAnimate}>
-            <Link to="/home">
+            <Link className="user" to="/home">
               <IoPersonOutline />
             </Link>
           </motion.li>

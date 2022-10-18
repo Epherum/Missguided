@@ -1,11 +1,12 @@
 import { BsArrowRight, BsFacebook } from "react-icons/bs";
-import { AiFillTwitterCircle } from "react-icons/ai";
-import { RiInstagramFill } from "react-icons/ri";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./home.scss";
 import animations from "./animations";
+import facebookIcon from "../../images/facebook-footer.png";
+import twitterIcon from "../../images/twitter-footer.png";
+import instagramIcon from "../../images/instagram-footer.png";
 
 function Home() {
   let classIndex = useRef();
@@ -274,15 +275,9 @@ function Home() {
           animate={"visible"}
           className="socials"
         >
-          <motion.p variants={socialsAnimate}>
-            <BsFacebook />
-          </motion.p>
-          <motion.p variants={socialsAnimate}>
-            <AiFillTwitterCircle />
-          </motion.p>
-          <motion.p variants={socialsAnimate}>
-            <RiInstagramFill />
-          </motion.p>
+          <motion.img src={facebookIcon} variants={socialsAnimate} />
+          <motion.img src={twitterIcon} variants={socialsAnimate} />
+          <motion.img src={instagramIcon} variants={socialsAnimate} />
         </motion.div>
         <motion.div
           variants={buttonAnimate}
