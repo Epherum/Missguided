@@ -301,7 +301,8 @@ const circleColorAnimate = {
     scale: 1,
     transition: {
       delay: 0.2 + delay,
-      duration: 1,
+      duration: 1.3,
+      ease: "easeOut",
     },
   },
 };
@@ -311,6 +312,7 @@ const circleEnterAnimate = {
     scale: 0,
     transition: {
       duration: 1,
+      ease: "easeOut",
     },
   },
 };
@@ -320,6 +322,7 @@ const circleExitAnimate = {
     scale: 2,
     transition: {
       duration: 1,
+      ease: "easeOut",
     },
   },
 };

@@ -11,12 +11,15 @@ import { motion } from "framer-motion";
 
 import animations from "./animations";
 import "./product-details.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { db, storage } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
+import { NavContext } from "../../contexts/NavContext";
 
 function ProductDetails() {
+  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+
   const {
     circleEnterAnimate,
     circleExitAnimate,
@@ -95,7 +98,21 @@ function ProductDetails() {
         className="fullscreen-circle-exit"
       />
       {product && (
-        <div className="container productDetails">
+        <main
+          className="container productDetails"
+          style={{
+            transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+          }}
+        >
+          <div
+            className="dim"
+            onClick={() => setIsNavOpen(false)}
+            style={{
+              zIndex: isNavOpen ? "10" : "-1",
+              opacity: isNavOpen ? "0.5" : "0",
+            }}
+          />
+
           <motion.div
             variants={circleColorAnimate}
             initial="hidden"
@@ -297,7 +314,7 @@ function ProductDetails() {
               </motion.span>
             </motion.button>
           </div>
-        </div>
+        </main>
       )}
     </div>
   );

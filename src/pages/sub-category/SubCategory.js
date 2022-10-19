@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
 import { limit, query, collection, getDocs, where } from "firebase/firestore";
+import { NavContext } from "../../contexts/NavContext";
 
 function SubCategory() {
+  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+
   const {
     productArrayAnimate,
     breadcrumbsAnimate,
@@ -44,6 +47,7 @@ function SubCategory() {
     const querySnapshot = await getDocs(q);
     const products = querySnapshot.docs.map((doc) => doc.data());
     setData(products);
+    console.log(products);
   };
   //function to set the stock shown
   const setStock = () => {
@@ -74,7 +78,20 @@ function SubCategory() {
         exit="visible"
         className="fullscreen-circle-exit1"
       />
-      <div className="subCategory">
+      <div
+        className="dim"
+        onClick={() => setIsNavOpen(false)}
+        style={{
+          zIndex: isNavOpen ? "10" : "-1",
+          opacity: isNavOpen ? "0.5" : "0",
+        }}
+      />
+      <div
+        className="subCategory"
+        style={{
+          transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+        }}
+      >
         <div className="container ">
           <div className="navbarSeperator" />
           <div className="circle-fixed-wrapper">
@@ -170,7 +187,7 @@ function SubCategory() {
               id={item.id}
               category={item.category}
               title={item?.name}
-              images={item?.images}
+              image={item?.images[0]}
               price={item?.price}
             />
           ))}

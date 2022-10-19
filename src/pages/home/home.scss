@@ -1,8 +1,30 @@
+.fullscreen-circle-enter {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 142vmax;
+  height: 142vmax;
+  border-radius: 50%;
+  background-color: var(--color3);
+  z-index: 100;
+}
+
+.fullscreen-circle-exit {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  width: 142vmax;
+  height: 142vmax;
+  border-radius: 50%;
+  background-color: var(--color3);
+  z-index: 100;
+}
 .home {
   overflow: hidden;
   display: grid;
   grid-template-columns: 17.5% 30.6% 14.1% 30.7% 7.4%;
   grid-template-rows: 15vh 32vh 5.7vh 47.3vh;
+  transition: transform 1.5s;
 
   @media (max-width: 1024px) {
     grid-template-columns: 53% 47%;
@@ -16,27 +38,16 @@
     all: unset;
     cursor: pointer;
   }
-
-  .fullscreen-circle-enter {
+  .dim {
     position: absolute;
-    bottom: 0%;
-    left: 0%;
-    width: 142vmax;
-    height: 142vmax;
-    border-radius: 50%;
-    background-color: var(--color3);
-    z-index: 100;
-  }
-
-  .fullscreen-circle-exit {
-    position: absolute;
-    bottom: 100%;
-    left: 100%;
-    width: 142vmax;
-    height: 142vmax;
-    border-radius: 50%;
-    background-color: var(--color3);
-    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    opacity: 0.5;
+    transition: all 1s ease-in-out;
   }
 
   .circle-text {
@@ -144,7 +155,7 @@
     justify-content: center;
     margin-left: 0.8rem;
     font-size: 1rem;
-    color: hsl(300, 3%, 86%);
+    color: var(--color6);
     line-height: 1.6rem;
     a {
       transition: all 0.3s ease-in-out;

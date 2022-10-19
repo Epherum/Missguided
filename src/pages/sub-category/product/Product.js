@@ -8,22 +8,14 @@ import { storage } from "../../../firebase-config";
 import { ref, getDownloadURL } from "firebase/storage";
 
 function Product(props) {
-  const { id, category, title, price, images } = props;
+  const { id, category, title, price, image } = props;
+  const [productImage, setProductImage] = useState("");
 
-  function useFirestoreImageUrl(imagePath) {
-    const [url, setUrl] = useState("");
-    useEffect(() => {
-      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
-        setUrl(url)
-      );
-    }, [imagePath]);
-    return url;
-  }
-
-  function FirestoreImage({ imagePath }) {
-    const url = useFirestoreImageUrl(imagePath);
-    return <img className="img" key={imagePath} src={url} />;
-  }
+  (function getFirestoreImageUrl(imagePath) {
+    getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) => {
+      setProductImage(url);
+    });
+  })(image);
 
   //format number to currency
   const numberFormatter = new Intl.NumberFormat("en-US", {
@@ -31,13 +23,13 @@ function Product(props) {
     currency: "USD",
   });
 
-  //replace space with dash
+  //replace space with dash for name url
   const titleDash = title.replace(/\s+/g, "-").toLowerCase();
 
   return (
     <div className="product">
       <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
-        <FirestoreImage imagePath={images[0]} />
+        <img className="img" src={productImage} />
       </Link>
       <h3 className="name">{title}</h3>
       <div className="flex">

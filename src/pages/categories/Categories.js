@@ -6,16 +6,19 @@ import "swiper/css/navigation";
 import "swiper/css";
 import "./categories.scss";
 import animations from "./animations";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { storage } from "../../firebase-config";
-
 import { ref, getDownloadURL } from "firebase/storage";
+import { NavContext } from "../../contexts/NavContext";
 
 //TODO: try using clippath for images instead of opacity
 
 function Categories() {
+  const [categories, setCategories] = useState([]);
+  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+
   const {
     circleEnterAnimate,
     circleExitAnimate,
@@ -27,8 +30,6 @@ function Categories() {
   } = animations;
 
   SwiperCore.use([Navigation]);
-
-  const [categories, setCategories] = useState([]);
 
   const getAllCategories = async () => {
     const productsCollectionRef = collection(db, "categories");
@@ -57,6 +58,7 @@ function Categories() {
 
   function FirestoreImage({ imagePath }) {
     const url = useFirestoreImageUrl(imagePath);
+    console.log(url);
     return <img className="img" key={imagePath} src={url} />;
   }
 
@@ -79,7 +81,7 @@ function Categories() {
   const ISRD = 0.2;
 
   categories?.forEach((item, i) => {
-    const { category, image } = item;
+    const { category, image2, image } = item;
     slides.push(
       <SwiperSlide key={i} tag={"li"}>
         <motion.div
@@ -89,7 +91,7 @@ function Categories() {
           transition={{ delay: i * ISD - i * ISRD + ASD, ease: "easeOut" }}
         >
           <Link to={`${category}`}>
-            <FirestoreImage imagePath={image} />
+            <img src={image2} alt={image} />
 
             <motion.h3
               variants={slidesAnimate}
@@ -128,7 +130,20 @@ function Categories() {
         exit="visible"
         className="fullscreen-circle-exit"
       />
-      <div className="container categories">
+      <div
+        className="container categories"
+        style={{
+          transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+        }}
+      >
+        <div
+          className="dim"
+          onClick={() => setIsNavOpen(false)}
+          style={{
+            zIndex: isNavOpen ? "10" : "-1",
+            opacity: isNavOpen ? "0.5" : "0",
+          }}
+        />
         <motion.div
           variants={circleColorAnimate}
           initial={"hidden"}
@@ -186,9 +201,10 @@ function Categories() {
 
         <div className="products">
           {categories.map((item, i) => {
-            const { category, image } = item;
+            const { category, image, image2 } = item;
             return (
               <motion.div
+                key={i}
                 variants={slidesAnimate}
                 initial="hidden"
                 animate="visible"
@@ -198,7 +214,7 @@ function Categories() {
                 }}
               >
                 <Link to={`${category}`}>
-                  <FirestoreImage imagePath={image} />
+                  <img src={image2} alt={image} />
 
                   <motion.h3
                     variants={slidesAnimate}

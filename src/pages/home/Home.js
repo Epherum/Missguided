@@ -1,5 +1,5 @@
+import { useRef, useEffect, useContext } from "react";
 import { BsArrowRight } from "react-icons/bs";
-import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./home.scss";
@@ -7,8 +7,10 @@ import animations from "./animations";
 import facebookIcon from "../../images/facebook-footer.png";
 import twitterIcon from "../../images/twitter-footer.png";
 import instagramIcon from "../../images/instagram-footer.png";
-
+import { NavContext } from "../../contexts/NavContext";
 function Home() {
+  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+
   let classIndex = useRef();
   const circularText = (txt, radius) => {
     txt = txt.split("");
@@ -83,7 +85,20 @@ function Home() {
         exit="visible"
         className="fullscreen-circle-exit"
       />
-      <main className="container home">
+      <main
+        className="container home"
+        style={{
+          transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+        }}
+      >
+        <div
+          className="dim"
+          onClick={() => setIsNavOpen(false)}
+          style={{
+            zIndex: isNavOpen ? "10" : "-1",
+            opacity: isNavOpen ? "0.5" : "0",
+          }}
+        />
         <motion.ul
           variants={linksAnimate}
           initial={"hidden"}
