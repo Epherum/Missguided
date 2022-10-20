@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
 import {
   limit,
@@ -19,6 +19,7 @@ import { NavContext } from "../../contexts/NavContext";
 
 function SubCategory() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const {
     productArrayAnimate,
@@ -34,13 +35,14 @@ function SubCategory() {
   } = animations;
 
   const [data, setData] = useState([]);
-  const [stockShown, setStockShown] = useState(0);
   const [latestDoc, setLatestDoc] = useState(null);
+  const [LoadButtonStyles, setLoadButtonStyles] = useState({});
 
   //capitalise first letter of string
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
+
   //get the last word from the url
   const lastWord = window.location.href.split("/").pop();
 
@@ -48,21 +50,28 @@ function SubCategory() {
 
   const getProducts = async () => {
     const productsCollectionRef = collection(db, "products");
+
     const q = query(
       productsCollectionRef,
       where("category", "==", capitalise(lastWord)),
       orderBy("id"),
       startAfter(latestDoc || 0),
-
-      limit(20)
+      limit(15)
     );
+
     const querySnapshot = await getDocs(q);
     const products = querySnapshot.docs.map((doc) => doc.data());
+    if (products.length === 0) {
+      setLoadButtonStyles({ display: "none" });
+      return;
+    }
+
     if (data) {
       setData((prevData) => [...prevData, ...products]);
     } else {
       setData(products);
     }
+
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
   };
 
@@ -134,14 +143,15 @@ function SubCategory() {
                 animate={"visible"}
               >
                 {/* dresses for&nbsp; */}
-                {lastWord} for&nbsp;
+                {lastWord}&nbsp;
               </motion.div>
               <motion.div
                 variants={headline2Animate}
                 initial={"hidden"}
                 animate={"visible"}
+                className="for-babes"
               >
-                babes
+                for babes
               </motion.div>
             </motion.h1>
             <div className="stock">
@@ -165,7 +175,8 @@ function SubCategory() {
             </div>
           </div>
           <div className="flex-2">
-            <motion.h3
+            <motion.button
+              onClick={() => setIsFiltersOpen(!isFiltersOpen)}
               variants={filtersAnimate}
               initial={"hidden"}
               animate={"visible"}
@@ -175,7 +186,7 @@ function SubCategory() {
                 <BsSliders />
               </p>{" "}
               <p className="filters-text">&nbsp; &nbsp; Filters</p>
-            </motion.h3>
+            </motion.button>
             <motion.p
               variants={filtersAnimate}
               initial={"hidden"}
@@ -203,8 +214,74 @@ function SubCategory() {
             />
           ))}
         </motion.div>
-        <div className="load-more">
+        <div className="load-more" style={LoadButtonStyles}>
           <button onClick={handleLoadMore}>Load More</button>
+        </div>
+        <div
+          className="filter-overlay"
+          style={isFiltersOpen ? { display: "grid" } : { display: "none" }}
+        >
+          <div className="content">
+            <div className="subcategories">
+              <p className="subcategories-headline">Sub Categories</p>
+              <div className="subcategories-buttons">
+                {[
+                  "Party Dresses",
+                  "formal Dresses",
+                  "Maxi Dresses",
+                  "Bodycon Dresses",
+                  "Midi Dresses",
+                  "Summer Dresses",
+                ].map((subcategory, i) => (
+                  <div className="subcategory-button" key={i}>
+                    <input
+                      type="checkbox"
+                      name="subcategory"
+                      id={`radio${i}`}
+                    />
+                    <label htmlFor={`radio${i}`}>{subcategory}</label>
+                  </div>
+                ))}
+              </div>{" "}
+            </div>
+            <div className="color-size">
+              <div className="color">
+                <h3>Color</h3>
+                <div className="color-options">
+                  {["black", "gray", "whitesmoke"].map((color, i) => (
+                    <React.Fragment key={i}>
+                      <input
+                        type="checkbox"
+                        name="color"
+                        id={`color${i}`}
+                        className="color-button"
+                      />
+                      <label
+                        style={{ backgroundColor: color }}
+                        htmlFor={`color${i}`}
+                      ></label>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+              <div className="size">
+                <p className="size-headline">Size</p>
+                <div className="size-buttons">
+                  {["Tall", "Petite", "Plus"].map((size, i) => (
+                    <React.Fragment key={i}>
+                      <input
+                        type="checkbox"
+                        name="size"
+                        id={`radio${i}`}
+                        className="size-button"
+                      />
+                      <label htmlFor={`radio${i}`}>{size}</label>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
