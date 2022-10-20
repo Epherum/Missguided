@@ -6,7 +6,15 @@ import { Link } from "react-router-dom";
 import "./sub-category.scss";
 import { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
-import { limit, query, collection, getDocs, where } from "firebase/firestore";
+import {
+  limit,
+  query,
+  collection,
+  getDocs,
+  where,
+  startAfter,
+  orderBy,
+} from "firebase/firestore";
 import { NavContext } from "../../contexts/NavContext";
 
 function SubCategory() {
@@ -27,6 +35,7 @@ function SubCategory() {
 
   const [data, setData] = useState([]);
   const [stockShown, setStockShown] = useState(0);
+  const [latestDoc, setLatestDoc] = useState(null);
 
   //capitalise first letter of string
   const capitalise = (string) => {
@@ -35,32 +44,34 @@ function SubCategory() {
   //get the last word from the url
   const lastWord = window.location.href.split("/").pop();
 
-  //get products where category is equal to the last word in the url and type is equal to "Maxi Dresses" or "Mini Dresses"
+  //get products where category is equal to the last word in the url
 
-  const get40Products = async () => {
+  const getProducts = async () => {
     const productsCollectionRef = collection(db, "products");
     const q = query(
       productsCollectionRef,
       where("category", "==", capitalise(lastWord)),
+      orderBy("id"),
+      startAfter(latestDoc || 0),
+
       limit(20)
     );
     const querySnapshot = await getDocs(q);
     const products = querySnapshot.docs.map((doc) => doc.data());
-    setData(products);
-    console.log(products);
+    if (data) {
+      setData((prevData) => [...prevData, ...products]);
+    } else {
+      setData(products);
+    }
+    setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
   };
-  //function to set the stock shown
-  const setStock = () => {
-    let stock = 0;
-    data?.forEach(() => {
-      stock += 1;
-    });
-    setStockShown(stock);
+
+  const handleLoadMore = () => {
+    getProducts();
   };
 
   useEffect(() => {
-    get40Products();
-    setStock();
+    getProducts();
   }, []);
 
   return (
@@ -140,7 +151,7 @@ function SubCategory() {
                 initial={"hidden"}
                 animate={"visible"}
               >
-                1-20
+                1-{data ? data.length : 0}
                 <span>&nbsp;</span>
               </motion.div>
               <motion.div
@@ -192,6 +203,9 @@ function SubCategory() {
             />
           ))}
         </motion.div>
+        <div className="load-more">
+          <button onClick={handleLoadMore}>Load More</button>
+        </div>
       </div>
     </div>
   );
