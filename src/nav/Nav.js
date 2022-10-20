@@ -108,7 +108,7 @@ function Nav() {
       <div
         className="nav-overlay"
         style={{
-          top: isNavOpen ? "0" : "-70%",
+          top: isNavOpen ? "0" : "-80%",
         }}
       >
         <div className="content">

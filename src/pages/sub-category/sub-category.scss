@@ -15,7 +15,7 @@
     transition: all 1s ease-in-out;
   }
   .fullscreen-circle-enter1 {
-    position: absolute;
+    position: fixed;
     bottom: 20%;
     left: 50%;
     width: 142vmax;
@@ -26,7 +26,7 @@
   }
 
   .fullscreen-circle-exit1 {
-    position: absolute;
+    position: fixed;
     bottom: 100%;
     left: 100%;
     width: 142vmax;
@@ -36,7 +36,6 @@
     z-index: 100;
   }
   .subCategory {
-    overflow: hidden;
     padding: 0 1rem;
     transition: all 1.5s ease;
     @media (max-width: 500px) {
@@ -52,8 +51,8 @@
       top: -34rem;
       right: 29rem;
       .circle {
-        width: 45rem;
         position: fixed;
+        width: 45rem;
         background-color: var(--color2);
         border-radius: 50%;
         z-index: -2;

@@ -80,6 +80,8 @@ function SubCategory() {
   };
 
   useEffect(() => {
+    //scroll to top
+    window.scrollTo(0, 0);
     getProducts();
   }, []);
 

@@ -88,7 +88,7 @@ function Home() {
       <main
         className="container home"
         style={{
-          transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+          transform: isNavOpen ? "translateY(28rem)" : "translateY(0px)",
         }}
       >
         <div

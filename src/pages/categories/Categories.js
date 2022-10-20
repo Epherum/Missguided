@@ -116,7 +116,7 @@ function Categories() {
   });
 
   return (
-    <div className="big-container">
+    <div className="big-container-categories">
       <motion.div
         variants={circleEnterAnimate}
         initial="hidden"
