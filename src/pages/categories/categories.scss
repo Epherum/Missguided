@@ -123,12 +123,16 @@
         margin-top: 1rem;
         overflow: visible;
       }
+      @media (max-width: 500px) {
+        font-size: 3.5rem;
+      }
     }
     @media (max-width: 1024px) {
       letter-spacing: 3px;
       font-size: min(15vw, 16rem);
     }
   }
+
   .swiper-button-next,
   .swiper-button-prev {
     display: none;
@@ -191,6 +195,9 @@
     @media (max-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
       margin-top: -2rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      gap: 1.5rem;
     }
     @media (max-width: 370px) {
       grid-template-columns: repeat(1, 1fr);

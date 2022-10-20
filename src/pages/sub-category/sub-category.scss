@@ -39,6 +39,9 @@
     overflow: hidden;
     padding: 0 1rem;
     transition: all 1.5s ease;
+    @media (max-width: 500px) {
+      padding: 0 0.5rem;
+    }
 
     .navbarSeperator {
       height: 9rem;
@@ -207,7 +210,7 @@
       @media (max-width: 800px) {
         grid-template-columns: repeat(3, 1fr);
         padding: 0 2rem;
-        grid-gap: 2rem;
+        grid-gap: 1.5rem;
       }
       @media (max-width: 500px) {
         grid-template-columns: repeat(2, 1fr);
