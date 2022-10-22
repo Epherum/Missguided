@@ -1,32 +1,16 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { BsHeart, BsBag } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import "./nav.scss";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { db } from "../firebase-config";
-import { limit, query, collection, getDocs, where } from "firebase/firestore";
+
 import { NavContext } from "../contexts/NavContext";
-// TODO:
-//* change menu icon
-
+import Menu from "./components/menu/Menu";
+import Search from "./components/search/Search";
 function Nav() {
-  const [categories, setCategories] = useState([]);
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
-
-  const getCategories = async () => {
-    const productsCollectionRef = collection(db, "categories");
-
-    const querySnapshot = await getDocs(productsCollectionRef);
-    const products = querySnapshot.docs.map((doc) => doc.data());
-    products.reverse();
-    setCategories(products);
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   let delay = 0;
   const location = useLocation();
@@ -53,6 +37,7 @@ function Nav() {
       },
     },
   };
+
   return (
     <nav className="container">
       <motion.ul
@@ -105,53 +90,8 @@ function Nav() {
           </motion.div>
         </motion.li>
       </motion.ul>
-      <div
-        className="nav-overlay"
-        style={{
-          top: isNavOpen ? "0" : "-80%",
-        }}
-      >
-        <div className="content">
-          {categories?.map((item, i) => (
-            <div className="category" key={i}>
-              <motion.h2 variants={navAnimate}>
-                <Link
-                  to={`/categories/${item.category}`}
-                  onClick={() => setIsNavOpen(!isNavOpen)}
-                  style={{
-                    opacity: isNavOpen ? "1" : "0",
-                    transitionDelay: isNavOpen
-                      ? `${0.07 * i + 0.5}s, 0s`
-                      : "0s,0s",
-                    transitionProperty: "opacity, color",
-                  }}
-                >
-                  {item.category}
-                </Link>
-              </motion.h2>
-              <ul>
-                {item?.subcategories?.map((sub) => (
-                  <li key={sub}>
-                    <Link
-                      to={`/categories/${item.category}`}
-                      onClick={() => setIsNavOpen(!isNavOpen)}
-                      style={{
-                        opacity: isNavOpen ? "1" : "0",
-                        transitionDelay: isNavOpen
-                          ? `${0.07 * i + 0.5}s, 0s`
-                          : "0s,0s",
-                        transitionProperty: "opacity, color",
-                      }}
-                    >
-                      {sub}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Menu />
+      {/* <Search /> */}
     </nav>
   );
 }
