@@ -29,7 +29,11 @@ function Product(props) {
   return (
     <div className="product">
       <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
-        <img className="img" src={productImage} />
+        {productImage ? (
+          <img className="img" src={productImage} alt={title} />
+        ) : (
+          <div className="img-loader" />
+        )}
       </Link>
       <h3 className="name">{title}</h3>
       <div className="flex">

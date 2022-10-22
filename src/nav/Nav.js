@@ -59,11 +59,11 @@ function Nav() {
             <span className={isNavOpen ? "lineTop spin" : "lineTop "} />
             <span className={isNavOpen ? "lineBottom spin" : "lineBottom"} />
           </motion.div>
-          <motion.div variants={navAnimate}>
+          {/* <motion.div variants={navAnimate}>
             <Link className="search" to="/home">
               <FiSearch />
             </Link>
-          </motion.div>
+          </motion.div> */}
         </motion.li>
         <motion.li className="profile-mobile-view">
           <motion.div variants={navAnimate}>
