@@ -133,7 +133,7 @@ function Nav() {
                 {item?.subcategories?.map((sub) => (
                   <li key={sub}>
                     <Link
-                      to={`/categories/${sub}`}
+                      to={`/categories/${item.category}`}
                       onClick={() => setIsNavOpen(!isNavOpen)}
                       style={{
                         opacity: isNavOpen ? "1" : "0",

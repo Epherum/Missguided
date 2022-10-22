@@ -108,7 +108,7 @@ const circleColorAnimate = {
 };
 
 const circleEnterAnimate = {
-  hidden: { scale: 2, x: "-90%", y: "50%" },
+  hidden: { scale: 2, x: "-90%", y: "60%" },
   visible: {
     scale: 0,
     transition: {

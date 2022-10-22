@@ -374,7 +374,7 @@ function Home() {
           variants={buttonAnimate}
           initial={"hidden"}
           animate={"visible"}
-          className="button-first-visit "
+          className="button"
         >
           <Link to="/categories">
             <motion.p

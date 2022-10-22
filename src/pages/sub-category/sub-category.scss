@@ -198,6 +198,7 @@
       max-width: 2200px;
       margin: 0 auto;
       display: grid;
+      position: relative;
       grid-template-columns: repeat(5, 1fr);
       grid-gap: 3.5rem;
       padding: 0 1rem;
@@ -219,6 +220,122 @@
         grid-template-columns: repeat(1, 1fr);
         padding: 0 0rem;
       }
+      .filter-overlay {
+        position: absolute;
+        background: white;
+        z-index: 1000;
+        top: -3px;
+        left: 0;
+        overflow: hidden;
+        padding: 0 2rem;
+        padding-top: 1rem;
+        transition: all 1s ease;
+        // max-width: 40vw;
+
+        .content {
+          display: grid;
+          .subcategories-headline {
+            font-size: 0.9vw;
+          }
+          .subcategories-buttons {
+            padding-top: 2rem;
+            .subcategory-button {
+              display: block;
+              font-size: min(1.2rem, 1vw);
+              margin-bottom: 1.3rem;
+              label {
+                font-size: 1rem;
+                margin-left: 0.8rem;
+                cursor: pointer;
+              }
+              input {
+                appearance: none;
+                -webkit-appearance: none;
+                width: 15px;
+                height: 15px;
+                background: white;
+                &:checked {
+                  background: black;
+                }
+              }
+            }
+          }
+          .color-headline {
+            font-size: 0.9vw;
+            padding-left: 2rem;
+          }
+          .color-buttons {
+            padding-top: 2rem;
+
+            .color-button {
+              display: inline-block;
+              font-size: min(1.2rem, 1vw);
+              margin-bottom: 1.3rem;
+              input[type="checkbox"] {
+                display: none;
+              }
+
+              label {
+                display: inline-block;
+                margin-bottom: 1.5rem;
+                margin-right: 1.7rem;
+                width: 1.7rem;
+                height: 1.7rem;
+                text-align: center;
+                font-size: 0.8rem;
+                font-size: min(0.8rem, 0.7vw);
+                background-color: black;
+                outline: 0.01rem solid black;
+                cursor: pointer;
+                transition: all 0.2s;
+                &:hover {
+                  outline: 3.5px solid black;
+                }
+              }
+              input[type="checkbox"]:checked + label {
+                border: 3px solid white;
+              }
+            }
+          }
+          .size-headline {
+            font-size: 0.9vw;
+            padding-left: 2rem;
+          }
+          .size-buttons {
+            padding-top: 2rem;
+
+            .size-button {
+              display: inline-block;
+              font-size: min(1.2rem, 1vw);
+              margin-bottom: 1.3rem;
+              input[type="checkbox"] {
+                display: none;
+              }
+
+              label {
+                display: inline-block;
+                margin-bottom: 1.5rem;
+                margin-right: 1.7rem;
+                width: 1.7rem;
+                height: 1.7rem;
+                text-align: center;
+                font-size: 0.8rem;
+                font-size: min(0.8rem, 0.7vw);
+                background-color: black;
+                outline: 0.01rem solid black;
+                cursor: pointer;
+                transition: all 0.2s;
+                &:hover {
+                  outline: 3.5px solid black;
+                }
+              }
+              input[type="checkbox"]:checked + label {
+                border: 3px solid white;
+              }
+            }
+          }
+        }
+      }
     }
 
     .load-more {
@@ -227,7 +344,7 @@
       align-items: center;
       margin-bottom: 5rem;
       animation-duration: 4s;
-      animation-name: slidein;
+      animation-name: fadeIn;
 
       button {
         font-size: min(1.2rem, 1vw);
@@ -252,7 +369,7 @@
         }
       }
     }
-    @keyframes slidein {
+    @keyframes fadeIn {
       0% {
         opacity: 0;
       }
@@ -262,41 +379,6 @@
 
       100% {
         opacity: 1;
-      }
-    }
-
-    .filter-overlay {
-      position: absolute;
-      background: white;
-      z-index: 100;
-      top: 400px;
-      left: 0;
-      width: 100%;
-      height: 32rem;
-      overflow: hidden;
-      padding: 0 3rem;
-      padding-top: 3.7rem;
-      // transition: all 1.5s ease;
-      max-width: 600px;
-      .content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        .subcategories-headline {
-          font-size: 0.9vw;
-        }
-        .subcategories-buttons {
-          padding-top: 2rem;
-          .subcategory-button {
-            display: block;
-            font-size: min(1.2rem, 1vw);
-            margin-bottom: 1.3rem;
-            label {
-              font-size: 1rem;
-              margin-left: 0.8rem;
-              cursor: pointer;
-            }
-          }
-        }
       }
     }
   }

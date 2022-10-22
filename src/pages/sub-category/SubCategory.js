@@ -20,6 +20,13 @@ import { NavContext } from "../../contexts/NavContext";
 function SubCategory() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [subcategoriesFilter, setSubcategoriesFilter] = useState([]);
+  const [colorsFilter, setColorsFilter] = useState([]);
+  const [availableSubcategories, setAvailableSubcategories] = useState([]);
+  const [isFilterOn, setIsFilterOn] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [latestDoc, setLatestDoc] = useState(null);
+  const [LoadButtonStyles, setLoadButtonStyles] = useState({});
 
   const {
     productArrayAnimate,
@@ -34,10 +41,6 @@ function SubCategory() {
     circleColorAnimate,
   } = animations;
 
-  const [data, setData] = useState([]);
-  const [latestDoc, setLatestDoc] = useState(null);
-  const [LoadButtonStyles, setLoadButtonStyles] = useState({});
-
   //capitalise first letter of string
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -46,44 +49,134 @@ function SubCategory() {
   //get the last word from the url
   const lastWord = window.location.href.split("/").pop();
 
-  //get products where category is equal to the last word in the url
-
-  const getProducts = async () => {
+  const getAllProducts = async (resetLatestDoc) => {
     const productsCollectionRef = collection(db, "products");
 
-    const q = query(
-      productsCollectionRef,
+    const request = [
       where("category", "==", capitalise(lastWord)),
       orderBy("id"),
-      startAfter(latestDoc || 0),
-      limit(15)
-    );
+    ];
+    if (resetLatestDoc) {
+      request.push(startAfter(0));
+    } else {
+      request.push(startAfter(latestDoc || 0));
+    }
+
+    const q = query(productsCollectionRef, ...request, limit(5));
 
     const querySnapshot = await getDocs(q);
-    const products = querySnapshot.docs.map((doc) => doc.data());
-    if (products.length === 0) {
+    const data = querySnapshot.docs.map((doc) => doc.data());
+
+    if (data.length === 0) {
       setLoadButtonStyles({ display: "none" });
       return;
     }
 
-    if (data) {
-      setData((prevData) => [...prevData, ...products]);
+    if (products) {
+      setProducts((prevProducts) => [...prevProducts, ...data]);
     } else {
-      setData(products);
+      setProducts(data);
     }
 
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
   };
 
-  const handleLoadMore = () => {
-    getProducts();
+  const getFilteredProducts = async (loadMore) => {
+    const productsCollectionRef = collection(db, "products");
+
+    const request = [where("category", "==", capitalise(lastWord))];
+
+    if (subcategoriesFilter.length > 0)
+      request.push(where("type", "in", subcategoriesFilter));
+
+    if (colorsFilter.length > 0)
+      request.push(where("type", "in", colorsFilter));
+
+    const q = query(
+      productsCollectionRef,
+      ...request,
+      orderBy("id"),
+      startAfter(latestDoc || 0),
+      limit(5)
+    );
+    console.log(subcategoriesFilter);
+
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+
+    if (data.length === 0) {
+      setLoadButtonStyles({ display: "none" });
+      return;
+    }
+
+    if (loadMore) {
+      setProducts((prevProducts) => [...prevProducts, ...data]);
+    } else {
+      setProducts(data);
+    }
+
+    setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+  };
+
+  const getProducts = async () => {
+    if (
+      subcategoriesFilter.length === 0 &&
+      colorsFilter.length === 0 &&
+      isFilterOn === true
+    ) {
+      setIsFilterOn(false);
+      setProducts([]);
+      getAllProducts(true);
+    } else if (subcategoriesFilter.length === 0 && colorsFilter.length === 0) {
+      getAllProducts();
+    } else {
+      getFilteredProducts();
+      setIsFilterOn(true);
+    }
+  };
+
+  const getSubcategories = async () => {
+    const categoriesCollectionRef = collection(db, "categories");
+    const q = query(
+      categoriesCollectionRef,
+      where("category", "==", capitalise(lastWord))
+    );
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    setAvailableSubcategories(data[0].subcategories);
   };
 
   useEffect(() => {
-    //scroll to top
-    window.scrollTo(0, 0);
     getProducts();
+    setLoadButtonStyles({ display: "flex" });
+  }, [subcategoriesFilter]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getSubcategories();
   }, []);
+
+  const handleLoadMore = () => {
+    if (isFilterOn) {
+      getFilteredProducts(true);
+    } else {
+      getProducts();
+    }
+  };
+
+  const handelSubcategoriesFilter = (e) => {
+    const value = e.target.value;
+    if (subcategoriesFilter.includes(value)) {
+      setSubcategoriesFilter((prevSubcategoriesFilter) =>
+        prevSubcategoriesFilter.filter((item) => item !== value)
+      );
+    } else {
+      setSubcategoriesFilter((prevSubcategoriesFilter) => [
+        ...prevSubcategoriesFilter,
+        value,
+      ]);
+    }
+  };
 
   return (
     <div className="big-container-subCat">
@@ -163,7 +256,7 @@ function SubCategory() {
                 initial={"hidden"}
                 animate={"visible"}
               >
-                1-{data ? data.length : 0}
+                1-{products ? products.length : 0}
                 <span>&nbsp;</span>
               </motion.div>
               <motion.div
@@ -205,7 +298,7 @@ function SubCategory() {
           animate="visible"
           className="products"
         >
-          {data?.map((item) => (
+          {products?.map((item) => (
             <Product
               key={item.id}
               id={item.id}
@@ -215,75 +308,84 @@ function SubCategory() {
               price={item?.price}
             />
           ))}
+          <div
+            className="filter-overlay"
+            style={{
+              transform: isFiltersOpen ? "translateX(0)" : "translateX(-100%)",
+            }}
+          >
+            <div className="content">
+              <div className="subcategories">
+                <p className="subcategories-headline">Sub Categories</p>
+                <div className="subcategories-buttons">
+                  {availableSubcategories?.map((subcategory, i) => (
+                    <div className="subcategory-button" key={i}>
+                      <input
+                        onChange={(e) => handelSubcategoriesFilter(e)}
+                        type="checkbox"
+                        value={subcategory}
+                        id={`radio${i}`}
+                      />
+                      <label htmlFor={`radio${i}`}>{subcategory}</label>
+                    </div>
+                  ))}
+                </div>{" "}
+              </div>
+              {/* <div className="color-size">
+                <div className="color-headline">
+                  <h3>Color</h3>
+                  <div className="color-buttons">
+                    {[
+                      "black",
+                      "gray",
+                      "blue",
+                      "red",
+                      "black",
+                      "gray",
+                      "blue",
+                      "red",
+                      "black",
+                      "gray",
+                      "blue",
+                      "red",
+                    ].map((color, i) => (
+                      <div className="color-button" key={i}>
+                        <input
+                          onChange={(e) => console.log(e.target.value)}
+                          type="checkbox"
+                          value={color}
+                          id={`color${i}`}
+                        />
+                        <label
+                          style={{ backgroundColor: color }}
+                          htmlFor={`color${i}`}
+                        ></label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="size">
+                  <p className="size-headline">Size</p>
+                  <div className="size-buttons">
+                    {["Tall", "Petite", "Plus"].map((size, i) => (
+                      <React.Fragment key={i}>
+                        <input
+                          type="checkbox"
+                          name="size"
+                          id={`radio${i}`}
+                          className="size-button"
+                        />
+                        <label htmlFor={`radio${i}`}>{size}</label>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+              </div> */}
+            </div>
+          </div>
         </motion.div>
         <div className="load-more" style={LoadButtonStyles}>
           <button onClick={handleLoadMore}>Load More</button>
-        </div>
-        <div
-          className="filter-overlay"
-          style={isFiltersOpen ? { display: "grid" } : { display: "none" }}
-        >
-          <div className="content">
-            <div className="subcategories">
-              <p className="subcategories-headline">Sub Categories</p>
-              <div className="subcategories-buttons">
-                {[
-                  "Party Dresses",
-                  "formal Dresses",
-                  "Maxi Dresses",
-                  "Bodycon Dresses",
-                  "Midi Dresses",
-                  "Summer Dresses",
-                ].map((subcategory, i) => (
-                  <div className="subcategory-button" key={i}>
-                    <input
-                      type="checkbox"
-                      name="subcategory"
-                      id={`radio${i}`}
-                    />
-                    <label htmlFor={`radio${i}`}>{subcategory}</label>
-                  </div>
-                ))}
-              </div>{" "}
-            </div>
-            <div className="color-size">
-              <div className="color">
-                <h3>Color</h3>
-                <div className="color-options">
-                  {["black", "gray", "whitesmoke"].map((color, i) => (
-                    <React.Fragment key={i}>
-                      <input
-                        type="checkbox"
-                        name="color"
-                        id={`color${i}`}
-                        className="color-button"
-                      />
-                      <label
-                        style={{ backgroundColor: color }}
-                        htmlFor={`color${i}`}
-                      ></label>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-              <div className="size">
-                <p className="size-headline">Size</p>
-                <div className="size-buttons">
-                  {["Tall", "Petite", "Plus"].map((size, i) => (
-                    <React.Fragment key={i}>
-                      <input
-                        type="checkbox"
-                        name="size"
-                        id={`radio${i}`}
-                        className="size-button"
-                      />
-                      <label htmlFor={`radio${i}`}>{size}</label>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

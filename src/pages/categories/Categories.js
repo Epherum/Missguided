@@ -46,22 +46,6 @@ function Categories() {
     getAllCategories();
   }, []);
 
-  function useFirestoreImageUrl(imagePath) {
-    const [url, setUrl] = useState("");
-    useEffect(() => {
-      getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) =>
-        setUrl(url)
-      );
-    }, [imagePath]);
-    return url;
-  }
-
-  function FirestoreImage({ imagePath }) {
-    const url = useFirestoreImageUrl(imagePath);
-    console.log(url);
-    return <img className="img" key={imagePath} src={url} />;
-  }
-
   const slides = [];
 
   //animationStartDelay
