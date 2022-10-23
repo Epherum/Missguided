@@ -8,7 +8,9 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import facebookIcon from "../../images/facebook-footer.png";
+import twitterIcon from "../../images/twitter-footer.png";
+import instagramIcon from "../../images/instagram-footer.png";
 import animations from "./animations";
 import "./product-details.scss";
 import { useState, useEffect, useContext } from "react";
@@ -42,6 +44,7 @@ function ProductDetails() {
     wishlistTextAnimate,
     cartTextAnimate,
     circleColorAnimate,
+    socialsAnimate,
   } = animations;
 
   const [product, setProduct] = useState({});
@@ -178,7 +181,7 @@ function ProductDetails() {
               ))}
             </div>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             variants={colorAnimate}
             initial="hidden"
             animate="visible"
@@ -201,7 +204,7 @@ function ProductDetails() {
                 </React.Fragment>
               ))}
             </div>
-          </motion.div>
+          </motion.div> */}
           <Link className="size-guide">
             <motion.p
               variants={sizeGuideAnimate}
@@ -308,6 +311,16 @@ function ProductDetails() {
               </motion.span>
             </motion.button>
           </div>
+          <motion.div
+            variants={socialsAnimate}
+            initial={"hidden"}
+            animate={"visible"}
+            className="socials"
+          >
+            <motion.img src={facebookIcon} variants={socialsAnimate} />
+            <motion.img src={twitterIcon} variants={socialsAnimate} />
+            <motion.img src={instagramIcon} variants={socialsAnimate} />
+          </motion.div>
         </main>
       )}
     </div>

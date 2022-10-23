@@ -147,6 +147,21 @@ const cartAnimate = {
     },
   },
 };
+
+const socialsAnimate = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delayChildren: 1 + delay,
+      staggerChildren: 0.1,
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
 const cartTextAnimate = {
   hidden: { opacity: 0 },
   visible: {
@@ -170,20 +185,6 @@ const wishlistTextAnimate = {
   },
 };
 
-const morePicturesAnimate = {
-  hidden: { x: 200, opacity: 0, rotate: -10 },
-  visible: {
-    rotate: 0,
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      delay: 0.7 + delay,
-    },
-  },
-};
-
 const imageContainerAnimate = {
   hidden: {
     clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
@@ -192,7 +193,7 @@ const imageContainerAnimate = {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 
     transition: {
-      delay: 0.5 + delay,
+      delay: 1 + delay,
       duration: 1.2,
       ease: "easeOut",
     },
@@ -208,9 +209,22 @@ const imageAnimate = {
     rotate: 0,
     scale: 1,
     transition: {
-      delay: 0.5 + delay,
+      delay: 1 + delay,
       duration: 1.2,
       ease: "easeOut",
+    },
+  },
+};
+const morePicturesAnimate = {
+  hidden: { x: 200, opacity: 0, rotate: -10 },
+  visible: {
+    rotate: 0,
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      delay: 1.2 + delay,
     },
   },
 };
@@ -267,5 +281,6 @@ const animations = {
   cartTextAnimate,
   wishlistTextAnimate,
   circleColorAnimate,
+  socialsAnimate,
 };
 export default animations;

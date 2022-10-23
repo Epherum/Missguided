@@ -63,7 +63,7 @@ function SubCategory() {
       request.push(startAfter(latestDoc || 0));
     }
 
-    const q = query(productsCollectionRef, ...request, limit(5));
+    const q = query(productsCollectionRef, ...request, limit(15));
 
     const querySnapshot = await getDocs(q);
     const data = querySnapshot.docs.map((doc) => doc.data());
@@ -98,7 +98,7 @@ function SubCategory() {
       ...request,
       orderBy("id"),
       startAfter(latestDoc || 0),
-      limit(5)
+      limit(15)
     );
     console.log(subcategoriesFilter);
 

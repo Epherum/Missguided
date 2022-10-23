@@ -6,16 +6,19 @@ import "./dim.scss";
 function Dim() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
   const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
+  const { isCartOpen, setIsCartOpen } = useContext(NavContext);
+
   return (
     <div
       className="dim"
       onClick={() => {
         setIsNavOpen(false);
         setIsSearchOpen(false);
+        setIsCartOpen(false);
       }}
       style={{
-        zIndex: isNavOpen || isSearchOpen ? "10" : "-1",
-        opacity: isNavOpen || isSearchOpen ? "0.5" : "0",
+        zIndex: isNavOpen || isSearchOpen || isCartOpen ? "10" : "-1",
+        opacity: isNavOpen || isSearchOpen || isCartOpen ? "0.5" : "0",
       }}
     />
   );

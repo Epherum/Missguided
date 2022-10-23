@@ -9,9 +9,11 @@ import { motion } from "framer-motion";
 import { NavContext } from "../../contexts/NavContext";
 import Menu from "./navComponents/menu/Menu";
 import Search from "./navComponents/search/Search";
+import Cart from "./navComponents/cart/Cart";
 function Nav() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
   const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
+  const { isCartOpen, setIsCartOpen } = useContext(NavContext);
 
   let delay = 0;
   const location = useLocation();
@@ -81,10 +83,12 @@ function Nav() {
               <BsHeart />
             </Link>
           </motion.div>
-          <motion.div variants={navAnimate}>
-            <Link className="bag" to="/home">
-              <BsBag />
-            </Link>
+          <motion.div
+            className="bag"
+            variants={navAnimate}
+            onClick={() => setIsCartOpen(!isCartOpen)}
+          >
+            <BsBag />
           </motion.div>
           <motion.div variants={navAnimate}>
             <Link className="user" to="/home">
@@ -95,6 +99,7 @@ function Nav() {
       </motion.ul>
       <Menu />
       <Search />
+      <Cart />
     </nav>
   );
 }

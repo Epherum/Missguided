@@ -37,8 +37,6 @@ function Search() {
 
   useEffect(() => {
     searchProducts();
-    console.log(value);
-    console.log(result);
   }, [value]);
 
   useEffect(() => {
@@ -75,13 +73,19 @@ function Search() {
           {value.length > 0 ? "reset" : "search"}
         </label>
       </div>
-      <div className="result">
-        {result?.map((item, i) => (
-          <Link to={`/categories/${item.category}/${item.name}/${item.id}`}>
-            <h5>{item.name}</h5>
-          </Link>
-        ))}
-      </div>
+      {result.length > 0 ? (
+        <div className="result">
+          {result?.map((item, i) => (
+            <Link to={`/categories/${item.category}/${item.name}/${item.id}`}>
+              <h5 onClick={() => setIsSearchOpen(!isSearchOpen)}>
+                {item.name}
+              </h5>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -8,11 +8,18 @@ import { NavContext } from "./contexts/NavContext";
 function App() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <Router>
       <NavContext.Provider
-        value={{ isNavOpen, setIsNavOpen, isSearchOpen, setIsSearchOpen }}
+        value={{
+          isNavOpen,
+          setIsNavOpen,
+          isSearchOpen,
+          setIsSearchOpen,
+          isCartOpen,
+          setIsCartOpen,
+        }}
       >
         <Nav />
         <AnimatedRoutes />
