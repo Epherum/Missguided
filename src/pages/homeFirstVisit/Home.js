@@ -28,7 +28,8 @@ import Dim from "../../components/dim/Dim";
 //the class to decouple it from home.js
 
 function Home() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isNavOpen } = useContext(NavContext);
+  const { isCartOpen } = useContext(NavContext);
 
   let classIndex = useRef();
   const circularText = (txt, radius) => {
@@ -166,6 +167,7 @@ function Home() {
         className="container home"
         style={{
           transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+          translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
         }}
       >
         <Dim />

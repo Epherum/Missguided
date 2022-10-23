@@ -21,7 +21,8 @@ import { NavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
 
 function ProductDetails() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isNavOpen } = useContext(NavContext);
+  const { isCartOpen } = useContext(NavContext);
 
   const {
     circleEnterAnimate,
@@ -106,6 +107,7 @@ function ProductDetails() {
           className="container productDetails"
           style={{
             transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+            translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
           }}
         >
           <Dim />

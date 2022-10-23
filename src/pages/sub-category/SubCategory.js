@@ -20,6 +20,8 @@ import Dim from "../../components/dim/Dim";
 
 function SubCategory() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isCartOpen } = useContext(NavContext);
+
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [subcategoriesFilter, setSubcategoriesFilter] = useState([]);
   const [colorsFilter, setColorsFilter] = useState([]);
@@ -199,6 +201,7 @@ function SubCategory() {
         className="subCategory"
         style={{
           transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+          translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
         }}
       >
         <div className="container ">

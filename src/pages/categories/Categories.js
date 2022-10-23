@@ -18,7 +18,8 @@ import Dim from "../../components/dim/Dim";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isNavOpen } = useContext(NavContext);
+  const { isCartOpen } = useContext(NavContext);
 
   const {
     circleEnterAnimate,
@@ -119,6 +120,7 @@ function Categories() {
         className="container categories"
         style={{
           transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+          translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
         }}
       >
         <Dim />
