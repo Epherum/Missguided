@@ -11,30 +11,19 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { getDatabase, ref, set, get, child } from "firebase/database";
+import { Link } from "react-router-dom";
 
 function Test() {
-  const fakeData = [{ name: "bruh", age: "abc" }];
   const [value, setValue] = useState("");
   const [result, setResult] = useState([]);
   const [products, setProducts] = useState({});
 
-  const addPeople = async () => {
-    fakeData.forEach(async (person) => {
-      await writeToDatabase(person.age, person.name);
-    }, []);
-  };
-
-  const writeToDatabase = async (productId, productName) => {
-    const db = getDatabase();
-    const reference = ref(db, "products/" + productId);
-    await set(reference, productName);
-  };
-
-  const getPeople = async () => {
+  const searchProducts = async () => {
     if (value.length > 0) {
+      setResult([]);
       let searchQuery = value.toLowerCase();
       for (const key in products) {
-        let fruit = products[key].toLowerCase();
+        let fruit = products[key].name.toLowerCase();
         if (fruit.slice(0, searchQuery.length).indexOf(searchQuery) != -1) {
           setResult((prevResult) => {
             return [...prevResult, products[key]];
@@ -54,7 +43,7 @@ function Test() {
   };
 
   useEffect(() => {
-    getPeople();
+    searchProducts();
   }, [value]);
 
   useEffect(() => {
@@ -73,7 +62,11 @@ function Test() {
         value={value}
       />
       {result.map((item) => {
-        return <p>{item}</p>;
+        return (
+          <Link to={`/categories/${item.category}/${item.name}/${item.id}`}>
+            <p>{item.name}</p>
+          </Link>
+        );
       })}
     </div>
   );

@@ -34,8 +34,7 @@
     a {
       transition: color 0.3s ease-in-out;
       text-decoration: none;
-      &:hover,
-      &:focus {
+      &:hover {
         color: var(--color4);
       }
     }

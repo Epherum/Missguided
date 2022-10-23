@@ -1,0 +1,81 @@
+.search-overlay {
+  position: fixed;
+  background: white;
+  z-index: 102;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: 50%;
+  width: 30%;
+  overflow: hidden;
+  transition: all 0.7s ease;
+  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  margin-top: 1rem;
+  //round the corners
+  border-radius: 10px;
+
+  .input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: all 0.5s ease;
+    margin-bottom: 1rem;
+    &:focus {
+      outline: 0;
+    }
+    input[type="text"] {
+      background-color: #eff2ff;
+      width: 100%;
+      height: 40px;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    input[type="reset"] {
+      background-color: white;
+      width: 30px;
+      height: 50px;
+      outline: none;
+      border: none;
+    }
+    ::-webkit-input-placeholder {
+      color: #b8b8b8;
+    }
+
+    span {
+      font-size: 1rem;
+      opacity: 0.5;
+      padding-right: 0.5rem;
+      background-color: #eff2ff;
+    }
+    label {
+      font-size: 1rem;
+      opacity: 0.5;
+      padding-left: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  .result {
+    margin-top: 1rem;
+
+    h5 {
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

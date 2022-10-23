@@ -12,6 +12,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { storage } from "../../firebase-config";
 import { ref, getDownloadURL } from "firebase/storage";
 import { NavContext } from "../../contexts/NavContext";
+import Dim from "../../components/dim/Dim";
 
 //TODO: try using clippath for images instead of opacity
 
@@ -120,14 +121,7 @@ function Categories() {
           transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
         }}
       >
-        <div
-          className="dim"
-          onClick={() => setIsNavOpen(false)}
-          style={{
-            zIndex: isNavOpen ? "10" : "-1",
-            opacity: isNavOpen ? "0.5" : "0",
-          }}
-        />
+        <Dim />
         <motion.div
           variants={circleColorAnimate}
           initial={"hidden"}

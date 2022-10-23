@@ -16,6 +16,7 @@ import { db, storage } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import { NavContext } from "../../contexts/NavContext";
+import Dim from "../../components/dim/Dim";
 
 function ProductDetails() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
@@ -104,14 +105,7 @@ function ProductDetails() {
             transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
           }}
         >
-          <div
-            className="dim"
-            onClick={() => setIsNavOpen(false)}
-            style={{
-              zIndex: isNavOpen ? "10" : "-1",
-              opacity: isNavOpen ? "0.5" : "0",
-            }}
-          />
+          <Dim />
 
           <motion.div
             variants={circleColorAnimate}

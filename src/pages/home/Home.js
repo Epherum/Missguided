@@ -8,8 +8,9 @@ import facebookIcon from "../../images/facebook-footer.png";
 import twitterIcon from "../../images/twitter-footer.png";
 import instagramIcon from "../../images/instagram-footer.png";
 import { NavContext } from "../../contexts/NavContext";
+import Dim from "../../components/dim/Dim";
 function Home() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isNavOpen } = useContext(NavContext);
 
   let classIndex = useRef();
   const circularText = (txt, radius) => {
@@ -91,14 +92,7 @@ function Home() {
           transform: isNavOpen ? "translateY(28rem)" : "translateY(0px)",
         }}
       >
-        <div
-          className="dim"
-          onClick={() => setIsNavOpen(false)}
-          style={{
-            zIndex: isNavOpen ? "10" : "-1",
-            opacity: isNavOpen ? "0.5" : "0",
-          }}
-        />
+        <Dim />
         <motion.ul
           variants={linksAnimate}
           initial={"hidden"}

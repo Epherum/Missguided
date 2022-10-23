@@ -33,3 +33,33 @@
       });
     });
   }
+
+    const fakeData = [
+    {
+      name: "Red Dress",
+      id: "dwqa",
+      category: "dresses",
+    },
+    {
+      name: "White Dress",
+      id: "ddwqa",
+      category: "skirts",
+    },
+    {
+      name: "Black Dress",
+      id: "dddwqa",
+      category: "weird",
+    },
+  ];
+
+  const addProducts = async () => {
+    bruh.forEach(async (product) => {
+      await writeToDatabase(product);
+    }, []);
+  };
+
+  const writeToDatabase = async (product) => {
+    const db = getDatabase();
+    const reference = ref(db, "products/" + product.id);
+    await set(reference, product);
+  };

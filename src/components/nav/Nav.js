@@ -6,11 +6,12 @@ import "./nav.scss";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import { NavContext } from "../contexts/NavContext";
-import Menu from "./components/menu/Menu";
-import Search from "./components/search/Search";
+import { NavContext } from "../../contexts/NavContext";
+import Menu from "./navComponents/menu/Menu";
+import Search from "./navComponents/search/Search";
 function Nav() {
   const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
 
   let delay = 0;
   const location = useLocation();
@@ -59,11 +60,13 @@ function Nav() {
             <span className={isNavOpen ? "lineTop spin" : "lineTop "} />
             <span className={isNavOpen ? "lineBottom spin" : "lineBottom"} />
           </motion.div>
-          {/* <motion.div variants={navAnimate}>
-            <Link className="search" to="/home">
-              <FiSearch />
-            </Link>
-          </motion.div> */}
+          <motion.div
+            className="search"
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            variants={navAnimate}
+          >
+            <FiSearch />
+          </motion.div>
         </motion.li>
         <motion.li className="profile-mobile-view">
           <motion.div variants={navAnimate}>
@@ -91,7 +94,7 @@ function Nav() {
         </motion.li>
       </motion.ul>
       <Menu />
-      {/* <Search /> */}
+      <Search />
     </nav>
   );
 }
