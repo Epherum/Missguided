@@ -90,15 +90,37 @@
     }
   }
   .search,
-  .bag,
-  .wishlist,
-  .user {
+  .menu,
+  .bag {
     cursor: pointer;
-    // &:hover,
-    // &:focus {
-    //   filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
-    //     brightness(99%) contrast(102%);
-    // }
+    transition: filter 0.5s ease;
+    &:hover,
+    &:focus {
+      filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
+        brightness(99%) contrast(102%);
+    }
+  }
+  .bag {
+    position: relative;
+    .badge {
+      position: absolute;
+      top: -0.5rem;
+      right: -1rem;
+
+      background-color: var(--color4);
+      color: var(--color1);
+      font-size: 1.2rem;
+      padding: 0.1rem 0.2rem;
+      border-radius: 50%;
+      background-color: black;
+      .count {
+        display: inline;
+        font-size: 1rem;
+        color: #fff;
+        padding: 6px;
+        vertical-align: top;
+      }
+    }
   }
   .menu {
     cursor: pointer;
@@ -106,6 +128,7 @@
     width: 44px;
     height: 44px;
   }
+
   .lineTop,
   .lineBottom {
     margin: 0 auto;

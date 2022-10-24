@@ -3,13 +3,14 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { getDatabase, ref, set, get, child } from "firebase/database";
-import { NavContext } from "../../../../contexts/NavContext";
+import { useNavContext } from "../../../../contexts/NavContext";
 
 function Search() {
   const [value, setValue] = useState("");
   const [result, setResult] = useState([]);
   const [products, setProducts] = useState({});
-  const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
+
+  const { isSearchOpen, setIsSearchOpen } = useNavContext();
 
   const searchProducts = async () => {
     if (value.length > 0) {
@@ -73,18 +74,19 @@ function Search() {
           {value.length > 0 ? "reset" : "search"}
         </label>
       </div>
-      {result.length > 0 ? (
+      {result.length > 0 && (
         <div className="result">
           {result?.map((item, i) => (
-            <Link to={`/categories/${item.category}/${item.name}/${item.id}`}>
+            <Link
+              key={i}
+              to={`/categories/${item.category}/${item.name}/${item.id}`}
+            >
               <h5 onClick={() => setIsSearchOpen(!isSearchOpen)}>
                 {item.name}
               </h5>
             </Link>
           ))}
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

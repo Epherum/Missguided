@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,11 +7,10 @@ import animations from "./animations";
 import facebookIcon from "../../images/facebook-footer.png";
 import twitterIcon from "../../images/twitter-footer.png";
 import instagramIcon from "../../images/instagram-footer.png";
-import { NavContext } from "../../contexts/NavContext";
+import { useNavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
 function Home() {
-  const { isNavOpen } = useContext(NavContext);
-  const { isCartOpen } = useContext(NavContext);
+  const { isNavOpen, isCartOpen } = useNavContext();
 
   let classIndex = useRef();
   const circularText = (txt, radius) => {

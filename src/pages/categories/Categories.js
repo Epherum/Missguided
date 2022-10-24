@@ -6,20 +6,17 @@ import "swiper/css/navigation";
 import "swiper/css";
 import "./categories.scss";
 import animations from "./animations";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
-import { storage } from "../../firebase-config";
-import { ref, getDownloadURL } from "firebase/storage";
-import { NavContext } from "../../contexts/NavContext";
+import { useNavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
 
 //TODO: try using clippath for images instead of opacity
 
 function Categories() {
   const [categories, setCategories] = useState([]);
-  const { isNavOpen } = useContext(NavContext);
-  const { isCartOpen } = useContext(NavContext);
+  const { isNavOpen, isCartOpen } = useNavContext();
 
   const {
     circleEnterAnimate,

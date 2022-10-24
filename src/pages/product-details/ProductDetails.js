@@ -3,9 +3,7 @@ import { IoIosArrowForward, IoMdPaperPlane } from "react-icons/io";
 import { TbHanger } from "react-icons/tb";
 import { FaTape } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-
 import React from "react";
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import facebookIcon from "../../images/facebook-footer.png";
@@ -13,16 +11,17 @@ import twitterIcon from "../../images/twitter-footer.png";
 import instagramIcon from "../../images/instagram-footer.png";
 import animations from "./animations";
 import "./product-details.scss";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { db, storage } from "../../firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
-import { NavContext } from "../../contexts/NavContext";
+import { useNavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
+import { useCartContext } from "../../contexts/CartContext";
 
 function ProductDetails() {
-  const { isNavOpen } = useContext(NavContext);
-  const { isCartOpen } = useContext(NavContext);
+  const { isNavOpen, isCartOpen } = useNavContext();
+  const { increaseItemQuantity } = useCartContext();
 
   const {
     circleEnterAnimate,
@@ -303,6 +302,15 @@ function ProductDetails() {
               initial={"hidden"}
               animate={"visible"}
               className="add-to-bag"
+              onClick={() =>
+                increaseItemQuantity(
+                  product.id,
+                  product.name,
+                  product.price,
+                  images[0],
+                  product.category
+                )
+              }
             >
               <motion.span
                 variants={cartTextAnimate}

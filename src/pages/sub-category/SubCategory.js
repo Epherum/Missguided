@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../firebase-config";
 import {
   limit,
@@ -15,12 +15,11 @@ import {
   startAfter,
   orderBy,
 } from "firebase/firestore";
-import { NavContext } from "../../contexts/NavContext";
+import { useNavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
 
 function SubCategory() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
-  const { isCartOpen } = useContext(NavContext);
+  const { isNavOpen, isCartOpen } = useNavContext();
 
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [subcategoriesFilter, setSubcategoriesFilter] = useState([]);

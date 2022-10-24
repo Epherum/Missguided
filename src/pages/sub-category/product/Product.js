@@ -6,10 +6,12 @@ import { useState, useEffect } from "react";
 import { storage } from "../../../firebase-config";
 
 import { ref, getDownloadURL } from "firebase/storage";
+import { useCartContext } from "../../../contexts/CartContext";
 
 function Product(props) {
   const { id, category, title, price, image } = props;
   const [productImage, setProductImage] = useState("");
+  const { increaseItemQuantity } = useCartContext();
 
   (function getFirestoreImageUrl(imagePath) {
     getDownloadURL(ref(storage, `productImages/${imagePath}`)).then((url) => {
@@ -41,7 +43,12 @@ function Product(props) {
         <button className="wishlist">
           <BsHeart />
         </button>
-        <button className="cart">
+        <button
+          className="cart"
+          onClick={() =>
+            increaseItemQuantity(id, title, price, productImage, category)
+          }
+        >
           <BsPlus />
         </button>
       </div>

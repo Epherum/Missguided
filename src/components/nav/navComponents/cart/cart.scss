@@ -1,13 +1,15 @@
 .cart-overlay {
   position: fixed;
+  overflow: hidden;
   top: 0;
   right: 0;
   width: 30%;
   height: 100vh;
-  z-index: 200;
+  z-index: 101;
   background-color: #fff;
   padding: 1.4rem 1.6rem;
   transition: all 1.5s ease;
+  overflow-y: scroll;
   .header {
     font-size: 1.3rem;
     padding-left: 0;
@@ -34,29 +36,20 @@
         .name-price {
           display: flex;
           justify-content: space-between;
-          h3 {
-            font-size: 1.6rem;
+          a {
             color: var(--color5);
+            text-decoration: none;
+            font-size: 1.6rem;
+            &:hover {
+              text-decoration: underline;
+            }
           }
           p {
             font-size: 1.6rem;
             font-weight: 800;
           }
         }
-        // .price-inStock {
-        //   display: flex;
-        //   align-items: center;
-        //   gap: 2rem;
-        //   margin-bottom: 1.6rem;
-        //   p {
-        //     font-size: 1.3rem;
-        //     color: #cccccc;
-        //   }
-        //   h6 {
-        //     color: #5ed882;
-        //     font-size: 1.3rem;
-        //   }
-        // }
+
         .buttons {
           margin-top: auto;
           display: flex;

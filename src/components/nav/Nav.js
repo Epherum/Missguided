@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { BsHeart, BsBag } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
@@ -6,14 +5,23 @@ import "./nav.scss";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import { NavContext } from "../../contexts/NavContext";
+import { useNavContext } from "../../contexts/NavContext";
 import Menu from "./navComponents/menu/Menu";
 import Search from "./navComponents/search/Search";
 import Cart from "./navComponents/cart/Cart";
+import { useCartContext } from "../../contexts/CartContext";
+import { useEffect } from "react";
 function Nav() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
-  const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
-  const { isCartOpen, setIsCartOpen } = useContext(NavContext);
+  const {
+    isNavOpen,
+    isSearchOpen,
+    isCartOpen,
+    setIsNavOpen,
+    setIsSearchOpen,
+    setIsCartOpen,
+  } = useNavContext();
+
+  const { cartItems } = useCartContext();
 
   let delay = 0;
   const location = useLocation();
@@ -72,16 +80,12 @@ function Nav() {
         </motion.li>
         <motion.li className="profile-mobile-view">
           <motion.div variants={navAnimate}>
-            <Link to="/home">
-              <BsBag />
-            </Link>
+            <BsBag />
           </motion.div>
         </motion.li>
         <motion.li variants={navAnimate} className="profile">
-          <motion.div variants={navAnimate}>
-            <Link className="wishlist" to="/home">
-              <BsHeart />
-            </Link>
+          <motion.div className="wishlist" variants={navAnimate}>
+            <BsHeart />
           </motion.div>
           <motion.div
             className="bag"
@@ -89,11 +93,14 @@ function Nav() {
             onClick={() => setIsCartOpen(!isCartOpen)}
           >
             <BsBag />
+            {cartItems?.length > 0 && (
+              <span className="badge">
+                <p className="count">{cartItems.length}</p>
+              </span>
+            )}
           </motion.div>
-          <motion.div variants={navAnimate}>
-            <Link className="user" to="/home">
-              <IoPersonOutline />
-            </Link>
+          <motion.div className="user" variants={navAnimate}>
+            <IoPersonOutline />
           </motion.div>
         </motion.li>
       </motion.ul>

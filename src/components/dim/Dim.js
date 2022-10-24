@@ -1,12 +1,23 @@
-import React from "react";
-import { NavContext } from "../../contexts/NavContext";
-import { useContext } from "react";
+import { useNavContext } from "../../contexts/NavContext";
 import "./dim.scss";
-
+import { useEffect } from "react";
 function Dim() {
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
-  const { isSearchOpen, setIsSearchOpen } = useContext(NavContext);
-  const { isCartOpen, setIsCartOpen } = useContext(NavContext);
+  const {
+    isNavOpen,
+    isSearchOpen,
+    isCartOpen,
+    setIsNavOpen,
+    setIsSearchOpen,
+    setIsCartOpen,
+  } = useNavContext();
+
+  useEffect(() => {
+    if (isNavOpen || isSearchOpen || isCartOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isNavOpen, isCartOpen, isSearchOpen]);
 
   return (
     <div

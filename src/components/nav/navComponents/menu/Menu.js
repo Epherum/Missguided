@@ -2,13 +2,13 @@ import { useState, useEffect, useContext } from "react";
 
 import { Link } from "react-router-dom";
 import "./menu.scss";
-import { NavContext } from "../../../../contexts/NavContext";
+import { useNavContext } from "../../../../contexts/NavContext";
 import { db } from "../../../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 function Menu() {
   const [categories, setCategories] = useState([]);
-  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
+  const { isNavOpen, setIsNavOpen } = useNavContext();
 
   const getCategories = async () => {
     const productsCollectionRef = collection(db, "categories");
