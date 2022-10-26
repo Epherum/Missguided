@@ -12,12 +12,12 @@ export function CartProvider({ children }) {
   function getItemQuantity(id) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
-  function increaseItemQuantity(id, title, price, image, category) {
+  function increaseItemQuantity(id, title, price, image, category, color) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
         return [
           ...currItems,
-          { id, quantity: 1, title, price, image, category },
+          { id, quantity: 1, title, price, image, category, color },
         ];
       } else {
         return currItems.map((item) => {

@@ -299,9 +299,10 @@ function SubCategory() {
               key={item.id}
               id={item.id}
               category={item.category}
-              title={item?.name}
-              image={item?.images[0]}
-              price={item?.price}
+              title={item.name}
+              image={item.images[0]}
+              price={item.price}
+              color={item.color}
             />
           ))}
           <div

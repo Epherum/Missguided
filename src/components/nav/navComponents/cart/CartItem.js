@@ -1,25 +1,29 @@
 import { useCartContext } from "../../../../contexts/CartContext";
-import { FaTrash } from "react-icons/fa";
-import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./cart.scss";
 import { useNavContext } from "../../../../contexts/NavContext";
+import { GrClose } from "react-icons/gr";
 
 function CartItem({ item }) {
   const { setIsCartOpen } = useNavContext();
 
-  const { increaseItemQuantity, decreaseItemQuantity, removeFromCart } =
-    useCartContext();
+  const { removeFromCart } = useCartContext();
 
   const priceFormat = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(item.price);
 
-  const { id, title, image, quantity, category } = item;
+  const { id, title, image, quantity, category, color } = item;
   //make new variable space with dash for name url
   const normalTitle = title;
   const titleDash = title?.replace(/\s+/g, "-").toLowerCase();
+
+  //function that returns a random number between 6 and 12
+  //to fake size
+  const randomNum = () => {
+    return Math.floor(Math.random() * 6) + 6;
+  };
 
   return (
     <div className="item">
@@ -27,31 +31,23 @@ function CartItem({ item }) {
         <img src={image} alt={title} />
       </div>
       <div className="details">
-        <div className="name-price">
-          <Link
-            to={"/categories/" + category + "/" + titleDash + "/" + id}
-            onClick={() => setIsCartOpen(false)}
-          >
-            {normalTitle}
-          </Link>
-          <p>{priceFormat}</p>
-        </div>
-
-        <div className="buttons">
-          <div className="quantity">
-            <button onClick={() => decreaseItemQuantity(id)}>-</button>
-            <p>{quantity}</p>
-            <button onClick={() => increaseItemQuantity(id)}>+</button>
+        <div className="name-remove">
+          <div className="name">
+            <Link
+              to={"/categories/" + category + "/" + titleDash + "/" + id}
+              onClick={() => setIsCartOpen(false)}
+            >
+              {normalTitle}
+            </Link>
           </div>
-          <div className="save-delete">
-            <button className="save">
-              <AiFillHeart /> Save
-            </button>
-            <button className="delete" onClick={() => removeFromCart(id)}>
-              <FaTrash /> Delete
-            </button>
-          </div>
+          <button className="remove" onClick={() => removeFromCart(id)}>
+            <GrClose />
+          </button>
         </div>
+        <p className="price">{priceFormat}</p>
+        <p className="size">Size: {randomNum()}</p>
+        <p className="color">Color: {color}</p>
+        <p className="quantity">Quantity: {quantity}</p>
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import Menu from "./navComponents/menu/Menu";
 import Search from "./navComponents/search/Search";
 import Cart from "./navComponents/cart/Cart";
 import { useCartContext } from "../../contexts/CartContext";
-import { useEffect } from "react";
 function Nav() {
   const {
     isNavOpen,
@@ -78,10 +77,13 @@ function Nav() {
             <FiSearch />
           </motion.div>
         </motion.li>
-        <motion.li className="profile-mobile-view">
-          <motion.div variants={navAnimate}>
-            <BsBag />
-          </motion.div>
+        <motion.li variants={navAnimate} className="profile-mobile-view">
+          <BsBag onClick={() => setIsCartOpen(!isCartOpen)} />
+          {cartItems?.length > 0 && (
+            <span className="badge">
+              <p className="count">{cartItems.length}</p>
+            </span>
+          )}
         </motion.li>
         <motion.li variants={navAnimate} className="profile">
           <motion.div className="wishlist" variants={navAnimate}>

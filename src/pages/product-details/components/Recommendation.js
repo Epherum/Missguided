@@ -1,15 +1,16 @@
-import React from "react";
+import "./Recomendations.scss";
 import { BsPlus, BsHeart } from "react-icons/bs";
-import "./product.scss";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { storage } from "../../../firebase-config";
-
 import { ref, getDownloadURL } from "firebase/storage";
 import { useCartContext } from "../../../contexts/CartContext";
 
-function Product(props) {
-  const { id, category, title, price, image, color } = props;
+//this is the same component as the one in src\pages\sub-category\product\Product.js
+//but with different css
+
+function Recomendation(props) {
+  const { id, category, title, price, image } = props;
   const [productImage, setProductImage] = useState("");
   const { increaseItemQuantity } = useCartContext();
 
@@ -29,7 +30,7 @@ function Product(props) {
   const titleDash = title.replace(/\s+/g, "-").toLowerCase();
 
   return (
-    <div className="product">
+    <div className="recommendation">
       <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
         {productImage ? (
           <img className="img" src={productImage} alt={title} />
@@ -46,14 +47,7 @@ function Product(props) {
         <button
           className="cart"
           onClick={() =>
-            increaseItemQuantity(
-              id,
-              title,
-              price,
-              productImage,
-              category,
-              color
-            )
+            increaseItemQuantity(id, title, price, productImage, category)
           }
         >
           <BsPlus />
@@ -63,4 +57,4 @@ function Product(props) {
   );
 }
 
-export default Product;
+export default Recomendation;

@@ -9,15 +9,17 @@ function Dim() {
     setIsNavOpen,
     setIsSearchOpen,
     setIsCartOpen,
+    isRecommendationsOpen,
+    setIsRecommendationsOpen,
   } = useNavContext();
 
   useEffect(() => {
-    if (isNavOpen || isSearchOpen || isCartOpen) {
+    if (isNavOpen || isSearchOpen || isCartOpen || isRecommendationsOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [isNavOpen, isCartOpen, isSearchOpen]);
+  }, [isNavOpen, isCartOpen, isSearchOpen, isRecommendationsOpen]);
 
   return (
     <div
@@ -26,10 +28,17 @@ function Dim() {
         setIsNavOpen(false);
         setIsSearchOpen(false);
         setIsCartOpen(false);
+        setIsRecommendationsOpen(false);
       }}
       style={{
-        zIndex: isNavOpen || isSearchOpen || isCartOpen ? "10" : "-1",
-        opacity: isNavOpen || isSearchOpen || isCartOpen ? "0.5" : "0",
+        zIndex:
+          isNavOpen || isSearchOpen || isCartOpen || isRecommendationsOpen
+            ? "10"
+            : "-1",
+        opacity:
+          isNavOpen || isSearchOpen || isCartOpen || isRecommendationsOpen
+            ? "0.5"
+            : "0",
       }}
     />
   );
