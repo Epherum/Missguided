@@ -14,31 +14,44 @@
   padding-bottom: 3rem;
   transition: all 1.5s ease;
   max-width: 1920px;
+  @media (max-width: 500px) {
+    max-height: 80vh;
+  }
   .content {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    @media (max-width: 500px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
     .category {
-      h2 {
+      .headline {
         font-size: min(1.9rem, 1.6vw);
         margin-bottom: min(3rem, 5vh);
-        a {
-          display: inline-block;
-          text-decoration: none;
-          color: var(--color5);
-          transition: all 0.3s ease-in-out;
-          &:hover,
-          &:focus {
-            color: var(--color4);
-            text-decoration: underline;
-          }
+        display: inline-block;
+        text-decoration: none;
+        color: var(--color5);
+        transition: all 0.3s ease-in-out;
+        &:hover,
+        &:focus {
+          color: var(--color4);
+          text-decoration: underline;
+        }
+        @media (max-width: 500px) {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
         }
       }
       ul {
         list-style: none;
         li {
           margin-bottom: min(1.6rem, 2.6vh);
+          font-size: min(1rem, 0.8vw);
+          @media (max-width: 500px) {
+            font-size: 0.7rem;
+            margin-bottom: 1.5rem;
+          }
           a {
-            font-size: min(1rem, 0.8vw);
             color: var(--color6);
             text-decoration: none;
             transition: all 0.3s ease-in-out;

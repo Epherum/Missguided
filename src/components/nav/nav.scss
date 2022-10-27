@@ -92,12 +92,14 @@
   .search,
   .menu,
   .bag {
-    cursor: pointer;
-    transition: filter 0.5s ease;
-    &:hover,
-    &:focus {
-      filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
-        brightness(99%) contrast(102%);
+    @media (min-width: 1024px) {
+      cursor: pointer;
+      transition: filter 0.5s ease;
+      &:hover,
+      &:focus {
+        filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
+          brightness(99%) contrast(102%);
+      }
     }
   }
   .bag {

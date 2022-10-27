@@ -321,13 +321,7 @@ function ProductDetails() {
               animate={"visible"}
               className="socials"
             >
-              <motion.img
-                src={facebookIcon}
-                variants={socialsAnimate}
-                onClick={() => {
-                  setIsRecommendationsOpen(true);
-                }}
-              />
+              <motion.img src={facebookIcon} variants={socialsAnimate} />
               <motion.img src={twitterIcon} variants={socialsAnimate} />
               <motion.img src={instagramIcon} variants={socialsAnimate} />
             </motion.div>

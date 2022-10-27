@@ -32,21 +32,18 @@ function Menu() {
       <div className="content">
         {categories?.map((item, i) => (
           <div className="category" key={i}>
-            <h2>
-              <Link
-                to={`/categories/${item.category}`}
-                onClick={() => setIsNavOpen(!isNavOpen)}
-                style={{
-                  opacity: isNavOpen ? "1" : "0",
-                  transitionDelay: isNavOpen
-                    ? `${0.07 * i + 0.5}s, 0s`
-                    : "0s,0s",
-                  transitionProperty: "opacity, color",
-                }}
-              >
-                {item.category}
-              </Link>
-            </h2>
+            <Link
+              to={`/categories/${item.category}`}
+              onClick={() => setIsNavOpen(!isNavOpen)}
+              style={{
+                opacity: isNavOpen ? "1" : "0",
+                transitionDelay: isNavOpen ? `${0.07 * i + 0.5}s, 0s` : "0s,0s",
+                transitionProperty: "opacity, color",
+              }}
+              className="headline"
+            >
+              {item.category}
+            </Link>
             <ul>
               {item?.subcategories?.map((sub) => (
                 <li key={sub}>

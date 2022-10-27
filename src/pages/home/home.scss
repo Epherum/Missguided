@@ -55,13 +55,14 @@
       margin-top: -14rem;
     }
     @media (max-width: 500px) {
-      grid-row: 2;
-      align-self: center;
-      justify-self: end;
-      transform-origin: 0 100px;
-      margin-top: 0rem;
-      font-size: 4.1vw;
-      z-index: -1;
+      display: none;
+      // grid-row: 2;
+      // align-self: center;
+      // justify-self: end;
+      // transform-origin: 0 100px;
+      // margin-top: 0rem;
+      // font-size: 4.1vw;
+      // z-index: -1;
     }
 
     @keyframes animate {
@@ -150,7 +151,6 @@
       &:hover,
       &:focus {
         color: #000;
-        font-size: 1.1rem;
       }
     }
     @media (max-width: 1024px) {
@@ -159,12 +159,6 @@
     @media (max-height: 900px) {
       font-size: 0.8rem;
       line-height: 1.1rem;
-      a {
-        &:hover {
-          color: var(--color5);
-          font-size: 0.9rem;
-        }
-      }
     }
   }
 

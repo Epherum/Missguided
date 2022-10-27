@@ -332,7 +332,7 @@ const circleLoader1Animate = {
       delay: 0.4,
       ease: "easeOut",
 
-      duration: 1.8,
+      duration: 2.1,
     },
   },
 };
@@ -341,8 +341,8 @@ const circleLoader2Animate = {
   visible: {
     scale: 1,
     transition: {
-      delay: 2.7,
-      duration: 1,
+      delay: 2.9,
+      duration: 1.3,
       ease: "easeOut",
     },
   },
@@ -357,7 +357,7 @@ const mDAnimate = {
     scale: [0, 2, 2, 1, 1, 1],
     transition: {
       delay: 0.3,
-      duration: 3,
+      duration: 3.4,
     },
   },
 };
@@ -370,7 +370,7 @@ const sDAnimate = {
     scale: [0, 2, 2, 1, 1, 1],
     transition: {
       delay: 0.35,
-      duration: 3,
+      duration: 3.4,
     },
   },
 };
@@ -383,7 +383,7 @@ const gDAnimate = {
     scale: [0, 2, 2, 1, 1, 1],
     transition: {
       delay: 0.4,
-      duration: 3,
+      duration: 3.4,
     },
   },
 };
@@ -396,7 +396,7 @@ const iDAnimate = {
     scale: [0, 2, 2, 1, 1, 1],
     transition: {
       delay: 0.45,
-      duration: 3,
+      duration: 3.4,
     },
   },
 };
@@ -409,7 +409,7 @@ const eDAnimate = {
     scale: [0, 2, 2, 1, 1, 1],
     transition: {
       delay: 0.5,
-      duration: 3,
+      duration: 3.4,
     },
   },
 };
@@ -419,7 +419,7 @@ const iAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2.2,
+      delay: 2.5,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -431,7 +431,7 @@ const dAnimate = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2.2,
+      delay: 2.5,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -444,7 +444,7 @@ const dDAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.2,
+      delay: 2.5,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -457,7 +457,7 @@ const uAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.2,
+      delay: 2.5,
       duration: 0.5,
       ease: "easeOut",
     },
@@ -470,7 +470,7 @@ const sAnimate = {
 
     y: 0,
     transition: {
-      delay: 2.2,
+      delay: 2.5,
       duration: 0.5,
       ease: "easeOut",
     },
