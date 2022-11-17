@@ -9,7 +9,6 @@
   background-color: #fff;
   transition: all 1.5s ease;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   .header {
@@ -21,7 +20,7 @@
   }
 
   .items {
-    padding: 0 1.6rem;
+    padding: 0 0.5rem;
     .item {
       display: grid;
       grid-template-columns: 25% 75%;
@@ -45,10 +44,11 @@
           display: flex;
           align-items: start;
           justify-content: space-between;
+          margin-right: 1rem;
           .name {
             max-width: 90%;
             a {
-              margin-bottom: 0.4rem;
+              margin-bottom: 0.5rem;
               color: var(--color5);
               display: block;
               text-decoration: none;
@@ -92,16 +92,17 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 2rem;
-      font-size: 1.2vw;
+      font-size: 1.1vw;
       padding: 0 3rem;
     }
     .checkout {
       all: unset;
       cursor: pointer;
+      display: inline-block;
       background-color: var(--color5);
-      color: #fff;
+      color: var(--color1);
+      padding: 3rem 0rem;
       width: 100%;
-      padding: 3rem 0;
       text-align: center;
       font-size: 1.3vw;
       transition: all 0.5s ease;

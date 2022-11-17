@@ -2,8 +2,9 @@ import "./cart.scss";
 import { useNavContext } from "../../../../contexts/NavContext";
 import { useCartContext } from "../../../../contexts/CartContext";
 import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
 function Cart() {
-  const { isCartOpen } = useNavContext();
+  const { isCartOpen, setIsCartOpen } = useNavContext();
 
   const { cartItems } = useCartContext();
 
@@ -35,7 +36,15 @@ function Cart() {
           <h3>Total ({cartItems?.length})</h3>
           <h3>{priceFormat}</h3>
         </div>
-        <button className="checkout">Check out</button>
+        <Link
+          to={"#"}
+          onClick={() => {
+            setIsCartOpen(false);
+          }}
+          className="checkout"
+        >
+          Check out
+        </Link>
       </div>
     </div>
   );

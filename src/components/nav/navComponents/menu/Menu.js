@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 function Menu() {
   const [categories, setCategories] = useState([]);
   const { isNavOpen, setIsNavOpen } = useNavContext();
+  const [menuTop, setMenuTop] = useState(-80);
 
   const getCategories = async () => {
     const productsCollectionRef = collection(db, "categories");
@@ -20,13 +21,17 @@ function Menu() {
 
   useEffect(() => {
     getCategories();
+    //check screen size
+    if (window.innerWidth < 568) {
+      setMenuTop(-100);
+    }
   }, []);
 
   return (
     <div
       className="menu-overlay"
       style={{
-        top: isNavOpen ? "0" : "-80%",
+        top: isNavOpen ? "0" : menuTop + "%",
       }}
     >
       <div className="content">

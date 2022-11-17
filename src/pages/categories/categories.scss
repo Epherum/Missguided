@@ -87,12 +87,18 @@
       &:hover {
         font-size: 1.4rem;
       }
+      @media (max-width: 500px) {
+        font-size: 0.9rem;
+      }
     }
 
     p {
       display: inline-block;
       &:last-child {
         color: gray;
+      }
+      @media (max-width: 500px) {
+        font-size: 0.9rem;
       }
     }
 

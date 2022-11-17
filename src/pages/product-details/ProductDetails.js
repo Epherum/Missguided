@@ -124,18 +124,16 @@ function ProductDetails() {
         exit="visible"
         className="fullscreen-circle-exit"
       />
+      <Dim />
       {product && (
         <>
           <main
             className="container productDetails"
             style={{
               transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
-              translate: isRecommendationsOpen ? "0rem -28rem" : "0rem 0rem",
               translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
             }}
           >
-            <Dim />
-
             <motion.div
               variants={circleColorAnimate}
               initial="hidden"

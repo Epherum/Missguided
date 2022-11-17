@@ -1,8 +1,9 @@
 .nav-list {
   list-style: none;
   overflow: hidden;
-  display: grid;
   position: fixed;
+  max-width: 1920px;
+  display: grid;
   grid-template-columns: 62.4% 14% 7% 12% 4.6%;
   width: 98%;
   margin-top: 2.3rem;

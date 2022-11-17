@@ -4,7 +4,6 @@ import Nav from "./components/nav/Nav";
 
 import { NavProvider } from "./contexts/NavContext";
 import { CartProvider } from "./contexts/CartContext";
-
 function App() {
   return (
     <Router>

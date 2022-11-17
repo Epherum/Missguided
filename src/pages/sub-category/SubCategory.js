@@ -1,6 +1,6 @@
 import Product from "./product/Product";
 import { BsSliders } from "react-icons/bs";
-import { motion } from "framer-motion";
+import { calcLength, motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { useNavContext } from "../../contexts/NavContext";
 import Dim from "../../components/dim/Dim";
+import useLocoScroll from "../../hooks/useLocoScroll";
 
 function SubCategory() {
   const { isNavOpen, isCartOpen } = useNavContext();
@@ -29,6 +30,15 @@ function SubCategory() {
   const [products, setProducts] = useState([]);
   const [latestDoc, setLatestDoc] = useState(null);
   const [LoadButtonStyles, setLoadButtonStyles] = useState({});
+
+  const [loco, setLoco] = useState(false);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoco(true);
+  //   }, 2000);
+  // }, []);
+  // const scroll = useLocoScroll(loco);
 
   const {
     productArrayAnimate,
@@ -81,6 +91,9 @@ function SubCategory() {
     }
 
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    // setTimeout(() => {
+    //   InitScroll();
+    // }, 1000);
   };
 
   const getFilteredProducts = async (loadMore) => {
@@ -101,7 +114,6 @@ function SubCategory() {
       startAfter(latestDoc || 0),
       limit(15)
     );
-    console.log(subcategoriesFilter);
 
     const querySnapshot = await getDocs(q);
     const data = querySnapshot.docs.map((doc) => doc.data());
@@ -156,7 +168,15 @@ function SubCategory() {
   useEffect(() => {
     window.scrollTo(0, 0);
     getSubcategories();
+    //remove scroll from body
+    // document.body.style.overflow = "hidden";
   }, []);
+
+  // function InitScroll() {
+  //   if (scroll) {
+  //     scroll.update();
+  //   }
+  // }
 
   const handleLoadMore = () => {
     if (isFilterOn) {
@@ -181,19 +201,19 @@ function SubCategory() {
   };
 
   return (
-    <div className="big-container-subCat">
+    <div className="big-container-subCat" data-scroll-container>
       <motion.div
         variants={circleEnterAnimate}
         initial="hidden"
         animate="visible"
-        className="fullscreen-circle-enter1"
+        className="fullscreen-circle-enter"
       />
 
       <motion.div
         variants={circleExitAnimate}
         initial="hidden"
         exit="visible"
-        className="fullscreen-circle-exit1"
+        className="fullscreen-circle-exit"
       />
       <Dim />
       <div
@@ -203,7 +223,7 @@ function SubCategory() {
           translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
         }}
       >
-        <div className="container ">
+        <div className="container">
           <div className="navbarSeperator" />
           <div className="circle-fixed-wrapper">
             <motion.div
@@ -309,6 +329,7 @@ function SubCategory() {
             className="filter-overlay"
             style={{
               transform: isFiltersOpen ? "translateX(0)" : "translateX(-100%)",
+              opacity: isFiltersOpen ? "1" : "0",
             }}
           >
             <div className="content">

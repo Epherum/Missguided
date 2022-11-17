@@ -10,6 +10,7 @@ import Categories from "./pages/categories/Categories";
 import SubCategory from "./pages/sub-category/SubCategory";
 import ProductDetails from "./pages/product-details/ProductDetails";
 import Test from "./pages/Test";
+import Checkout from "./pages/cart/Checkout";
 function AnimatedRoutes() {
   const location = useLocation();
   return (
@@ -18,6 +19,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomeFirstVisit />} />
         <Route path="/home" element={<Home />} />
         <Route path="/test" element={<Test />} />
+        {/* <Route path="/Checkout" element={<Checkout />} /> */}
 
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:subCategory" element={<SubCategory />} />

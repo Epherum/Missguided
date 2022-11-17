@@ -9,7 +9,7 @@ import { useNavContext } from "../../../contexts/NavContext";
 function Recomendations({ category, color, id }) {
   //get 5 products from firebase
   const [products, setProducts] = useState([]);
-  const { isRecommendationsOpen } = useNavContext();
+  const { isCartOpen, isNavOpen } = useNavContext();
 
   const getAllProducts = async () => {
     const productsCollectionRef = collection(db, "products");
@@ -51,28 +51,36 @@ function Recomendations({ category, color, id }) {
     );
   });
   return (
-    <div className="recomendations-overlay">
-      <div className="recomendations">
-        <h2 className="headline">Recommended for You</h2>
-        <div className="carousel">
-          <Swiper
-            id="main"
-            tag="section"
-            wrapperTag="ul"
-            slidesPerView={3}
-            slidesPerGroup={2}
-            draggable={false}
-            grabCursor={true}
-            breakpoints={{
-              1250: {
-                slidesPerView: 4,
-              },
-            }}
-          >
-            {slides}
-          </Swiper>
+    <div
+      className="recomendations-overlay"
+      style={{
+        transform: isNavOpen ? "translateY(25rem)" : "translateY(0px)",
+        translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
+      }}
+    >
+      {products.length > 0 && (
+        <div className="recomendations">
+          <h2 className="headline">Recommended for You</h2>
+          <div className="carousel">
+            <Swiper
+              id="main"
+              tag="section"
+              wrapperTag="ul"
+              slidesPerView={2}
+              slidesPerGroup={2}
+              draggable={false}
+              grabCursor={true}
+              breakpoints={{
+                1024: {
+                  slidesPerView: 4,
+                },
+              }}
+            >
+              {slides}
+            </Swiper>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

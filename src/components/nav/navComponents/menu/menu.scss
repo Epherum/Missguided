@@ -14,9 +14,7 @@
   padding-bottom: 3rem;
   transition: all 1.5s ease;
   max-width: 1920px;
-  @media (max-width: 500px) {
-    max-height: 80vh;
-  }
+
   .content {
     display: grid;
     grid-template-columns: repeat(9, 1fr);

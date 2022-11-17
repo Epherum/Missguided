@@ -89,3 +89,27 @@ body {
   color: var(--color5);
   background-color: var(--color1);
 }
+.fullscreen-circle-enter3 {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  width: 142vmax;
+  height: 142vmax;
+  border-radius: 50%;
+  background-color: var(--color3);
+  z-index: 100;
+}
+
+.fullscreen-circle-exit3 {
+  position: fixed;
+  bottom: 100%;
+  left: 100%;
+  width: 142vmax;
+  height: 142vmax;
+  border-radius: 50%;
+  background-color: var(--color3);
+  z-index: 100;
+}
+[data-scroll-container] {
+  perspective: 1px;
+}

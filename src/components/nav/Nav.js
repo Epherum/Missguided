@@ -57,7 +57,16 @@ function Nav() {
         className="nav-list"
       >
         <motion.li variants={navAnimate} className="logo">
-          <Link to={location.pathname === "/" ? "/" : "/home"}>MISSGUIDED</Link>
+          <Link
+            onClick={() => {
+              setIsNavOpen(false);
+              setIsSearchOpen(false);
+              setIsCartOpen(false);
+            }}
+            to={location.pathname === "/" ? "/" : "/home"}
+          >
+            MISSGUIDED
+          </Link>
         </motion.li>
 
         <motion.li variants={navAnimate} className="menu-search">

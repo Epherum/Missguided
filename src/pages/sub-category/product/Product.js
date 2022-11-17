@@ -7,6 +7,7 @@ import { storage } from "../../../firebase-config";
 
 import { ref, getDownloadURL } from "firebase/storage";
 import { useCartContext } from "../../../contexts/CartContext";
+import { motion } from "framer-motion";
 
 function Product(props) {
   const { id, category, title, price, image, color } = props;
@@ -30,21 +31,27 @@ function Product(props) {
 
   return (
     <div className="product">
-      <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
-        {productImage ? (
+      {productImage ? (
+        <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
           <img className="img" src={productImage} alt={title} />
-        ) : (
-          <div className="img-loader" />
-        )}
-      </Link>
+        </Link>
+      ) : (
+        <div className="img-loader" />
+      )}
       <h3 className="name">{title}</h3>
       <div className="flex">
         <p className="price"> {numberFormatter.format(price)}</p>
-        <button className="wishlist">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="wishlist"
+        >
           <BsHeart />
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           className="cart"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={() =>
             increaseItemQuantity(
               id,
@@ -57,7 +64,7 @@ function Product(props) {
           }
         >
           <BsPlus />
-        </button>
+        </motion.button>
       </div>
     </div>
   );

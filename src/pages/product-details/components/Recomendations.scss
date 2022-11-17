@@ -10,11 +10,28 @@
   padding: 0 2rem;
   transition: all 1.5s ease;
   max-width: 1920px;
+  @media (max-width: 500px) {
+    padding: 0 0.5rem;
+  }
   .recomendations {
+    .headline {
+      display: flex;
+      justify-content: center;
+      font-size: 2.5vw;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+      -webkit-text-stroke: 1px;
+      @media (max-width: 500px) {
+        font-size: 1.5rem;
+      }
+    }
     .carousel {
       ul {
         display: flex;
         list-style: none;
+        @media (max-width: 500px) {
+          gap: 1rem;
+        }
       }
       li {
         margin-right: -2rem;
@@ -95,13 +112,5 @@
         }
       }
     }
-  }
-  .headline {
-    display: flex;
-    justify-content: center;
-    font-size: 2.5vw;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    -webkit-text-stroke: 1px;
   }
 }
