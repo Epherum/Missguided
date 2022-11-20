@@ -19,7 +19,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<HomeFirstVisit />} />
         <Route path="/home" element={<Home />} />
         <Route path="/test" element={<Test />} />
-        {/* <Route path="/Checkout" element={<Checkout />} /> */}
+        <Route path="/checkout" element={<Checkout />} />
 
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:subCategory" element={<SubCategory />} />

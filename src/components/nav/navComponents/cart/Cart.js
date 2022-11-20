@@ -37,7 +37,7 @@ function Cart() {
           <h3>{priceFormat}</h3>
         </div>
         <Link
-          to={"#"}
+          to={"/checkout"}
           onClick={() => {
             setIsCartOpen(false);
           }}

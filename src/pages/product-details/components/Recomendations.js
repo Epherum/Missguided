@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Recomendation from "./Recommendation";
 import { useNavContext } from "../../../contexts/NavContext";
 
-function Recomendations({ category, color, id }) {
+function Recomendations({ category, color, id, initScroll }) {
   //get 5 products from firebase
   const [products, setProducts] = useState([]);
   const { isCartOpen, isNavOpen } = useNavContext();
@@ -46,6 +46,7 @@ function Recomendations({ category, color, id }) {
           title={item.name}
           image={item.images[0]}
           price={item.price}
+          initScroll={initScroll}
         />
       </SwiperSlide>
     );

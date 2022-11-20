@@ -19,14 +19,10 @@ import Dim from "../../components/dim/Dim";
 import { useCartContext } from "../../contexts/CartContext";
 import "./product-details.scss";
 import Recomendations from "./components/Recomendations";
+import useLocoScroll from "../../hooks/useLocoScroll";
 
 function ProductDetails() {
-  const {
-    isNavOpen,
-    isCartOpen,
-    isRecommendationsOpen,
-    setIsRecommendationsOpen,
-  } = useNavContext();
+  const { isNavOpen, isCartOpen } = useNavContext();
   const { increaseItemQuantity } = useCartContext();
 
   const {
@@ -37,7 +33,6 @@ function ProductDetails() {
     headlineLettersAnimate,
     priceAnimate,
     sizeAnimate,
-    colorAnimate,
     sizeGuideAnimate,
     deliveryAnimate,
     descriptionAnimate,
@@ -56,7 +51,8 @@ function ProductDetails() {
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
   const [mainImageNum, setMainImageNum] = useState(0);
-  const [styles, setStyles] = useState({});
+  const [loco, setLoco] = useState(false);
+
   //use params to get the product id from the url
   const { productId } = useParams();
 
@@ -77,6 +73,16 @@ function ProductDetails() {
       console.log("No such document!");
     }
   };
+  useEffect(() => {
+    setLoco(true);
+  }, []);
+  const scroll = useLocoScroll(loco);
+
+  function initScroll() {
+    if (scroll) {
+      scroll.update();
+    }
+  }
 
   useEffect(() => {
     getProduct();
@@ -93,25 +99,8 @@ function ProductDetails() {
     currency: "USD",
   });
 
-  // useEffect(() => {
-  //   if (isRecommendationsOpen) {
-  //     setStyles((prevStyles) => {
-  //       return {
-  //         translate: isCartOpen ? "-28rem 0rem" : "0rem 0rem",
-  //       };
-  //     });
-  //   } else {
-  //     setStyles((prevStyles) => {
-  //       return {
-  //         translate: isRecommendationsOpen ? "0rem -28rem" : "0rem 0rem",
-  //       };
-  //     });
-  //   }
-  //   console.log(styles);
-  // }, [isRecommendationsOpen, isCartOpen]);
-
   return (
-    <div className="big-container">
+    <div className="big-container" data-scroll-container>
       <motion.div
         variants={circleEnterAnimate}
         initial="hidden"
@@ -363,6 +352,7 @@ function ProductDetails() {
             category={product.category}
             color={product.color}
             id={product.id}
+            initScroll={initScroll}
           />
         </>
       )}

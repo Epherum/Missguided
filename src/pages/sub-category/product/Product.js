@@ -2,7 +2,7 @@ import React from "react";
 import { BsPlus, BsHeart } from "react-icons/bs";
 import "./product.scss";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { storage } from "../../../firebase-config";
 
 import { ref, getDownloadURL } from "firebase/storage";
@@ -10,7 +10,7 @@ import { useCartContext } from "../../../contexts/CartContext";
 import { motion } from "framer-motion";
 
 function Product(props) {
-  const { id, category, title, price, image, color } = props;
+  const { id, category, title, price, image, color, initScroll } = props;
   const [productImage, setProductImage] = useState("");
   const { increaseItemQuantity } = useCartContext();
 
@@ -33,7 +33,14 @@ function Product(props) {
     <div className="product">
       {productImage ? (
         <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
-          <img className="img" src={productImage} alt={title} />
+          <img
+            className="img"
+            src={productImage}
+            alt={title}
+            onLoad={() => {
+              initScroll();
+            }}
+          />
         </Link>
       ) : (
         <div className="img-loader" />

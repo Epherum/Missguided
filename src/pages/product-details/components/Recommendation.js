@@ -10,7 +10,7 @@ import { useCartContext } from "../../../contexts/CartContext";
 //but with different css
 
 function Recomendation(props) {
-  const { id, category, title, price, image } = props;
+  const { id, category, title, price, image, initScroll } = props;
   const [productImage, setProductImage] = useState("");
   const { increaseItemQuantity } = useCartContext();
 
@@ -33,7 +33,14 @@ function Recomendation(props) {
     <div className="recommendation">
       <Link to={"/categories/" + category + "/" + titleDash + "/" + id}>
         {productImage ? (
-          <img className="img" src={productImage} alt={title} />
+          <img
+            className="img"
+            src={productImage}
+            alt={title}
+            onLoad={() => {
+              initScroll();
+            }}
+          />
         ) : (
           <div className="img-loader" />
         )}

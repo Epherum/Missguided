@@ -1,6 +1,6 @@
 import Product from "./product/Product";
 import { BsSliders } from "react-icons/bs";
-import { calcLength, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import animations from "./animations";
 import { Link } from "react-router-dom";
 import "./sub-category.scss";
@@ -30,15 +30,12 @@ function SubCategory() {
   const [products, setProducts] = useState([]);
   const [latestDoc, setLatestDoc] = useState(null);
   const [LoadButtonStyles, setLoadButtonStyles] = useState({});
-
   const [loco, setLoco] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoco(true);
-  //   }, 2000);
-  // }, []);
-  // const scroll = useLocoScroll(loco);
+  useEffect(() => {
+    setLoco(true);
+  }, []);
+  const scroll = useLocoScroll(loco);
 
   const {
     productArrayAnimate,
@@ -91,9 +88,6 @@ function SubCategory() {
     }
 
     setLatestDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-    // setTimeout(() => {
-    //   InitScroll();
-    // }, 1000);
   };
 
   const getFilteredProducts = async (loadMore) => {
@@ -168,15 +162,13 @@ function SubCategory() {
   useEffect(() => {
     window.scrollTo(0, 0);
     getSubcategories();
-    //remove scroll from body
-    // document.body.style.overflow = "hidden";
   }, []);
 
-  // function InitScroll() {
-  //   if (scroll) {
-  //     scroll.update();
-  //   }
-  // }
+  function initScroll() {
+    if (scroll) {
+      scroll.update();
+    }
+  }
 
   const handleLoadMore = () => {
     if (isFilterOn) {
@@ -253,7 +245,6 @@ function SubCategory() {
                 initial={"hidden"}
                 animate={"visible"}
               >
-                {/* dresses for&nbsp; */}
                 {lastWord}&nbsp;
               </motion.div>
               <motion.div
@@ -280,7 +271,6 @@ function SubCategory() {
                 initial={"hidden"}
                 animate={"visible"}
               >
-                {/* thanks flexbox */}
                 of&nbsp;1478
               </motion.div>
             </div>
@@ -323,6 +313,7 @@ function SubCategory() {
               image={item.images[0]}
               price={item.price}
               color={item.color}
+              initScroll={initScroll}
             />
           ))}
           <div
