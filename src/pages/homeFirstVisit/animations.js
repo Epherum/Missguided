@@ -332,7 +332,7 @@ const circleLoader1Animate = {
       delay: 0.4,
       ease: "easeOut",
 
-      duration: 2.1,
+      duration: 2.3,
     },
   },
 };

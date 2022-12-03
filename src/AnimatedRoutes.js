@@ -10,7 +10,7 @@ import Categories from "./pages/categories/Categories";
 import SubCategory from "./pages/sub-category/SubCategory";
 import ProductDetails from "./pages/product-details/ProductDetails";
 import Test from "./pages/Test";
-import Checkout from "./pages/cart/Checkout";
+import Checkout from "./pages/checkout/Checkout";
 function AnimatedRoutes() {
   const location = useLocation();
   return (

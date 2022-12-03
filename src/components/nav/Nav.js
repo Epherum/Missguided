@@ -87,12 +87,14 @@ function Nav() {
           </motion.div>
         </motion.li>
         <motion.li variants={navAnimate} className="profile-mobile-view">
-          <BsBag onClick={() => setIsCartOpen(!isCartOpen)} />
-          {cartItems?.length > 0 && (
-            <span className="badge">
-              <p className="count">{cartItems.length}</p>
-            </span>
-          )}
+          <Link to={"/checkout"}>
+            <BsBag />
+            {cartItems?.length > 0 && (
+              <span className="badge">
+                <p className="count">{cartItems.length}</p>
+              </span>
+            )}
+          </Link>
         </motion.li>
         <motion.li variants={navAnimate} className="profile">
           <motion.div className="wishlist" variants={navAnimate}>

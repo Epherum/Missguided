@@ -170,6 +170,7 @@ function SubCategory() {
     }
   }
 
+
   const handleLoadMore = () => {
     if (isFilterOn) {
       getFilteredProducts(true);
@@ -191,6 +192,7 @@ function SubCategory() {
       ]);
     }
   };
+
 
   return (
     <div className="big-container-subCat" data-scroll-container>

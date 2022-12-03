@@ -87,14 +87,14 @@
   .total-checkout {
     width: 100%;
     margin-top: auto;
-    .total {
+    .cart-total {
       display: flex;
       justify-content: space-between;
       margin-bottom: 2rem;
       font-size: 1.1vw;
       padding: 0 3rem;
     }
-    .checkout {
+    .cart-checkout {
       all: unset;
       cursor: pointer;
       display: inline-block;

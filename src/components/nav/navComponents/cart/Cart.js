@@ -32,7 +32,7 @@ function Cart() {
         })}
       </div>
       <div className="total-checkout">
-        <div className="total">
+        <div className="cart-total">
           <h3>Total ({cartItems?.length})</h3>
           <h3>{priceFormat}</h3>
         </div>
@@ -41,7 +41,7 @@ function Cart() {
           onClick={() => {
             setIsCartOpen(false);
           }}
-          className="checkout"
+          className="cart-checkout"
         >
           Check out
         </Link>
