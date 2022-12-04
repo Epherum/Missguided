@@ -6,11 +6,25 @@ import Dim from "../../components/dim/Dim";
 import { useNavContext } from "../../contexts/NavContext";
 import { motion } from "framer-motion";
 import animations from "./animations";
+import useLocoScroll from "../../hooks/useLocoScroll";
+import React, { useState, useEffect } from "react";
+
 function Checkout() {
+  const [loco, setLoco] = useState(false);
+
   const { cartItems } = useCartContext();
   const { isNavOpen, isCartOpen } = useNavContext();
-  const { circleExitAnimate, circleEnterAnimate, circleColorAnimate } =
-    animations;
+  const {
+    left,
+    right,
+    circleExitAnimate,
+    circleEnterAnimate,
+    circleColorAnimate,
+  } = animations;
+  useEffect(() => {
+    setLoco(true);
+  }, []);
+  const scroll = useLocoScroll(loco);
   //get total price and format it
   const totalPrice = cartItems.reduce((total, item) => {
     return (total += item.price * item.quantity);
@@ -21,7 +35,7 @@ function Checkout() {
   }).format(totalPrice);
 
   return (
-    <div className="big-container">
+    <div className="big-container" data-scroll-container>
       <motion.div
         variants={circleEnterAnimate}
         initial="hidden"
@@ -57,7 +71,12 @@ function Checkout() {
           </div>
         ) : (
           <div className="checkout-container">
-            <div className="checkout-left">
+            <motion.div
+              variants={left}
+              initial={"hidden"}
+              animate={"visible"}
+              className="checkout-left"
+            >
               <h1>My Bag</h1>
               <hr />
 
@@ -71,12 +90,17 @@ function Checkout() {
                   <th>Subtotal</th>
                 </tr>
 
-                {cartItems.map((item) => (
-                  <Product key={item.id} item={item} />
+                {cartItems.map((item, index) => (
+                  <Product key={item.id} item={item} index={index} />
                 ))}
               </table>
-            </div>
-            <div className="checkout-right">
+            </motion.div>
+            <motion.div
+              variants={right}
+              initial={"hidden"}
+              animate={"visible"}
+              className="checkout-right"
+            >
               <h1>Order Summary</h1>
               <hr />
               <div className="order-summary">
@@ -91,7 +115,7 @@ function Checkout() {
                 <button>Checkout</button>
                 <Link to={"/categories"}>Continue Shopping</Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
       </div>

@@ -10,7 +10,7 @@ export function NavProvider({ children }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isRecommendationsOpen, setIsRecommendationsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   return (
     <NavContext.Provider
       value={{
@@ -20,8 +20,8 @@ export function NavProvider({ children }) {
         setIsSearchOpen,
         isCartOpen,
         setIsCartOpen,
-        isRecommendationsOpen,
-        setIsRecommendationsOpen,
+        isProfileOpen,
+        setIsProfileOpen,
       }}
     >
       {children}

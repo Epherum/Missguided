@@ -23,7 +23,7 @@ function Menu() {
     getCategories();
     //check screen size
     if (window.innerWidth < 568) {
-      setMenuTop(-100);
+      setMenuTop(-140);
     }
   }, []);
 

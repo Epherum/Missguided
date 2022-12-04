@@ -9,15 +9,18 @@ import { useNavContext } from "../../contexts/NavContext";
 import Menu from "./navComponents/menu/Menu";
 import Search from "./navComponents/search/Search";
 import Cart from "./navComponents/cart/Cart";
+import Profile from "./navComponents/profile/Profile";
 import { useCartContext } from "../../contexts/CartContext";
 function Nav() {
   const {
     isNavOpen,
     isSearchOpen,
     isCartOpen,
+    isProfileOpen,
     setIsNavOpen,
     setIsSearchOpen,
     setIsCartOpen,
+    setIsProfileOpen,
   } = useNavContext();
 
   const { cartItems } = useCartContext();
@@ -72,16 +75,16 @@ function Nav() {
         <motion.li variants={navAnimate} className="menu-search">
           <motion.div
             className="menu"
-            onClick={() => setIsNavOpen(!isNavOpen)}
             variants={navAnimate}
+            onClick={() => setIsNavOpen(!isNavOpen)}
           >
             <span className={isNavOpen ? "lineTop spin" : "lineTop "} />
             <span className={isNavOpen ? "lineBottom spin" : "lineBottom"} />
           </motion.div>
           <motion.div
             className="search"
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
             variants={navAnimate}
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
             <FiSearch />
           </motion.div>
@@ -112,7 +115,11 @@ function Nav() {
               </span>
             )}
           </motion.div>
-          <motion.div className="user" variants={navAnimate}>
+          <motion.div
+            className="user"
+            variants={navAnimate}
+            // onClick={() => setIsProfileOpen(!isProfileOpen)}
+          >
             <IoPersonOutline />
           </motion.div>
         </motion.li>
@@ -120,6 +127,7 @@ function Nav() {
       <Menu />
       <Search />
       <Cart />
+      <Profile />
     </nav>
   );
 }

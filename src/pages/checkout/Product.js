@@ -1,7 +1,9 @@
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useCartContext } from "../../contexts/CartContext";
 import { useState } from "react";
-function Product({ item }) {
+import { motion } from "framer-motion";
+import animations from "./animations";
+function Product({ item, index }) {
   const { id, title, image, quantity, price, color } = item;
   const [quantity2, setQuantity2] = useState(quantity);
   //format price
@@ -22,7 +24,12 @@ function Product({ item }) {
     currency: "USD",
   }).format(subtotal);
   return (
-    <tr className="checkout-product">
+    <motion.tr
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 + 0.4, duration: 0.4 }}
+      className="checkout-product"
+    >
       <td>
         <img src={image} alt="" />
       </td>
@@ -70,7 +77,7 @@ function Product({ item }) {
         <p>{newPrice}</p>
       </td>
       <td>{newSubtotal}</td>
-    </tr>
+    </motion.tr>
   );
 }
 
