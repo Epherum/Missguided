@@ -2,7 +2,6 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { useCartContext } from "../../contexts/CartContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import animations from "./animations";
 function Product({ item, index }) {
   const { id, title, image, quantity, price, color } = item;
   const [quantity2, setQuantity2] = useState(quantity);
