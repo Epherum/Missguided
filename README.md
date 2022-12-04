@@ -2,7 +2,7 @@
 
 ## Demo of this app:
 
-![demo](./src/Missguided.mp4)
+![demo](./src/images/Missguided.gif)
 
 ### Or Go to the live site and try it for yourself [here](https://wassim-missguided.web.app/)
 
