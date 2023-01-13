@@ -118,7 +118,7 @@ function Nav() {
           <motion.div
             className="user"
             variants={navAnimate}
-            // onClick={() => setIsProfileOpen(!isProfileOpen)}
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
           >
             <IoPersonOutline />
           </motion.div>

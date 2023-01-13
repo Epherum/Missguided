@@ -1,45 +1,84 @@
 import React from "react";
 import "./profile.scss";
 import { useNavContext } from "../../../../contexts/NavContext";
-import { useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../../../../contexts/AuthContext";
 function Profile() {
   const { isProfileOpen, setIsProfileOpen } = useNavContext();
-
-  //   const auth = getAuth();
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       const user = userCredential.user;
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // ..
-  //     });
+  // if the user is logged in, we want to display their email address
+  // if the user is not logged in, we want to display a login button
+  const { currentUser, signup, login, logout } = useAuthContext();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function handleLogin(e) {
+    login(email, password);
+  }
+  function handleSignup(e) {
+    e.preventDefault();
+    signup(email, password);
+  }
   useEffect(() => {
-    console.log(isProfileOpen);
-  }, [isProfileOpen]);
+    if (currentUser) {
+      setEmail(currentUser.email);
+    }
+  }, [currentUser]);
   return (
     <div
       style={{
-        display: isProfileOpen ? "block" : "none",
+        transform: isProfileOpen ? "translateX(0)" : "translateX(100%)",
       }}
     >
-      <h3>Sign up</h3>
-      <form action="">
-        <label for="html">Email</label>
-        <br />
-        <input id="html" name="fav_language" value="HTML" />
-        <br />
-        <label for="html">Password</label>
-        <br />
-        <input id="html" name="fav_language" value="HTML" />
-        <br />
-        <p>Already have an account? </p>
-        <button>log in</button>
-      </form>
+      {currentUser ? (
+        <div className="profile">
+          <h1>{email}</h1>
+          <button onClick={logout}>Logout</button>
+        </div>
+      ) : (
+        <div className="profile">
+          <div className="login">
+            <h1>Login</h1>
+            <form
+              onSubmit={(e) => {
+                handleLogin(e);
+              }}
+              className="login-form"
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="submit">Login</button>
+            </form>
+          </div>
+          <div className="signup">
+            <h1>Sign Up</h1>
+            <form
+              onSubmit={(e) => {
+                handleSignup(e);
+              }}
+              className="signup-form"
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="submit">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
