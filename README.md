@@ -27,7 +27,7 @@
 
 ### Authentication:
 
-- firebase Auth (currently redoing authentication so login and wishlist are down until 6/12 )
+- firebase Auth (currently redoing authentication so login and wishlist are down )
 
 ### Database:
 
@@ -40,7 +40,7 @@
 
 ## What can be further improved?
 
-1. Refactoring the HomeFirstVisit component, it was a quick and dirty solution to play a different animation on first visit,it's just a clone of the Home component but with a different animationt
+1. Refactoring the HomeFirstVisit component, it was a quick and dirty solution to play a different animation on first visit,it's just a clone of the Home component but with a different animation
 
 2. Adding an image skeleton Loader, currently if you have slow internet they pop up in an ugly way
 
