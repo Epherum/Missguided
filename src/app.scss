@@ -1,11 +1,24 @@
 :root {
-  --color1: hsl(0, 0%, 100%);
-  --color2: #fee9e4;
-  --color3: hsl(351, 33%, 92%);
-  --color4: #f0c8d1;
-  --color5: #221c1c;
+  --color1: #ffffff; //background color
+  --color2: #c8c0f9; //first circle color
+  --color3: #c8c0f9; //home circle color
+  --color4: #c8c0f9;
+  --color5: #221c1c; //text color
   --color6: #bcbbbc;
+  --color7: #a291e3;
 }
+
+body {
+  font-family: "GT America Bold", sans-serif;
+}
+
+//   --color1: #a391e2; //background color
+// --color2: #b6a7ec; //first circle color
+// --color3: #b6a7ec; //home circle color
+// --color4: #f0c8d1;
+// --color5: #d0f038; //text color
+// --color6: #bcbbbc;
+// --color7: #a391e2; //loader color
 
 @font-face {
   font-family: "GT America Bold";
@@ -71,12 +84,12 @@
 
 ::selection {
   color: inherit;
-  background: var(--color4);
+  background: var(--color2);
 }
 ::-moz-selection {
   /* Code for Firefox */
   color: inherit;
-  background: var(--color4);
+  background: var(--color2);
 }
 
 * {
@@ -84,11 +97,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  font-family: "GT America Bold";
-  color: var(--color5);
-  background-color: var(--color1);
-}
+
 .fullscreen-circle-enter3 {
   position: fixed;
   bottom: 20%;

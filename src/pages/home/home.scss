@@ -102,7 +102,7 @@
 
     div {
       height: 100%;
-      background: url("../../images/l1v2.jpg");
+      background: url("../../images/topImage.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -117,7 +117,7 @@
 
     div {
       height: 100%;
-      background: url("../../images/l1v2.jpg");
+      background: url("../../images/bottomImage.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -298,6 +298,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    font-family: "GT America Regular";
 
     a {
       justify-self: flex-end;

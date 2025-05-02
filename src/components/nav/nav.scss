@@ -36,7 +36,7 @@
       transition: color 0.3s ease-in-out;
       text-decoration: none;
       &:hover {
-        color: var(--color4);
+        color: var(--color7);
       }
     }
     @media (max-width: 500px) {
@@ -117,8 +117,8 @@
       transition: filter 0.5s ease;
       &:hover,
       &:focus {
-        filter: invert(95%) sepia(42%) saturate(383%) hue-rotate(294deg)
-          brightness(99%) contrast(102%);
+        filter: brightness(0) saturate(100%) invert(59%) sepia(65%)
+          saturate(510%) hue-rotate(208deg) brightness(96%) contrast(86%);
       }
     }
   }

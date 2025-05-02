@@ -27,7 +27,7 @@ function Home() {
   };
 
   useEffect(() => {
-    circularText("How to Make an Effort  How to Make an Effort  ", 230);
+    circularText("Styled like you m ean it  Styled like you m ean it  ", 230);
     //230
     //150
     //100
@@ -218,7 +218,7 @@ function Home() {
               initial={"hidden"}
               animate={"visible"}
             >
-              <motion.div variants={headlineLettersAnimate}>B</motion.div>
+              <motion.div variants={headlineLettersAnimate}>F</motion.div>
               <motion.div variants={headlineLettersAnimate}>A</motion.div>
             </motion.div>
             <motion.div
@@ -226,9 +226,11 @@ function Home() {
               initial={"hidden"}
               animate={"visible"}
             >
-              <motion.div variants={headlineLettersAnimate}>B</motion.div>
-              <motion.div variants={headlineLettersAnimate}>E</motion.div>
               <motion.div variants={headlineLettersAnimate}>S</motion.div>
+              <motion.div variants={headlineLettersAnimate}>H</motion.div>
+              <motion.div variants={headlineLettersAnimate}>I</motion.div>
+              <motion.div variants={headlineLettersAnimate}>O</motion.div>
+              <motion.div variants={headlineLettersAnimate}>N</motion.div>
             </motion.div>
             <span className="who-brunch">
               <motion.div
@@ -241,21 +243,20 @@ function Home() {
                so i have to use inline-block divs
                which makes me looks stupid af */}
 
-                <motion.div variants={whoBrunchAnimate}>W</motion.div>
-                <motion.div variants={whoBrunchAnimate}>H</motion.div>
+                <motion.div variants={whoBrunchAnimate}>F</motion.div>
                 <motion.div variants={whoBrunchAnimate}>O</motion.div>
+                <motion.div variants={whoBrunchAnimate}>R</motion.div>
               </motion.div>
               <motion.div
                 variants={whoBrunchAnimate}
                 initial={"hidden"}
                 animate={"visible"}
               >
-                <motion.div variants={whoBrunchAnimate}>B</motion.div>
-                <motion.div variants={whoBrunchAnimate}>R</motion.div>
-                <motion.div variants={whoBrunchAnimate}>U</motion.div>
-                <motion.div variants={whoBrunchAnimate}>N</motion.div>
-                <motion.div variants={whoBrunchAnimate}>C</motion.div>
-                <motion.div variants={whoBrunchAnimate}>H</motion.div>
+                <motion.div variants={whoBrunchAnimate}>D</motion.div>
+                <motion.div variants={whoBrunchAnimate}>I</motion.div>
+                <motion.div variants={whoBrunchAnimate}>V</motion.div>
+                <motion.div variants={whoBrunchAnimate}>A</motion.div>
+                <motion.div variants={whoBrunchAnimate}>S</motion.div>
               </motion.div>
             </span>
           </motion.h1>

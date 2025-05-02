@@ -1,58 +1,84 @@
+// Define transition duration variable
+$menu-slide-duration: 1.5s; // Keep the desired duration (e.g., 1s)
+$mobile-breakpoint: 768px; // Define your mobile breakpoint
+
 .menu-overlay {
-  position: fixed;
-  background: white;
+  // --- Default Styles (Desktop/Tablet) ---
+  position: fixed; // Fixed position works well for overlays
   z-index: 100;
-  top: 0%;
+  top: 0; // Start positioning from the top
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: 1920px; // Keep if you have a max-width design
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  overflow: hidden;
+  background: white;
   padding: 0 2rem;
+  // Padding for content to appear below header area
   padding-top: min(11.2rem, 16vh);
   padding-bottom: 3rem;
-  transition: all 1.5s ease;
-  max-width: 1920px;
+  // Height determined by content by default
+  height: auto;
+  // Hide overflow, especially during transition
+  overflow: hidden;
+
+  // --- State: Closed (Default) ---
+  transform: translateY(
+    -100%
+  ); // Hide above viewport (relative to its own height)
+  visibility: hidden;
+  transition: transform $menu-slide-duration ease,
+    visibility 0s $menu-slide-duration;
+
+  // --- State: Open ---
+  &.is-open {
+    transform: translateY(0); // Slide into view (from top: 0)
+    visibility: visible;
+    transition: transform $menu-slide-duration ease, visibility 0s 0s;
+  }
 
   .content {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    @media (max-width: 500px) {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; // Add some gap
+
+    // Adjust columns for smaller desktop/tablet if needed
+    @media (max-width: 992px) {
+      // Example intermediate breakpoint
+      grid-template-columns: repeat(6, 1fr);
     }
+
     .category {
+      // Styles for .category, .headline, ul, li, a remain largely the same
+      // Opacity/transitions handled inline in React
+
       .headline {
+        display: inline-block;
         font-size: min(1.9rem, 1.6vw);
         margin-bottom: min(3rem, 5vh);
-        display: inline-block;
         text-decoration: none;
         color: var(--color5);
-        transition: all 0.3s ease-in-out;
+        transition: color 0.3s ease-in-out;
+
         &:hover,
         &:focus {
           color: var(--color4);
           text-decoration: underline;
         }
-        @media (max-width: 500px) {
-          font-size: 1.5rem;
-          margin-bottom: 1.5rem;
-        }
       }
+
       ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
         li {
           margin-bottom: min(1.6rem, 2.6vh);
           font-size: min(1rem, 0.8vw);
-          @media (max-width: 500px) {
-            font-size: 0.7rem;
-            margin-bottom: 1.5rem;
-          }
           a {
             color: var(--color6);
             text-decoration: none;
-            transition: all 0.3s ease-in-out;
+            transition: color 0.3s ease-in-out;
             &:hover,
             &:focus {
               color: var(--color4);
@@ -62,4 +88,45 @@
       }
     }
   }
+
+  // --- Mobile Overrides ---
+  @media (max-width: $mobile-breakpoint) {
+    // Make it full height on mobile
+    height: 100vh; // Or 100dvh
+    // Allow vertical scrolling within the menu on mobile
+    overflow-y: auto;
+    // Prevent horizontal scroll just in case
+    overflow-x: hidden;
+    // Adjust padding for mobile (maybe less top padding if header is smaller)
+    padding-top: 6rem; // Adjust as needed for mobile header
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem; // Ensure space at bottom for scrolling
+
+    .content {
+      // Mobile grid layout
+      grid-template-columns: repeat(3, 1fr); // Your original mobile grid
+      gap: 0.5rem; // Adjust gap for mobile
+
+      .category {
+        .headline {
+          // Mobile font sizes/margins
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+        ul {
+          li {
+            // Mobile font sizes/margins
+            font-size: 0.8rem; // Slightly bigger than 0.7? Adjust as needed.
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Optional: Prevent body scrolling when menu is open (works for both views)
+body.menu-is-active {
+  overflow: hidden;
 }

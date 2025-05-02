@@ -68,7 +68,7 @@ function Nav() {
             }}
             to={location.pathname === "/" ? "/" : "/home"}
           >
-            MISSGUIDED
+            MOONDIVINE
           </Link>
         </motion.li>
 

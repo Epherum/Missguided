@@ -7,7 +7,7 @@
   right: 0;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: var(--color7);
   text-transform: uppercase;
   z-index: 98;
 
@@ -91,6 +91,7 @@
     align-self: center;
     animation: animate 10s linear infinite;
     transform-origin: 0 230px;
+    color: var(--color7);
 
     @media (max-width: 1024px) {
       grid-row: 3;
@@ -144,7 +145,7 @@
     grid-row: 1/3;
     div {
       height: 100%;
-      background: url("../../images/l1v2.jpg");
+      background: url("../../images/topImage.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -159,7 +160,7 @@
 
     div {
       height: 100%;
-      background: url("../../images/r1v2.jpg");
+      background: url("../../images/bottomImage.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -187,7 +188,7 @@
     margin-left: 0.8rem;
     font-size: 1rem;
     color: hsl(0, 0%, 78%);
-
+    font-family: "GT America Regular";
     line-height: 1.6rem;
     a {
       transition: all 0.3s ease-in-out;
@@ -210,7 +211,7 @@
     margin-top: -1.4rem;
     margin-left: 0.5rem;
     margin-right: -3rem;
-    font-size: min(7.1rem, 5.9vw);
+    font-size: min(7.1rem, 4.9vw);
     -webkit-text-stroke: 4px;
 
     letter-spacing: 0.9px;
@@ -221,6 +222,7 @@
     }
     h1 {
       clip-path: polygon(0 17%, 100% 17%, 100% 90%, 0% 90%);
+      font-family: "GT America Regular";
     }
 
     .who-brunch {
@@ -364,7 +366,7 @@
     display: flex;
     justify-content: flex-end;
     position: relative;
-
+    font-family: "GT America Regular";
     overflow: hidden;
 
     a {
@@ -418,7 +420,6 @@
         letter-spacing: 0.6px;
         font-size: min(1.6rem, 1.7vw);
         color: var(--color1);
-        color: #ffffff;
         display: grid;
         place-items: center;
         @media (max-width: 1024px) {

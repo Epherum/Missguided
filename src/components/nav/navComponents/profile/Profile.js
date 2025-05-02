@@ -28,7 +28,7 @@ function Profile() {
         transform: isProfileOpen ? "translateX(0)" : "translateX(100%)",
       }}
     >
-      {currentUser ? (
+      {/* {currentUser ? (
         <div className="profile">
           <h1>{email}</h1>
           <button onClick={logout}>Logout</button>
@@ -78,7 +78,7 @@ function Profile() {
             </form>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
