@@ -170,7 +170,6 @@ function SubCategory() {
     }
   }
 
-
   const handleLoadMore = () => {
     if (isFilterOn) {
       getFilteredProducts(true);
@@ -192,7 +191,6 @@ function SubCategory() {
       ]);
     }
   };
-
 
   return (
     <div className="big-container-subCat" data-scroll-container>
@@ -255,7 +253,7 @@ function SubCategory() {
                 animate={"visible"}
                 className="for-babes"
               >
-                for babes
+                for you
               </motion.div>
             </motion.h1>
             <div className="stock">
